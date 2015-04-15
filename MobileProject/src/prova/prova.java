@@ -1,5 +1,7 @@
 package prova;
 
-public class prova {
+import javax.servlet.http.HttpServlet;
+
+public class prova extends HttpServlet {
 
 }
