@@ -30,6 +30,8 @@
   		<groupId>org.postgresql</groupId>
   		<artifactId>postgresql</artifactId>
   		<version>9.4-1201-jdbc4</version>
+  		<scope>system</scope>
+  		<systemPath>C:\Users\Tea\Downloads\postgresql-9.4-1201-jdbc4.jar</systemPath>
   	</dependency>
   </dependencies>
 </project>
