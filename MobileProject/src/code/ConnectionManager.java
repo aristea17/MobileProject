@@ -11,6 +11,12 @@ public class ConnectionManager {
 	
 	public static Connection getConnection(){
 		
+		try {
+			Class.forName("org.postgresql.Driver");
+		} catch (ClassNotFoundException e1) {
+			System.out.println(e1.getMessage());
+		}
+		
 		String url = "jdbc:postgresql://localhost:5432/Mobile";
 		String user = "postgres";
 		String password = "aristea17";

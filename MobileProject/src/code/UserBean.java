@@ -27,7 +27,7 @@ public class UserBean {
 		valid = newValid;
 	}
 	
-	public boolean getValid(){
+	public boolean isValid(){
 		return valid;
 	}
 

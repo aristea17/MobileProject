@@ -9,10 +9,10 @@
 <body>
 <form action="LoginServlet">
 Please enter your username:
-<input type="text" name="un"/><br>
+<input type="text" name="username"/><br>
 
 Please enter your password:
-<input type="text" name="pw"/><br>
+<input type="text" name="password"/><br>
 
 <input type="submit" value="submit">
 </form>

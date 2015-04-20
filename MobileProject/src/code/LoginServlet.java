@@ -1,6 +1,7 @@
 package code;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +16,13 @@ public class LoginServlet extends HttpServlet {
 		user.setUsername(req.getParameter("username"));
 		user.setPassword(req.getParameter("password"));
 		
-		user = UserDAO.login(user);
+		try {
+			user = UserDAO.login(user);
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 		
-		if(user.getValid()){
+		if(user.isValid()){
 			HttpSession session = req.getSession(true);
 			session.setAttribute("currentSessionUser", user);
 			resp.sendRedirect("validLogin.jsp");

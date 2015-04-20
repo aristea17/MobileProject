@@ -1,6 +1,7 @@
 package code;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -10,16 +11,17 @@ public class UserDAO {
 	static Connection currentCon = null;
 	static ResultSet rs= null;
 	
-	public static UserBean login(UserBean bean){
+	public static UserBean login(UserBean bean) throws SQLException{
 		Statement s = null;
 		
 		String username = bean.getUsername();
 		String password = bean.getPassword();
 		
-		String query = "select * from user where username=" + username + "AND password=" + password;
+		System.out.println(username + password);
+		
+		String query = "select * from User where username=" + username + "and password=" + password + "";
 		
 		//connection to the DB
-		
 		try {
 			currentCon = ConnectionManager.getConnection();
 			s = currentCon.createStatement();
@@ -33,7 +35,7 @@ public class UserDAO {
 				bean.setValid(true); 
 			}
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}finally{
 			if(rs!=null){
 				try {
