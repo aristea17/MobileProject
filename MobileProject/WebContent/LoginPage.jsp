@@ -4,17 +4,38 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <title>Login</title>
 </head>
 <body>
-<form action="LoginServlet">
-Please enter your username:
-<input type="text" name="username"/><br>
-
-Please enter your password:
-<input type="text" name="password"/><br>
-
-<input type="submit" value="submit">
+<form class="form-horizontal">
+	<div class="form-group">
+	 <label for="username" class="col-sm-2 control-label">Username</label>
+	   <div class="col-sm-10">
+	   	<input type="text" class="form-control" id="username" value="">
+	   </div>
+	</div>
+	<div class="form-group">
+	<label for="password" class="col-sm-2 control-label">Password</label>
+	   <div class="col-sm-10">
+	   	<input type="password" class="form-control" id="password" value="">
+	   	</div>
+	</div>
+	<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Login</button>
+    </div>
+  </div>
 </form>
 </body>
 </html>

@@ -35,7 +35,7 @@ public class UserDAO {
 				bean.setValid(true); 
 			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}finally{
 			if(rs!=null){
 				try {
