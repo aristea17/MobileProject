@@ -19,7 +19,7 @@ public class UserDAO {
 		
 		System.out.println(username + password);
 		
-		String query = "select * from User where username=" + username + "and password=" + password + "";
+		String query = "Select * From public.\"User\" where username='" + username + "' and password='" + password + "'";
 		
 		//connection to the DB
 		try {
