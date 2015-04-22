@@ -1,8 +1,6 @@
 package code;
-
 import java.io.IOException;
 import java.sql.SQLException;
-
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,8 +11,8 @@ public class LoginServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException{
 		
 		UserBean user = new UserBean();
-		user.setUsername(req.getParameter("username"));
-		user.setPassword(req.getParameter("password"));
+		user.setUsername(req.getParameter("txtUsername"));
+		user.setPassword(req.getParameter("txtPassword"));
 		
 		try {
 			user = UserDAO.login(user);
@@ -30,5 +28,4 @@ public class LoginServlet extends HttpServlet {
 			resp.sendRedirect("invalidLogin.jsp");
 		}
 	}
-
 }

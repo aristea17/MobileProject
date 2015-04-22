@@ -1,17 +1,16 @@
 package code;
-
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class UserDAO {
 	
-	static Connection currentCon = null;
-	static ResultSet rs= null;
+	public static Connection currentCon = null;
+	public static ResultSet rs= null;
 	
 	public static UserBean login(UserBean bean) throws SQLException{
+		
 		Statement s = null;
 		
 		String username = bean.getUsername();
@@ -21,7 +20,6 @@ public class UserDAO {
 		
 		String query = "Select * From public.\"User\" where username='" + username + "' and password='" + password + "'";
 		
-		//connection to the DB
 		try {
 			currentCon = ConnectionManager.getConnection();
 			s = currentCon.createStatement();
@@ -29,7 +27,7 @@ public class UserDAO {
 			boolean more = rs.next();
 			
 			if(!more){
-				System.out.println("Register!");
+				System.out.println("You are not a registered user! Register!");
 				bean.setValid(false);
 			}else{
 				bean.setValid(true); 

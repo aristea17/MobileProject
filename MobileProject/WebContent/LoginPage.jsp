@@ -4,38 +4,32 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="Login.css" rel="stylesheet" type="text/css" />
 <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
 <title>Login</title>
 </head>
 <body>
-<form class="form-horizontal">
-	<div class="form-group">
-	 <label for="username" class="col-sm-2 control-label">Username</label>
-	   <div class="col-sm-10">
-	   	<input type="text" class="form-control" id="username" value="">
-	   </div>
-	</div>
-	<div class="form-group">
-	<label for="password" class="col-sm-2 control-label">Password</label>
-	   <div class="col-sm-10">
-	   	<input type="password" class="form-control" id="password" value="">
-	   	</div>
-	</div>
-	<div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <div class="checkbox">
-        <label>
-          <input type="checkbox"> Remember me
-        </label>
-      </div>
-    </div>
+<form action="LoginServlet">  
+ <div class="wrapper">
+    <form class="form-signin">       
+      <h2 class="form-signin-heading">Please login</h2>
+      <input type="text" class="form-control" name="txtUsername" placeholder="Username" required="" autofocus="" />
+      <input type="password" class="form-control" name="txtPassword" placeholder="Password" required=""/>      
+      <label class="checkbox">
+        <input type="checkbox" value="remember-me" id="rememberMe" name="rememberMe"> Remember me
+      </label>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>   
+    </form>
   </div>
-  <div class="form-group">
-    <div class="col-sm-offset-2 col-sm-10">
-      <button type="submit" class="btn btn-default">Login</button>
-    </div>
-  </div>
-</form>
+  <!--  
+	<label for="txtUsername">Username</label>
+	<input type="text" name="txtUsername" value=""/>
+	
+	<label for="txtPassword">Password</label>
+	<input type="password" name="txtPassword" value=""/>	
+	
+	<input type="submit" value="check" /> -->
+</form>		
 </body>
 </html>

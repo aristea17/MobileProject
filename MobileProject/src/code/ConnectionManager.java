@@ -1,13 +1,14 @@
 package code;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/* Prepare the connection to the DB */
+
 public class ConnectionManager {
 	
-	static Connection con;
-	static String url;
+	public static Connection con;
+	public static String url;
 	
 	public static Connection getConnection(){
 		
@@ -29,6 +30,4 @@ public class ConnectionManager {
 		
 		return con;
 	}
-	
-
 }

@@ -1,6 +1,6 @@
 package code;
 
-//this is the JavaBean for the User, with its properties and the getters and setters
+/* This is the JavaBean for the User, with its properties and the getters and setters */
 public class UserBean {
 	
 	private String username;
@@ -30,5 +30,4 @@ public class UserBean {
 	public boolean isValid(){
 		return valid;
 	}
-
 }
