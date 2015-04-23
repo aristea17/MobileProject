@@ -26,6 +26,7 @@ public class UserDAO {
 			rs = s.executeQuery(query);
 			boolean more = rs.next();
 			
+			//commect
 			if(!more){
 				System.out.println("You are not a registered user! Register!");
 				bean.setValid(false);
