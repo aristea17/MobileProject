@@ -6,7 +6,7 @@ import java.sql.Statement;
 
 public class UserDAO {
 	
-	public static Connection currentCon = null;
+	public static Connection con = null;
 	public static ResultSet rs= null;
 	
 	public static UserBean login(UserBean bean) throws SQLException{
@@ -21,8 +21,8 @@ public class UserDAO {
 		String query = "Select * From public.\"User\" where username='" + username + "' and password='" + password + "'";
 		
 		try {
-			currentCon = ConnectionManager.getConnection();
-			s = currentCon.createStatement();
+			con = ConnectionManager.getConnection();
+			s = con.createStatement();
 			rs = s.executeQuery(query);
 			boolean more = rs.next();
 			
@@ -53,13 +53,13 @@ public class UserDAO {
 				s = null;
 			}
 			
-			if(currentCon!=null){
+			if(con!=null){
 				try {
-					currentCon.close();
+					con.close();
 				} catch (SQLException e) {
 					System.out.println(e.getMessage());
 				}
-				currentCon = null;
+				con = null;
 			}
 		}
 		

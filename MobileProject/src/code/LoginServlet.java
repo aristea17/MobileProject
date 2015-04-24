@@ -20,12 +20,13 @@ public class LoginServlet extends HttpServlet {
 			System.out.println(e.getMessage());
 		}
 		
+		HttpSession session;
 		if(user.isValid()){
-			HttpSession session = req.getSession(true);
+			session = req.getSession(true);
 			session.setAttribute("currentSessionUser", user);
 			resp.sendRedirect("validLogin.jsp");
 		}else{
-			resp.sendRedirect("invalidLogin.jsp");
+			resp.sendRedirect("LoginPage.jsp");
 		}
 	}
 }

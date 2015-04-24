@@ -35,7 +35,7 @@
        			</div>
        		</div>
        		<div style="margin-top:10px" class="form-group">
-       			<div class="col-sm-4 controls">
+       			<div class="col-sm-3 controls">
        				<button class="btn btn-md btn-primary btn-block" type="submit">Login</button>
        			</div>
        		</div>
