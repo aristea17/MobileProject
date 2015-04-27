@@ -9,7 +9,7 @@ public class UserDAO {
 	public static Connection con = null;
 	public static ResultSet rs= null;
 	
-	public static UserBean login(UserBean bean) throws SQLException{
+	public static UserBean login(UserBean bean) throws SQLException, ClassNotFoundException{
 		
 		Statement s = null;
 		
@@ -21,7 +21,7 @@ public class UserDAO {
 		String query = "Select * From public.\"User\" where username='" + username + "' and password='" + password + "'";
 		
 		try {
-			con = ConnectionManager.getConnection();
+			con = ConnectionManager.startConnection();
 			s = con.createStatement();
 			rs = s.executeQuery(query);
 			boolean more = rs.next();

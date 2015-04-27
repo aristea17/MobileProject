@@ -7,28 +7,25 @@ import java.sql.SQLException;
 
 public class ConnectionManager {
 	
-	public static Connection con;
-	public static String url;
+	private static Connection con = null;
+	private static String url = "jdbc:postgresql://localhost:5432/Mobile";
+	private static String driver = "org.postgresql.Driver";
+	private static String user = "postgres";
+	private static String password = "aristea17";
 	
-	public static Connection getConnection(){
-		
-		String url = "jdbc:postgresql://localhost:5432/Mobile";
-		String driver = "org.postgresql.Driver";
-		String user = "postgres";
-		String password = "aristea17";
-		
-		try {
-			Class.forName(driver);
-		} catch (ClassNotFoundException e1) {
-			System.out.println(e1.getMessage());
-		}
-		
-		try {
-			con = DriverManager.getConnection(url, user, password);
-		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-		}
-		
+	public static Connection startConnection() throws SQLException, ClassNotFoundException{
+		Class.forName(driver);
+		con = DriverManager.getConnection(url, user, password);
 		return con;
+	}
+	
+	/**
+	 * 
+	 * @throws SQLException when there is a problem with closing the connection
+	 */
+	public static void closeConnection() throws SQLException{
+		if(con != null){
+			con.close();
+		}
 	}
 }

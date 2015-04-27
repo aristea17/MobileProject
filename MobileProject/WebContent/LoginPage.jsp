@@ -17,8 +17,9 @@
                         <div class="panel-title">Login</div>
                     </div> 
        <div style="padding-top:30px" class="panel-body" >    
-        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>        
-       	 
+        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>  
+        	<!-- Here the code for adding the error message when login was not successful -->
+        	<span class="input-group-addon"><i class="glyphicon glyphicon-exclamation-sign"></i></span>
        		<div style="margin-bottom:25px" class="input-group">
        			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
      			<input type="text" class="form-control" name="txtUsername" placeholder="Username" required="" autofocus="" />  			

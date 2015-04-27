@@ -1,6 +1,7 @@
 package code;
 import java.io.IOException;
 import java.sql.SQLException;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +17,7 @@ public class LoginServlet extends HttpServlet {
 		
 		try {
 			user = UserDAO.login(user);
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
 		
