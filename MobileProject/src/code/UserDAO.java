@@ -18,7 +18,7 @@ public class UserDAO {
 		
 		System.out.println(username + password);
 		
-		String query = "Select * From public.\"User\" where username='" + username + "' and password='" + password + "'";
+		String query = "Select * From public.\"users\" where username='" + username + "' and psw='" + password + "'";
 		
 		try {
 			con = ConnectionManager.startConnection();
