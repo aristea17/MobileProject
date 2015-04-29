@@ -10,6 +10,12 @@ public class UserBean {
 	private String password;
 	private boolean valid;
 	
+	/*public UserBean(String username, String password, boolean valid){
+		this.username = username;
+		this.password = password;
+		this.valid = valid;
+	}*/
+	
 	public void setUsername(String newUsername){
 		username = newUsername;
 	}

@@ -22,7 +22,7 @@
 				<li><a href="#contact">Suppliers</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="../navbar/">Default</a></li>
+					<img src="./images/setting-icon.png"/><br clear="all"/>
 				</ul>
 			</div>
 		</div>
