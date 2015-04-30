@@ -31,10 +31,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("currentSessionUser", user);
 			resp.sendRedirect("validLogin.jsp");
 		}else{
-			out.println("<div>Login error</div>");
 			req.getRequestDispatcher("LoginPage.jsp").include(req, resp);
-			
-			//resp.sendRedirect("LoginPage.jsp");
 		}
 	}
 }
