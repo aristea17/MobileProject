@@ -1,5 +1,6 @@
+<%@page import="code.LoginServlet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="code.UserBean"%>
+    pageEncoding="ISO-8859-1" import="code.LoginServlet" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -19,7 +20,6 @@
        <div style="padding-top:30px" class="panel-body" >    
         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>  
         	<!-- Here the code for adding the error message when login was not successful -->
-        	
        		<div style="margin-bottom:25px" class="input-group">
        			<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
      			<input type="text" class="form-control" name="txtUsername" placeholder="Username" required="" autofocus="" />  			
@@ -28,11 +28,6 @@
        		    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
      			<input type="password" class="form-control" name="txtPassword" placeholder="Password" required="" autofocus="" />  			
        		</div>
-       		<%! UserBean bean = new UserBean(); %>
-       		<% bean.setValid(false); %>
-           	<% if (!bean.isValid()){ %>
-              	<span class="input-group-addon"><i class="glyphicon glyphicon-exclamation-sign"></i>Username or Password invalid! Retry!</span>
-       		<% } else { %>
        		<div class="input-group">
        			<div class="checkbox">
        				<label>
@@ -45,7 +40,6 @@
        				<button class="btn btn-md btn-primary btn-block" type="submit">Login</button>
        			</div>
        		</div>
-       		<% } %>
   	 </div>
  </div>
 </div>

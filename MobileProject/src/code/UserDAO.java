@@ -12,6 +12,7 @@ public class UserDAO {
 	public static UserBean login(UserBean bean) throws SQLException, ClassNotFoundException{
 		
 		Statement s = null;
+	 
 		
 		String username = bean.getUsername();
 		String password = bean.getPassword();
@@ -27,9 +28,10 @@ public class UserDAO {
 			boolean more = rs.next();
 			
 			if(!more){
-				System.out.println("You are not a registered user! Register!");
+				
 				bean.setValid(false);
 			}else{
+				
 				bean.setValid(true); 
 			}
 		} catch (SQLException e) {

@@ -10,14 +10,8 @@ public class UserBean {
 	private String password;
 	private boolean valid;
 	
-	/*public UserBean(String username, String password, boolean valid){
-		this.username = username;
-		this.password = password;
-		this.valid = valid;
-	}*/
-	
 	public void setUsername(String newUsername){
-		username = newUsername;
+		this.username = newUsername;
 	}
 	
 	public String getUsername(){
@@ -25,7 +19,7 @@ public class UserBean {
 	}
 	
 	public void setPassword(String newPassword){
-		password = simpleEncrypt(newPassword);
+		this.password = simpleEncrypt(newPassword);
 	}
 	
 	public String getPassword(){
@@ -33,7 +27,7 @@ public class UserBean {
 	}
 	
 	public void setValid(boolean newValid){
-		valid = newValid;
+		this.valid = newValid;
 	}
 	
 	public boolean isValid(){

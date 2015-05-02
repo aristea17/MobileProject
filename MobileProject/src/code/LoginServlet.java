@@ -1,8 +1,6 @@
 package code;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,10 +12,10 @@ public class LoginServlet extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException{
 		
 		UserBean user = new UserBean();
+		
 		user.setUsername(req.getParameter("txtUsername"));
 		user.setPassword(req.getParameter("txtPassword"));
 		
-		PrintWriter out = resp.getWriter();
 		
 		try {
 			user = UserDAO.login(user);
@@ -31,7 +29,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("currentSessionUser", user);
 			resp.sendRedirect("validLogin.jsp");
 		}else{
-			req.getRequestDispatcher("LoginPage.jsp").include(req, resp);
+			resp.sendRedirect("invalidLogin.jsp");
 		}
 	}
 }
