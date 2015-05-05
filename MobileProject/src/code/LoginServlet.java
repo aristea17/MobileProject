@@ -1,6 +1,7 @@
 package code;
+import hibernate.Manager;
+import hibernate.Users;
 import java.io.IOException;
-import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,20 +12,15 @@ public class LoginServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException{
 		
-		UserBean user = new UserBean();
+		String username =  req.getParameter("txtUsername");
+		String password = req.getParameter("txtPassword");
 		
-		user.setUsername(req.getParameter("txtUsername"));
-		user.setPassword(req.getParameter("txtPassword"));
+		boolean valid = Manager.verifyUser(username, password);
 		
-		
-		try {
-			user = UserDAO.login(user);
-		} catch (SQLException | ClassNotFoundException e) {
-			System.out.println(e.getMessage());
-		}
+		Users user = new Users(username, password);
 		
 		HttpSession session;
-		if(user.isValid()){
+		if(valid){
 			session = req.getSession(true);
 			session.setAttribute("currentSessionUser", user);
 			resp.sendRedirect("validLogin.jsp");
