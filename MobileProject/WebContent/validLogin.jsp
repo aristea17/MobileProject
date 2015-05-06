@@ -26,7 +26,8 @@
 					<li> 
 						<img src="./Images/setting-icon.png" alt="Settings" height="45" width="45"/></li>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" area-expanded="false">Username <span class="caret"></span></a>
+						<%String username= request.getParameter("txtUsername"); %>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" area-expanded="false">username <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="LoginPage.jsp">Log out</a></li>
 							</ul>

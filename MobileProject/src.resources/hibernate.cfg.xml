@@ -28,10 +28,12 @@
 		<property name="hbm2ddl.auto">create</property>
 		<property name="hibernate.hbm2ddl.import_files">load.sql</property>
 		
-		
-		<mapping class="hibernate.Users" />
 		<mapping class="hibernate.Department" />
-	
-	
+		<mapping class="hibernate.Users" />
+		<mapping class="hibernate.Products" />
+		<mapping class="hibernate.Suppliers" />
+		<mapping class="hibernate.SupplierProductID" />
+		<mapping class="hibernate.Sells" />
+		
 	</session-factory>
 </hibernate-configuration>
