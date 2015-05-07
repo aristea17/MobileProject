@@ -95,28 +95,5 @@ public class Suppliers {
 	
 	public void setSells(Set<Sells> sells){
 		this.sells = sells;
-	}
-	
-	/*@ManyToMany(cascade={CascadeType.ALL})
-	@JoinTable(name="sells",
-				joinColumns={@JoinColumn(name="s_id")},
-				inverseJoinColumns={@JoinColumn(name="p_id")})
-	private Set<Products> products = new HashSet<Products>();*/
-
-	
-	
-	
-	
-	
-	
-	/*public Set<Products> getProducts(){
-		return products;
-	}
-	
-	public void setProducts(Set<Products> products){
-		this.products = products;
-	}*/
-	
-	
-	
+	}	
 }

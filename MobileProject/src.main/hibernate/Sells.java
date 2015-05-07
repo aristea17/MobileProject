@@ -19,10 +19,10 @@ import javax.persistence.Transient;
 })
 
 public class Sells {
-	//composite-id key
+	/* composite-id key */
 	private SupplierProductID primaryKey = new SupplierProductID();
 	
-	//additional fields 
+	/* additional fields */
 	private double price;
 	
 	@EmbeddedId 

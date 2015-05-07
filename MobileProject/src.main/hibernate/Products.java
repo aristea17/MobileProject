@@ -89,8 +89,6 @@ public class Products {
 		this.sells = sells;
 	}
 	
-	/*@ManyToMany(mappedBy="products")*/ 
-	
 	@ManyToMany(mappedBy="products")
 	public Set<Department> getDepartment(){
 		return department;
@@ -98,17 +96,5 @@ public class Products {
 	
 	public void setDepartment(Set<Department> department){
 		this.department = department;
-	}
-	
-	/*public Set<Suppliers> getSuppliers(){
-		return suppliers;
-	}
-	
-	public void setSuppliers(Set<Suppliers> suppliers){
-		this.suppliers = suppliers;
-	}*/
-	
-	
-	
-	
+	}	
 }

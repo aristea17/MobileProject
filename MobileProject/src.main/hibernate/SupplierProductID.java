@@ -28,7 +28,4 @@ public class SupplierProductID implements Serializable{
 	public void setSuppliers(Suppliers suppliers){
 		this.suppliers = suppliers;
 	}
-	
-	
-
 }
