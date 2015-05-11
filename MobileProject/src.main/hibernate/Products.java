@@ -16,6 +16,7 @@ public class Products {
 
 	private int p_id;
 	private String p_name;
+	private String category;
 	private String batch_amount;
 	private int minimum;
 	private int stored;
@@ -51,6 +52,15 @@ public class Products {
 	
 	public void setName(String name){
 		this.p_name = name;
+	}
+	
+	@Column(name="category", nullable=false)
+	public String getCategory(){
+		return category;
+	}
+	
+	public void setCategory(String category){
+		this.category = category;
 	}
 	
 	@Column(name="batch_amount", nullable=false)

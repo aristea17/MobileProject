@@ -8,7 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-public class Manager {
+public class UserManager {
 
 	public static void saveUsers(Users user){
 		
