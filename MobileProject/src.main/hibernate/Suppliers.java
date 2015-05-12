@@ -2,10 +2,12 @@ package hibernate;
 
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -21,6 +23,10 @@ public class Suppliers {
 	private String telephone;
 	
 	private Set<Sells> sells = new HashSet<Sells>();
+	
+	//new
+	private Set<Department> department = new HashSet<Department>();
+	//finish new
 	
 	public Suppliers(){}
 	
@@ -96,4 +102,15 @@ public class Suppliers {
 	public void setSells(Set<Sells> sells){
 		this.sells = sells;
 	}	
+	
+	//new
+	@ManyToMany(mappedBy="suppliers")
+	public Set<Department> getDepartment(){
+		return department;
+	}
+	
+	public void setDepartment(Set<Department> department){
+		this.department = department;
+	}
+	//new
 }

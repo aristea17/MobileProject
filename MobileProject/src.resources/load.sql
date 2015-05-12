@@ -35,13 +35,13 @@ insert into products(p_id, p_name, category, batch_amount, minimum, stored) valu
 
 -- SUPPLIERS --
 --1
-insert into suppliers(s_id, address, company, email, representative, telephone) values(1, '', 'A', 'peppa@pig.com', 'Peppa Pig', '');
+insert into suppliers(s_id, address, company, email, representative, telephone) values(1, '', 'Despar', 'peppa@pig.com', 'Peppa Pig', '');
 
-insert into suppliers(s_id, address, company, email, representative, telephone) values(2, '', 'B', 'goku@tory.com', 'Goku', '');
+insert into suppliers(s_id, address, company, email, representative, telephone) values(2, '', 'Poli', 'goku@tory.com', 'Goku', '');
 
-insert into suppliers(s_id, address, company, email, representative, telephone) values(3, '', 'C', 'shepard@bioware.com', 'Commander Shepard', '');
+insert into suppliers(s_id, address, company, email, representative, telephone) values(3, '', 'Carrefour', 'shepard@bioware.com', 'Commander Shepard', '');
 
-insert into suppliers(s_id, address, company, email, representative, telephone) values(4, '', 'D', 'pens@production.com', '', '');
+insert into suppliers(s_id, address, company, email, representative, telephone) values(4, '', 'Athesia', 'pens@production.com', '', '');
 
 
 -- SELLS -- RELATION -- 
@@ -84,3 +84,16 @@ insert into needs (d_id, p_id) values(3, 5);
 insert into needs (d_id, p_id) values(3, 6);
 
 insert into needs (d_id, p_id) values(3, 7);
+
+-- DEPTSUP -- RELATION --
+insert into deptsup (d_id, s_id) values (1, 4);
+
+insert into deptsup (d_id, s_id) values (2, 1);
+
+insert into deptsup (d_id, s_id) values (2, 2);
+
+insert into deptsup (d_id, s_id) values (2, 4);
+
+insert into deptsup (d_id, s_id) values (3, 3);
+
+insert into deptsup (d_id, s_id) values (3, 4);

@@ -13,10 +13,12 @@ public class SuppliersManager {
 		Session session = sessFac.getCurrentSession();
 		
 		session.beginTransaction();
-		List<Suppliers> supplierList = (List<Suppliers>) session.createQuery("from Suppliers").list();
+		//new
+		List<Suppliers> supplierList = (List<Suppliers>) session.createQuery("SELECT s FROM Suppliers s JOIN s.department d WHERE d.d_name='clean'").list();
+		//List<Suppliers> supplierList = (List<Suppliers>) session.createQuery("Select ").list();
 		session.getTransaction().commit();
 		
-		//System.out.println("Company\temail\tname\taddress\tphone");
+		System.out.println("Company\temail\tname\taddress\tphone");
 		for(int i=0; i<supplierList.size(); i++){
 			System.out.println(supplierList.get(i).getCompany() + "\t" +
 					supplierList.get(i).getEmail() + "\t" +

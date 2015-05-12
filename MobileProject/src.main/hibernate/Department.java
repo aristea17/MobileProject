@@ -37,6 +37,14 @@ public class Department implements Serializable {
 				joinColumns={@JoinColumn(name="d_id")},
 				inverseJoinColumns={@JoinColumn(name="p_id")})
 	private Set<Products> products = new HashSet<Products>();
+	
+	//new
+	@ManyToMany(cascade={CascadeType.ALL})
+	@JoinTable(name="deptsup",
+				joinColumns={@JoinColumn(name="d_id")},
+				inverseJoinColumns={@JoinColumn(name="s_id")})
+	private Set<Suppliers> suppliers = new HashSet<Suppliers>();
+	//finish new
 	 
 	public Department(){}
 	
@@ -75,4 +83,14 @@ public class Department implements Serializable {
 	public Set<Products> getProducts(){
 		return products;
 	}
+	
+	//new
+	public void setSuppliers(Set<Suppliers> suppliers){
+		this.suppliers = suppliers;
+	}
+	
+	public Set<Suppliers> getSuppliers(){
+		return suppliers;
+	}
+	//finish new
 }
