@@ -1,15 +1,18 @@
 package hibernate;
 
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 public class UserManager {
 
+	//will be needed in case we let the user to add another 'user'
 	public static void saveUsers(Users user){
 		
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
@@ -33,9 +36,9 @@ public class UserManager {
 		return user;
 		
 	}
-
 	
-	public static boolean verifyUser(String username, String password){
+	
+	public static boolean authenticate(String username, String password){
 		
 		String encrypPsw = simpleEncrypt(password);
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
@@ -44,6 +47,7 @@ public class UserManager {
 		
 		t= session.beginTransaction();
 		List<Users> users = (List<Users>) session.createQuery("from Users").list();
+		
 		t.commit();
 		session.close();
 		if(users.isEmpty()){

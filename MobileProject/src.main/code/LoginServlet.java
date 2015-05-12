@@ -19,7 +19,7 @@ public class LoginServlet extends HttpServlet {
 		String username =  request.getParameter("txtUsername");
 		String password = request.getParameter("txtPassword");
 		
-		boolean valid = UserManager.verifyUser(username, password);
+		boolean valid = UserManager.authenticate(username, password);
 		
 		HttpSession session;
 		if(valid){

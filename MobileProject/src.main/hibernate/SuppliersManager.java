@@ -16,7 +16,7 @@ public class SuppliersManager {
 		List<Suppliers> supplierList = (List<Suppliers>) session.createQuery("from Suppliers").list();
 		session.getTransaction().commit();
 		
-		System.out.println("Company\temail\tname\taddress\tphone");
+		//System.out.println("Company\temail\tname\taddress\tphone");
 		for(int i=0; i<supplierList.size(); i++){
 			System.out.println(supplierList.get(i).getCompany() + "\t" +
 					supplierList.get(i).getEmail() + "\t" +
