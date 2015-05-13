@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="hibernate.SuppliersManager" import="hibernate.Suppliers" import="java.util.List" %>
+    pageEncoding="ISO-8859-1" import="hibernate.ProductManager" import="hibernate.Products" import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -46,26 +46,34 @@ String user = (String)session.getAttribute("user");
 			<thead>
 				<tr>
 					<th>ID</th>
-					<th>Company</th>
-					<th>E-mail</th>
-					<th>Representative name</th>
-					<th>Address</th>
-					<th>Telephone</th>
+					<th>Name</th>
+					<th>Minimum</th>
+					<th>Add/reduce</th>
 				</tr>
 			</thead>
 		<tbody>
 <%
-SuppliersManager sp = new SuppliersManager();
-List<Suppliers> list = sp.getSuppliersList(user);
-for(Suppliers s : list){
+ProductManager pm = new ProductManager();
+List<Products> list = pm.getProductsListByUser(user);
+for(Products p : list){
 %>
 <tr>
-	<td><%=s.getID()%></td>
-	<td><%=s.getCompany() %></td>
-	<td><%=s.getEmail()%></td>
-	<td><%=s.getRepresentative()%></td>
-	<td><%=s.getAddress()%></td>
-	<td><%=s.getTelephone()%></td>
+	<td><%=p.getID() %></td>
+	<td><%=p.getName()%></td>
+	<td><%=p.getMinimum() %></td>
+	<td>
+	<div class="row">
+	<div class="col-sm-2">
+	<input type="text" class="form-control" aria-describedby="sizing-addon3" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
+	</div>
+	<div class="col-sm-2">
+	<button class="btn btn-default" type="button">Add</button>
+	</div>
+	<div class="col-sm-2">
+	<button class="btn btn-default" type="button">Reduce</button>
+	</div>
+	</div>
+	</td>
 </tr>
 <%} %>
 </tbody>

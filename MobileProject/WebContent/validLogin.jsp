@@ -23,7 +23,7 @@ String user = (String)session.getAttribute("user");
 				<ul class="nav navbar-nav">
 				<li><a href="validLogin.jsp?pagina=home">Make an order</a></li>
 				<li><a href="#about">Bills</a></li>
-				<li><a href="productStock.html?pagina=products">Product Stock</a></li>
+				<li><a href="productStock.jsp?pagina=products">Product Stock</a></li>
 				<li><a href="supplierList.jsp?pagina=suppliers">Suppliers</a></li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -41,16 +41,17 @@ String user = (String)session.getAttribute("user");
 	</nav>
 	<center>
 	<div class="container2">
-		<div class="prova">
-		<p>Select a product category:</p>
-		<li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
+		<div class="dropdown">
+			<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
+			Select Category
+			<span class="caret"></span>
+			</button>
+             <ul class="dropdown-menu" role="menu">
                 <li><a href="#">Action</a></li>
                 <li><a href="#">Another action</a></li>
                 <li><a href="#">Something else here</a></li>
               </ul>
-            </li>
+            
 		<table class="table table-bordered">
 			<thead>
 				<tr>
@@ -62,8 +63,8 @@ String user = (String)session.getAttribute("user");
 				</tr>
 			</thead>
 		<tbody>
-	<%ProductManager pm = new ProductManager();
-	List<Products> list = pm.getProductList();
+	<%
+	List<Products> list = ProductManager.getProductsListByCategory(user);
 	for(Products p : list){
 	%>
 	<tr>
