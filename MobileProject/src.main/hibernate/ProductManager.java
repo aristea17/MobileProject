@@ -70,4 +70,7 @@ public class ProductManager {
 		}
 		return productList;
 	}
+	
+	//query to get category names
+	//SELECT distinct p.category FROM Products p
 }

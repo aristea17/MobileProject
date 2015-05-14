@@ -4,6 +4,14 @@ body{
 	padding-top: 80px;
 }
 
+body > center{
+	margin-left: 230px;
+	margin-right: 230px;
+}
+
+div.container2{
+	margin-left: 100px;
+}
 table.table.table-bordered{
 	margin-top: 100px;
 	width: 1300px;

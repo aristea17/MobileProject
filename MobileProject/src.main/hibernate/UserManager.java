@@ -1,11 +1,7 @@
 package hibernate;
 
-
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
-
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -21,7 +17,6 @@ public class UserManager {
 		session.beginTransaction();
 		session.save(user);
 		session.getTransaction().commit();
-		
 	}
 	
 	public static Users getUser(String username){
@@ -34,9 +29,7 @@ public class UserManager {
 		session.getTransaction().commit();
 		
 		return user;
-		
 	}
-	
 	
 	public static boolean authenticate(String username, String password){
 		
@@ -68,7 +61,6 @@ public class UserManager {
 		}
 		return user;
 	}
-	
 	
 	private static String simpleEncrypt(String s){
 		String encryptedPsw = null;

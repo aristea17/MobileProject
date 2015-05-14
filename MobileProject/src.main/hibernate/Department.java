@@ -84,7 +84,6 @@ public class Department implements Serializable {
 		return products;
 	}
 	
-	//new
 	public void setSuppliers(Set<Suppliers> suppliers){
 		this.suppliers = suppliers;
 	}
@@ -92,5 +91,4 @@ public class Department implements Serializable {
 	public Set<Suppliers> getSuppliers(){
 		return suppliers;
 	}
-	//finish new
 }

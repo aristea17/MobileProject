@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="hibernate.ProductManager" import="hibernate.Products" import="java.util.List" %>
+    pageEncoding="ISO-8859-1" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,7 +9,6 @@
 <link href="CSS/supplierList.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script type="text/javascript" src="Bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="prova.js"></script>
 <title>Suppliers</title>
 </head>
 <body>
@@ -40,45 +40,3 @@ String user = (String)session.getAttribute("user");
 			</div>
 		</div>
 	</nav>
-	<div class="container2">
-		<div class="prova">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Minimum</th>
-					<th>Add/reduce</th>
-				</tr>
-			</thead>
-		<tbody>
-<%
-ProductManager pm = new ProductManager();
-List<Products> list = pm.getProductsListByUser(user);
-for(Products p : list){
-%>
-<tr>
-	<td><%=p.getID() %></td>
-	<td><%=p.getName()%></td>
-	<td><%=p.getMinimum() %></td>
-	<td>
-	<div class="row">
-	<div class="col-sm-2">
-	<input type="text" id="number" class="form-control" aria-describedby="sizing-addon3" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
-	</div>
-	<div class="col-sm-2">
-	<button class="btn btn-default" type="button" id="increment" value="increment">Add</button>
-	</div>
-	<div class="col-sm-2">
-	<button class="btn btn-default" type="button">Reduce</button>
-	</div>
-	</div>
-	</td>
-</tr>
-<%} %>
-</tbody>
-</table>
-</div>
-</div>
-</body>	
-</html>

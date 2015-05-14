@@ -39,7 +39,7 @@ String user = (String)session.getAttribute("user");
 			</div>
 		</div>
 	</nav>
-	<center>
+	
 	<div class="container2">
 		<div class="dropdown">
 			<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
@@ -48,11 +48,16 @@ String user = (String)session.getAttribute("user");
 			</button>
              <ul class="dropdown-menu" role="menu">
                 <li><a href="#">Action</a></li>
+                <li class="divider"></li>
                 <li><a href="#">Another action</a></li>
+                <li class="divider"></li>
                 <li><a href="#">Something else here</a></li>
               </ul>
-            
-		<table class="table table-bordered">
+		</div>	
+	</div>	
+	<div class="container3">
+		<div class="table">
+		<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>ID</th>
@@ -77,8 +82,7 @@ String user = (String)session.getAttribute("user");
 <% } %>
 </tbody>
 </table>
-</div>	
 </div>
-</center>
+</div>
 </body>
 </html>
