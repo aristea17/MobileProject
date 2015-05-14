@@ -26,4 +26,12 @@
   	<servlet-name>LogoutServlet</servlet-name>
   	<url-pattern>/LogoutServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+     <servlet-name>SendEmailServlet</servlet-name>
+     <servlet-class>code.SendEmailServlet</servlet-class>
+  </servlet> 
+  <servlet-mapping>
+     <servlet-name>SendEmailServlet</servlet-name>
+     <url-pattern>/SendEmailServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
