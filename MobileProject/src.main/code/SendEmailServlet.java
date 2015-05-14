@@ -21,10 +21,9 @@ public class SendEmailServlet extends HttpServlet{
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		String to = "ibershimiaristea@yahoo.com";
-		String from = "casinilorenzo91@gmail.com";
+		String from = "imsunibz@gmail.com";
 		//String host = "localhost";
-		final String username = "casinilorenzo91@gmail.com";
-		final String password = "banane";
+		final String password = "ims15unibz";
 		
 		// Get System properties
 		Properties props = new Properties();
@@ -40,7 +39,7 @@ public class SendEmailServlet extends HttpServlet{
 		Session session = Session.getInstance(props,
 				  new javax.mail.Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
-						return new PasswordAuthentication(username, password);
+						return new PasswordAuthentication(from, password);
 					}
 				  });
 		
