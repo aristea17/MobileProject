@@ -51,12 +51,12 @@ public class ProductManager {
 	}
 	
 	//add the category in the method parameter, now it's done manually
-	public static List<Products> getProductsListByCategory(String user){
+	public static List<Products> getProductsListByCategory(){
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
 		Session session = sessFac.getCurrentSession();
 		
 		session.beginTransaction();
-		String hql = "SELECT p FROM Products p JOIN p.department d WHERE d.d_name='" + user + "' AND p.category='frigo'";
+		String hql = "SELECT p FROM Products p JOIN p.department d WHERE d.d_name='kitchen' AND p.category='frigo'";
 		Query query = session.createQuery(hql);
 		List<Products> productList = query.list();
 		session.getTransaction().commit();
@@ -66,11 +66,39 @@ public class ProductManager {
 					productList.get(i).getName() + "\t" +
 					productList.get(i).getMinimum() + "\t" +
 					productList.get(i).getStored() + "\t" +
+					productList.get(i).getCategory() + "\t" +
 					productList.get(i).getBatchAmount());
+			//productList.get(i);
 		}
 		return productList;
 	}
 	
-	//query to get category names
-	//SELECT distinct p.category FROM Products p
+	//return all the categories of the products
+	public static List<String> getCategories(){
+		SessionFactory sessFac = HibernateUtil.getSessionFactory();
+		Session session = sessFac.getCurrentSession();
+		
+		session.beginTransaction();
+		String hql = "SELECT distinct p.category FROM Products p JOIN p.department d WHERE d.d_name='kitchen'";
+		Query query = session.createQuery(hql);
+		List<String> productList = query.list();
+		session.getTransaction().commit();
+		
+		for(int i=0; i<productList.size(); i++){
+			productList.get(i);
+		}
+		return productList;
+	}
+	
+	//update the amount of products
+	public static void addProducts(){
+		SessionFactory sessFac = HibernateUtil.getSessionFactory();
+		Session session = sessFac.getCurrentSession();
+		
+		session.beginTransaction();
+		String hql = "UPDATE Products p SET p.stored=25 WHERE p.p_id=2";
+		Query query = session.createQuery(hql);
+		
+		int result = query.executeUpdate();	
+	}
 }

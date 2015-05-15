@@ -6,7 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-<link href="CSS/supplierList.css" rel="stylesheet" type="text/css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script type="text/javascript" src="Bootstrap/js/bootstrap.min.js"></script>
 <title>Suppliers</title>

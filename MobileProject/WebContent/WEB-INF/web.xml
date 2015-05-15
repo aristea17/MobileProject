@@ -34,4 +34,28 @@
      <servlet-name>SendEmailServlet</servlet-name>
      <url-pattern>/SendEmailServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>GetCategoryServlet</servlet-name>
+  	<servlet-class>code.GetCategoryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>GetCategoryServlet</servlet-name>
+  	<url-pattern>/GetCategoryServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>GetProductsByCategoryServlet</servlet-name>
+  	<servlet-class>code.GetProductsByCategoryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>GetProductsByCategoryServlet</servlet-name>
+  	<url-pattern>/GetProductsByCategoryServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+  	<servlet-name>ProductStockServlet</servlet-name>
+  	<servlet-class>code.ProductStockServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ProductStockServlet</servlet-name>
+  	<url-pattern>/ProductStockServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

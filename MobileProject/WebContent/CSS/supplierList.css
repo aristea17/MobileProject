@@ -10,3 +10,7 @@ table.table.table-hover{
 	width: 1300px;
 	
 }
+body > div > div > table > tbody > tr:nth-child(1) > td:nth-child(5){
+	width: 200px;
+	height: 34px;
+}

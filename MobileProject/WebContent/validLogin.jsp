@@ -4,85 +4,51 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<!-- <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> -->
 <link href="CSS/validLogin.css" rel="stylesheet" type="text/css"/>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script type="text/javascript" src="Bootstrap/js/bootstrap.min.js"></script>
 <title>Home</title>
 </head>
 <body>
-<%
-String user = (String)session.getAttribute("user");
-%>
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-					<a class="navbar-brand" href="validLogin.jsp?pagina=home">Project Name</a>
-			</div>
-			<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav">
-				<li><a href="validLogin.jsp?pagina=home">Make an order</a></li>
-				<li><a href="#about">Bills</a></li>
-				<li><a href="productStock.jsp?pagina=products">Product Stock</a></li>
-				<li><a href="supplierList.jsp?pagina=suppliers">Suppliers</a></li>
-				</ul>
-				<ul class="nav navbar-nav navbar-right">
-					<li> 
-						<img src="./Images/setting-icon.png" alt="Settings" height="45" width="45"/></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" area-expanded="false">Welcome <b><%=user%></b><span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="login.jsp">Log out</a></li>
-							</ul>
-						</li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-	
-	<div class="container2">
-		<div class="dropdown">
-			<button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true">
-			Select Category
-			<span class="caret"></span>
-			</button>
-             <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Action</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Another action</a></li>
-                <li class="divider"></li>
-                <li><a href="#">Something else here</a></li>
-              </ul>
-		</div>	
-	</div>	
-	<div class="container3">
-		<div class="table">
-		<table class="table table-striped">
-			<thead>
-				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Batch Amount</th>
-					<th>Minimum</th>
-					<th>Stored</th>
-				</tr>
-			</thead>
-		<tbody>
-	<%
-	List<Products> list = ProductManager.getProductsListByCategory(user);
-	for(Products p : list){
-	%>
-	<tr>
-	<td><%=p.getID()%></td>
-	<td><%=p.getName() %></td>
-	<td><%=p.getBatchAmount() %></td>
-	<td><%=p.getMinimum() %></td>
-	<td><%=p.getStored() %></td>
-</tr>
-<% } %>
-</tbody>
+<%@include file="header.jsp" %>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#tablediv").hide();
+			$("#showTable").click(function(event){
+				$.get('GetProductsByCategoryServlet', function(responseJson){
+					if(responseJson!=null){
+						$("#table").find("tr:gt(0)").remove();
+						var table1= $("#table");
+						$.each(responseJson, function(key, value){
+							var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+							rowNew.children().eq(0).text(value['p_id']);
+							rowNew.children().eq(1).text(value['p_name']);
+							rowNew.children().eq(2).text(value['minimum']);
+							rowNew.children().eq(3).text(value['stored']);
+							rowNew.children().eq(4).text(value['category']);
+							rowNew.children().eq(5).text(value['batch_amount']);
+							rowNew.appendTo(table1).append('<td><div class="col-xs-3"><input type="text" class="form-control input-sm" onkeypress="return event.charCode >=48 && event.charCode <=57"></div></td>').append('<td><input type="checkbox" /></td>');
+						});
+					}
+				});
+				$("#tablediv").show();
+			});
+	});
+</script>
+<input type="button" value="Show Table" id="showTable"/>
+<div id="tablediv">
+<table class="table table-striped" cellspacing="0" id="table">
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+        <th scope="col">Minimum</th>
+        <th scope="col">Stored</th>
+        <th scope="col">Category</th> 
+        <th scope="col">BatchAmount</th> 
+        <th scope="col">Order Amount</th>    
+        <th scope="col">Add to basket</th> 
+        
+    </tr>
 </table>
-</div>
 </div>
 </body>
 </html>
