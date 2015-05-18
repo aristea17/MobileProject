@@ -2,6 +2,7 @@ package code;
 
 import hibernate.Suppliers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
@@ -11,7 +12,7 @@ public class Order {
 	String email;
 	
 	public Order(Suppliers supplier){
-		myOrder = null;
+		myOrder = new ArrayList<BuyProduct>();
 		this.supplier = supplier.getCompany();
 		this.email = supplier.getEmail();
 	}
@@ -20,6 +21,7 @@ public class Order {
 		myOrder.add(product);
 	}
 	
+	// probably never used
 	public List<BuyProduct> getProductList(){
 		return myOrder;
 	}
@@ -32,8 +34,11 @@ public class Order {
 		return email;
 	}
 	
+	// write to pdf
 	public void printMyOrder(){
-		System.out.println(myOrder.toString());
+		for(BuyProduct product : myOrder){
+			System.out.println("product: "+product.getName() + "\t" + product.getPrice());
+		}		
 	}
 
 }

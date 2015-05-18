@@ -15,7 +15,7 @@ public class BuyProduct {
 		this.supplier = supplier;
 	}
 
-	public String getpName() {
+	public String getName() {
 		return pName;
 	}
 
@@ -33,6 +33,10 @@ public class BuyProduct {
 
 	public Suppliers getSupplier() {
 		return supplier;
+	}
+	
+	public String getSupplierName(){
+		return supplier.getCompany();
 	}
 	
 	
