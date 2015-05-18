@@ -27,8 +27,7 @@
 			</thead>
 		<tbody>
 <%
-SuppliersManager sp = new SuppliersManager();
-List<Suppliers> list = sp.getSuppliersList(user);
+List<Suppliers> list = SuppliersManager.getSuppliersList(user);
 for(Suppliers s : list){
 %>
 <tr>

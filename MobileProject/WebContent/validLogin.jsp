@@ -7,34 +7,63 @@
 <!-- <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> -->
 <link href="CSS/validLogin.css" rel="stylesheet" type="text/css"/>
 <title>Home</title>
-</head>
-<body>
 <%@include file="header.jsp" %>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('#department').change(function(event){//the select option is triggered
+			var $department = $("select#department").val();//save in department the selected value
+			$.get('GetCategoryServlet', {departmentname:$department}, function(responseJson){//call the servlet passing as a parameter the selected department
+				var $select = $('#category');
+				$select.find('option').remove();
+				$.each(responseJson, function(key, value){
+					$('<option>').val(key).text(value).appendTo($select);//populate the category list
+				});
+			});
+		});
 		$("#tablediv").hide();
-			$("#showTable").click(function(event){
-				$.get('GetProductsByCategoryServlet', function(responseJson){
-					if(responseJson!=null){
-						$("#table").find("tr:gt(0)").remove();
-						var table1= $("#table");
-						$.each(responseJson, function(key, value){
-							var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
-							rowNew.children().eq(0).text(value['p_id']);
-							rowNew.children().eq(1).text(value['p_name']);
-							rowNew.children().eq(2).text(value['minimum']);
-							rowNew.children().eq(3).text(value['stored']);
-							rowNew.children().eq(4).text(value['category']);
-							rowNew.children().eq(5).text(value['batch_amount']);
-							rowNew.appendTo(table1).append('<td><div class="col-xs-3"><input type="text" class="form-control input-sm" onkeypress="return event.charCode >=48 && event.charCode <=57"></div></td>').append('<td><input type="checkbox" /></td>');
+			$("#showTable").click(function(event){//when the 'Show Table' is clicked...
+				var $category = $("select#category option:selected").text();//save the selected category value
+				//var $cat = $(category).find(":selected");
+				$.get('GetProductsByCategoryServlet', {categoryname:$category}, function(responseJson){
+						if(responseJson!=null){
+							$("#table").find("tr:gt(0)").remove();
+							var table1= $("#table");
+							$.each(responseJson, function(key, value){
+								var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+								rowNew.children().eq(0).text(value['p_id']);
+								rowNew.children().eq(1).text(value['p_name']);
+								rowNew.children().eq(2).text(value['minimum']);
+								rowNew.children().eq(3).text(value['stored']);
+								rowNew.children().eq(4).text(value['category']);
+								rowNew.children().eq(5).text(value['batch_amount']);
+								rowNew.appendTo(table1).append('<td><div class="col-xs-3"><input type="text" class="form-control input-sm" onkeypress="return event.charCode >=48 && event.charCode <=57"></div></td>').append('<td><input type="checkbox" /></td>');
 						});
 					}
 				});
 				$("#tablediv").show();
-			});
-	});
+			});		
+});
 </script>
-<input type="button" value="Show Table" id="showTable"/>
+</head>
+<body>
+Select department:
+<select id="department">
+<option>Select department</option>
+<option>administration</option>
+<option>kitchen</option>
+<option>clean</option>
+</select>
+<br/>
+<br/>
+Select category:
+<select id="category">
+<option>Select category</option>
+</select>
+<br/>
+<br/>
+<input type="button" value="Show Products" id="showTable"/>
+<br/>
+<br/>
 <div id="tablediv">
 <table class="table table-striped" cellspacing="0" id="table">
     <tr>

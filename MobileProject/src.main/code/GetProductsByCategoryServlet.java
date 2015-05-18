@@ -17,7 +17,11 @@ import com.google.gson.reflect.TypeToken;
 public class GetProductsByCategoryServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		List<Products> products = ProductManager.getProductsListByCategory();
+		
+		String category = request.getParameter("categoryname");
+		System.out.println(category);
+		
+		List<Products> products = ProductManager.getProductsListByCategory(category);
 		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		
 		JsonElement element = gson.toJsonTree(products, new TypeToken<List<Products>>(){}.getType());

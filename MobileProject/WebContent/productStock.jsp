@@ -15,11 +15,10 @@ $(document).ready(function(){
 	$('#increment').click(function(event){
 		var n = $('#number').val();//gets the input
 		$.get('ProductStockServlet', {add:n}, function(responseText){
-			$('#store').each(function(){
-				$(this).text(responseText);
+			$("#store").each(function(){
+				var a = $(this).html();
+				jQuery(this).html(responseText);
 			})
-			//table.closest("td").find('#store').text(responseText);
-			//$('#store').text(responseText);
 		});
 	});
 });
@@ -40,8 +39,7 @@ $(document).ready(function(){
 			</thead>
 		<tbody>
 <%
-ProductManager pm = new ProductManager();
-List<Products> list = pm.getProductsListByUser(user);
+List<Products> list = ProductManager.getProductsListByUser(user);
 for(Products p : list){
 %>
 <tr>

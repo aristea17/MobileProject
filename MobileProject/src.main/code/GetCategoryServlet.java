@@ -17,7 +17,8 @@ public class GetCategoryServlet extends HttpServlet{
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		
-		List<String> category = ProductManager.getCategories();
+		String department = request.getParameter("departmentname");
+		List<String> category = ProductManager.getCategories(department);
 		Gson gson = new Gson();
 		
 		JsonElement element = gson.toJsonTree(category, new TypeToken<List<String>>(){}.getType());
