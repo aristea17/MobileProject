@@ -24,7 +24,6 @@
 // });
 
 function update(number){
-	alert(number);
 	var productCount = document.getElementById(number).value;
 	alert(productCount);
 }
@@ -53,17 +52,17 @@ for(Products p : list){
 	<td><%=p.getID() %></td>
 	<td><%=p.getName()%></td>
 	<td><%=p.getMinimum() %></td>
-	<td id="store"><%=p.getStored() %></td>
+	<td id="store<%=index %>"><%=p.getStored() %></td>
 	<td>
 	<div class="col-xs-6">
 	<input type="text" id="number<%=index %>" class="form-control" aria-describedby="sizing-addon3" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
 	</div>
 	</td>
 	<td>
-	<button class="prova" type="button" id="increment<%=index %>>" value="increment" onclick="update('number<%=index %>');">Add</button>
+	<button class="btn btn-default" type="button" id="increment<%=index %>>" value="increment" onclick="update('number<%=index %>');">Add</button>
 	</td>
 	<td>
-	<button class="btn btn-default" type="button" id="decrement" value="decrement">Reduce</button>
+	<button class="btn btn-default" type="button" id="decrement<%=index %>" value="decrement" onclick="update('number<%=index %>')">Reduce</button>
 	</td>
 </tr>
 <%index++;
