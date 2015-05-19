@@ -29,20 +29,26 @@
 							$("#table").find("tr:gt(0)").remove();
 							var table1= $("#table");
 							$.each(responseJson, function(key, value){
-								var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
-								rowNew.children().eq(0).text(value['p_id']);
-								rowNew.children().eq(1).text(value['p_name']);
-								rowNew.children().eq(2).text(value['minimum']);
-								rowNew.children().eq(3).text(value['stored']);
-								rowNew.children().eq(4).text(value['category']);
-								rowNew.children().eq(5).text(value['batch_amount']);
-								rowNew.appendTo(table1).append('<td><div class="col-xs-3"><input type="text" class="form-control input-sm" onkeypress="return event.charCode >=48 && event.charCode <=57"></div></td>').append('<td><input type="checkbox" /></td>');
+								var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+								rowNew.children().eq(key).eq(0).text(value['[{p_id}]']);
+								rowNew.children().eq(key).eq(0).text(value['{p_name}']);
+								rowNew.children().eq(0).text(value['[{minimum}]']);
+								rowNew.children().eq(0).text(value['stored']);
+								rowNew.children().eq(0).text(value['']);//supplier
+								rowNew.children().eq(1).text(value['"price"']);//price
+								rowNew.children().eq(0).text(value['"batch_amount"']);
+								rowNew.appendTo(table1).append('<td><div class="col-xs-3"><input type="text" class="form-control input-sm" onkeypress="return event.charCode >=48 && event.charCode <=57"></div></td>').append('<td><input id="cb" type="checkbox" /></td>');
 						});
 					}
 				});
 				$("#tablediv").show();
 			});		
 });
+			$('#cb').click(function(){
+				$('#table tr').filter(':has(:checkbox:checked)').find('<td>').each(function(){
+					alert("Product added! Prova");
+				});
+			});
 </script>
 </head>
 <body>
@@ -71,11 +77,11 @@ Select category:
         <th scope="col">Name</th>
         <th scope="col">Minimum</th>
         <th scope="col">Stored</th>
-        <th scope="col">Category</th> 
-        <th scope="col">BatchAmount</th> 
+        <th scope="col">Supplier</th>
+        <th scope="col">Price</th> 
+        <th scope="col">Batch Amount</th> 
         <th scope="col">Order Amount</th>    
         <th scope="col">Add to basket</th> 
-        
     </tr>
 </table>
 </div>

@@ -24,8 +24,7 @@ public class Products {
 	@Expose private String batch_amount;
 	@Expose private int minimum;
 	@Expose private int stored;
-	
-	
+	 
 	private Set<Sells> sells = new HashSet<Sells>();
 	
 	private Set<Department> department = new HashSet<Department>();

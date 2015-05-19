@@ -11,17 +11,23 @@
 </head>
 <body>
 <script type="text/javascript">
-$(document).ready(function(){
-	$('#increment').click(function(event){
-		var n = $('#number').val();//gets the input
-		$.get('ProductStockServlet', {add:n}, function(responseText){
-			$("#store").each(function(){
-				var a = $(this).html();
-				jQuery(this).html(responseText);
-			})
-		});
-	});
-});
+//$(document).ready(function(){
+// 	$('.prova').click(function(event){
+// 		var n = $('#number').val();//gets the input
+// 		$.get('ProductStockServlet', {add:n}, function(responseText){
+// 			$("#store").each(function(){
+// 				var a = $(this).html();
+// 				jQuery(this).html(responseText);
+// 			})
+// 		});
+// 	});
+// });
+
+function update(number){
+	alert(number);
+	var productCount = document.getElementById(number).value;
+	alert(productCount);
+}
 </script>
 	<div class="container2">
 		<div class="prova">
@@ -40,6 +46,7 @@ $(document).ready(function(){
 		<tbody>
 <%
 List<Products> list = ProductManager.getProductsListByUser(user);
+int index=0;
 for(Products p : list){
 %>
 <tr>
@@ -49,17 +56,18 @@ for(Products p : list){
 	<td id="store"><%=p.getStored() %></td>
 	<td>
 	<div class="col-xs-6">
-	<input type="text" id="number" class="form-control" aria-describedby="sizing-addon3" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
+	<input type="text" id="number<%=index %>" class="form-control" aria-describedby="sizing-addon3" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
 	</div>
 	</td>
 	<td>
-	<button class="btn btn-default" type="button" id="increment" value="increment">Add</button>
+	<button class="prova" type="button" id="increment<%=index %>>" value="increment" onclick="update('number<%=index %>');">Add</button>
 	</td>
 	<td>
 	<button class="btn btn-default" type="button" id="decrement" value="decrement">Reduce</button>
 	</td>
 </tr>
-<%} %>
+<%index++;
+} %>
 </tbody>
 </table>
 </div>

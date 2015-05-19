@@ -11,12 +11,14 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="suppliers")
 public class Suppliers {
 	
 	private int s_id;
-	private String company;
+	@Expose private String company;
 	private String email;
 	private String rep_name;
 	private String address;

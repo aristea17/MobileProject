@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 @Table(name="sells")
 @AssociationOverrides({
@@ -23,7 +25,7 @@ public class Sells {
 	private SupplierProductID primaryKey = new SupplierProductID();
 	
 	/* additional fields */
-	private double price;
+	@Expose private double price;
 	
 	@EmbeddedId 
 	public SupplierProductID getPrimaryKey(){
