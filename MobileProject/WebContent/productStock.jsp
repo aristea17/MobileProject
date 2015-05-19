@@ -11,21 +11,37 @@
 </head>
 <body>
 <script type="text/javascript">
-//$(document).ready(function(){
-// 	$('.prova').click(function(event){
-// 		var n = $('#number').val();//gets the input
-// 		$.get('ProductStockServlet', {add:n}, function(responseText){
-// 			$("#store").each(function(){
+// $(document).ready(function(){
+//  	$('#increment').click(function(event){
+//  		var n = $('#number').val();//gets the input
+//  		$.get('ProductStockServlet', {add:n}, function(responseText){
+//  			$("#store").each(function(){
 // 				var a = $(this).html();
 // 				jQuery(this).html(responseText);
 // 			})
 // 		});
-// 	});
-// });
+//  	});
+//  });
 
-function update(number){
+function updateAdd(number, store){
+	// check empty box
 	var productCount = document.getElementById(number).value;
-	alert(productCount);
+	if(productCount!=""){
+		var stored = document.getElementById(store).innerHTML;
+		var sum = parseInt(productCount) + parseInt(stored);
+		document.getElementById(store).innerHTML=sum;
+		// delete value from box
+	}
+}
+
+function updateDecrement(number, store){
+	var productCount = document.getElementById(number).value;
+	if(productCount!=""){
+		var stored = document.getElementById(store).innerHTML;
+		var sum = parseInt(stored) - parseInt(productCount);
+		if(sum<0){sum = 0}
+		document.getElementById(store).innerHTML=sum;
+	}
 }
 </script>
 	<div class="container2">
@@ -49,7 +65,7 @@ int index=0;
 for(Products p : list){
 %>
 <tr>
-	<td><%=p.getID() %></td>
+	<td id="pid<%=index%>"><%=p.getID() %></td>
 	<td><%=p.getName()%></td>
 	<td><%=p.getMinimum() %></td>
 	<td id="store<%=index %>"><%=p.getStored() %></td>
@@ -59,10 +75,10 @@ for(Products p : list){
 	</div>
 	</td>
 	<td>
-	<button class="btn btn-default" type="button" id="increment<%=index %>>" value="increment" onclick="update('number<%=index %>');">Add</button>
+	<button class="btn btn-default" type="button" id="increment<%=index %>>" value="increment" onclick="updateAdd('number<%=index %>','store<%=index %>');">Add</button>
 	</td>
 	<td>
-	<button class="btn btn-default" type="button" id="decrement<%=index %>" value="decrement" onclick="update('number<%=index %>')">Reduce</button>
+	<button class="btn btn-default" type="button" id="decrement<%=index %>" value="decrement" onclick="updateDecrement('number<%=index %>', 'store<%=index %>')">Reduce</button>
 	</td>
 </tr>
 <%index++;
