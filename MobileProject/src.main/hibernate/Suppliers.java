@@ -17,7 +17,7 @@ import com.google.gson.annotations.Expose;
 @Table(name="suppliers")
 public class Suppliers {
 	
-	private int s_id;
+	@Expose private int s_id;
 	@Expose private String company;
 	private String email;
 	private String rep_name;

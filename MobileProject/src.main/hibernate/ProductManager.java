@@ -63,16 +63,18 @@ public class ProductManager {
 		try{
 			try{
 				session.getTransaction().begin();
-				List<Object[]> l = (List<Object[]>) session.createQuery("SELECT p, ps.price, s.company FROM Products p, Suppliers s JOIN p.sells ps JOIN s.sells JOIN p.department WHERE p.category='" + category +"'").list();
+				List<Object[]> l = (List<Object[]>) session.createQuery("SELECT distinct p, ps.price, s.company FROM Products p, Suppliers s JOIN p.sells ps JOIN s.sells JOIN p.department WHERE p.category='" + category +"'").list();
 				//List<Products> l = (List<Products>) session.createQuery("WHERE p.category='" + category +"'").list();
 				for(Object[] tuple: l){
 					Products p = (Products) tuple[0];
 					Double price = (Double) tuple[1];
+					String company = (String) tuple[2];
 					System.out.println(p.getID() + "\t" +
 									   p.getName() + "\t" +
 									   p.getMinimum() + "\t" +
 									   p.getStored() + "\t" + 
 									   price + "\t" +
+									   company + "\t" +
 									   p.getBatchAmount());	
 				}
 				session.getTransaction().commit();
@@ -113,14 +115,24 @@ public class ProductManager {
 			}
 		
 	//update the amount of products
-	public static void addProducts(){
+	public static void updateProductById(int id, int value){
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
 		Session session = sessFac.getCurrentSession();
 		
-		session.beginTransaction();
-		String hql = "UPDATE Products p SET p.stored=25 WHERE p.p_id=2";
-		Query query = session.createQuery(hql);
-		
-		int result = query.executeUpdate();	
+		try{
+			try{
+				session.getTransaction().begin();
+				Products prod = (Products) session.get(Products.class, id);
+				prod.setStored(value);
+				session.save(prod);
+				session.getTransaction().commit();
+			}catch(Exception e){
+				session.getTransaction().rollback();
+				throw e;
+			}
+		}finally{
+				HibernateUtil.closeConnection();
+		}
 	}
 }
+	

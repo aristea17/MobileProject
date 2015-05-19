@@ -1,6 +1,9 @@
 package code;
+import hibernate.ProductManager;
 import hibernate.UserManager;
+
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +24,7 @@ public class LoginServlet extends HttpServlet {
 		if(valid){
 			session = request.getSession(true);
 			session.setAttribute("user", username);
+			ProductManager.updateProductById(5, 66);
 			response.sendRedirect("validLogin.jsp");
 		}else{
 			request.setAttribute("error", "Invalid user");

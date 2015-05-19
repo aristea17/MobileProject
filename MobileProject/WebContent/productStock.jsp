@@ -23,7 +23,7 @@
 //  	});
 //  });
 
-function updateAdd(number, store){
+function updateAdd(number, store, pid){
 	// check empty box
 	var productCount = document.getElementById(number).value;
 	if(productCount!=""){
@@ -31,6 +31,10 @@ function updateAdd(number, store){
 		var sum = parseInt(productCount) + parseInt(stored);
 		document.getElementById(store).innerHTML=sum;
 		// delete value from box
+		var intId = document.getElementById(pid).innerHTML;
+		alert(intId);
+		alert(sum);
+		ProductManager.updateProductById(parseInt(intId), parseInt(sum));
 	}
 }
 
@@ -75,7 +79,7 @@ for(Products p : list){
 	</div>
 	</td>
 	<td>
-	<button class="btn btn-default" type="button" id="increment<%=index %>>" value="increment" onclick="updateAdd('number<%=index %>','store<%=index %>');">Add</button>
+	<button class="btn btn-default" type="button" id="increment<%=index %>>" value="increment" onclick="updateAdd('number<%=index %>','store<%=index %>','pid<%=index%>');">Add</button>
 	</td>
 	<td>
 	<button class="btn btn-default" type="button" id="decrement<%=index %>" value="decrement" onclick="updateDecrement('number<%=index %>', 'store<%=index %>')">Reduce</button>

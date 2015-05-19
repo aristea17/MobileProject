@@ -55,9 +55,7 @@
 Select department:
 <select id="department">
 <option>Select department</option>
-<option>administration</option>
-<option>kitchen</option>
-<option>clean</option>
+<option><%=user %></option>
 </select>
 <br/>
 <br/>
