@@ -1,5 +1,7 @@
 package code;
 
+import hibernate.ProductManager;
+
 import java.io.IOException;
 
 import javax.servlet.http.HttpServlet;
@@ -11,12 +13,16 @@ public class ProductStockServlet extends HttpServlet{
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		
-		String input = request.getParameter("add");
-		System.out.println(input);
+		int sum = Integer.parseInt(request.getParameter("update")); //get the input field value
+		System.out.println(sum);
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		
+		ProductManager.updateProductById(id, sum);
 		
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write(input);
+		response.getWriter().write("Added to the DB!");
 	}
 
 }

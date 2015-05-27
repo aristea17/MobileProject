@@ -11,56 +11,54 @@
 </head>
 <body>
 <script type="text/javascript">
-// $(document).ready(function(){
-//  	$('#increment').click(function(event){
-//  		var n = $('#number').val();//gets the input
-//  		$.get('ProductStockServlet', {add:n}, function(responseText){
-//  			$("#store").each(function(){
-// 				var a = $(this).html();
-// 				jQuery(this).html(responseText);
-// 			})
-// 		});
-//  	});
-//  });
-function ajaxFunction(){
-	var ajaxRequest;
-	try{
-		ajaxRequest = new XMLHttpRequest();
-	}
-	catch(e){
-		try{
-			ajaxRequest = new ActiveXObject("Msxml12.XMLHTTP");
-		}catch(oc){
-			alert("Your browser broke");
-			return false;
-		}
-	}
-}
-function updateAdd(number, store, pid){
-	//function updateAdd(number, store, pid){
-	// check empty box	
+function updateAdd(number, store, pid){	
 	var productCount = document.getElementById(number).value;
+	// check empty box
 	if(productCount!=""){
 		var stored = document.getElementById(store).innerHTML;
 		var sum = parseInt(productCount) + parseInt(stored);
 		document.getElementById(store).innerHTML=sum;
-		// delete value from box
+		// id of the element
 		var intId = document.getElementById(pid).innerHTML;
-		alert(intId);
-		alert(sum);
-		$('#' + number).val("");
-		//ProductManager.updateProductById(parseInt(intId), parseInt(sum));
 		
+		$.ajax({
+			url: 'ProductStockServlet',
+			data: {
+				id : intId,
+				update : sum
+			},
+			success: function(responseText){
+				alert(responseText);	
+			}
+			})
+		
+		// delete value from box
+		$('#' + number).val("");
 	}
 }
 
-function updateDecrement(number, store){
+function updateDecrement(number, store, pid){
 	var productCount = document.getElementById(number).value;
+	// check empty box
 	if(productCount!=""){
 		var stored = document.getElementById(store).innerHTML;
 		var sum = parseInt(stored) - parseInt(productCount);
 		if(sum<0){sum = 0}
 		document.getElementById(store).innerHTML=sum;
+		var intId = document.getElementById(pid).innerHTML;
+		
+		$.ajax({
+			url: 'ProductStockServlet',
+			data: {
+				id : intId,
+				update : sum
+			},
+			success: function(responseText){
+				alert(responseText);	
+			}
+			})
+		// delete value from box
+		$('#' + number).val("");
 	}
 }
 </script>
