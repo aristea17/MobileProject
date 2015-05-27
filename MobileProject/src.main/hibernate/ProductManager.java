@@ -3,6 +3,7 @@ package hibernate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -63,20 +64,48 @@ public class ProductManager {
 		try{
 			try{
 				session.getTransaction().begin();
-				List<Object[]> l = (List<Object[]>) session.createQuery("SELECT distinct p, ps.price, s.company FROM Products p, Suppliers s JOIN p.sells ps JOIN s.sells JOIN p.department WHERE p.category='" + category +"'").list();
-				//List<Products> l = (List<Products>) session.createQuery("WHERE p.category='" + category +"'").list();
-				for(Object[] tuple: l){
-					Products p = (Products) tuple[0];
-					Double price = (Double) tuple[1];
-					String company = (String) tuple[2];
-					System.out.println(p.getID() + "\t" +
-									   p.getName() + "\t" +
-									   p.getMinimum() + "\t" +
-									   p.getStored() + "\t" + 
-									   price + "\t" +
-									   company + "\t" +
-									   p.getBatchAmount());	
+				List<Products> listOfProducts = (List<Products>) session.createQuery("SELECT distinct p FROM Products p JOIN p.department WHERE p.category='" + category +"'").list();
+				
+				/*List<BuyProduct> output = new ArrayList<BuyProduct>();
+				for(Products pr : listOfProducts)
+					Set<Sells> sells = pr.getSells();
+					for(Sells ss : sells){
+						BuyProduct buyProduct = new BuyProduct(pr, ss.getSupplier(), ss.getPrice());
+						System.out.println(pr.getID() + "\t" +
+								pr.getName() + "\t" +
+								ss.getSupplier().getCompany() + "\t" +
+								ss.getPrice());
+						output.add(buyProduct);
+						System.out.println(buyProduct.getName() + "\t" +
+											buyProduct.getSupplierName() + "\t" +
+											buyProduct.getPrice());
+					}
 				}
+				System.out.println(output.get(0).getName() + "\t" +
+								output.get(1).getName() + "\t" +
+								output.get(2).getName());
+				*/
+				
+				List<Object[]> l = new ArrayList<Object[]>();
+				
+				for(Products pr : listOfProducts){
+					Object[] tuple = new Object[3];
+					Set<Sells> sells = pr.getSells();
+					for(Sells ss : sells){
+						tuple[0] = pr;
+						tuple[1] = ss.getSupplier();
+						tuple[2] = ss.getPrice();
+						System.out.println(pr.getID() + "\t" +
+								pr.getName() + "\t" +
+								ss.getSupplier().getCompany() + "\t" +
+								ss.getPrice());
+						l.add(tuple);
+						System.out.println(((Products) tuple[0]).getName() + "\t" +
+											((Suppliers) tuple[1]).getCompany() + "\t" +
+											tuple[2]);
+					}
+				}
+				
 				session.getTransaction().commit();
 				return l;
 			}catch(Exception e){

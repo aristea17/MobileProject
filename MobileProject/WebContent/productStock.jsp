@@ -22,9 +22,23 @@
 // 		});
 //  	});
 //  });
-
+function ajaxFunction(){
+	var ajaxRequest;
+	try{
+		ajaxRequest = new XMLHttpRequest();
+	}
+	catch(e){
+		try{
+			ajaxRequest = new ActiveXObject("Msxml12.XMLHTTP");
+		}catch(oc){
+			alert("Your browser broke");
+			return false;
+		}
+	}
+}
 function updateAdd(number, store, pid){
-	// check empty box
+	//function updateAdd(number, store, pid){
+	// check empty box	
 	var productCount = document.getElementById(number).value;
 	if(productCount!=""){
 		var stored = document.getElementById(store).innerHTML;
@@ -34,7 +48,10 @@ function updateAdd(number, store, pid){
 		var intId = document.getElementById(pid).innerHTML;
 		alert(intId);
 		alert(sum);
-		ProductManager.updateProductById(parseInt(intId), parseInt(sum));
+		//ProductManager.updateProductById(parseInt(intId), parseInt(sum));
+		
+		ajaxRequest.open("POST", "updateProductById" + indId + sum, true);
+		ajaxRequest.send(null);
 	}
 }
 
@@ -82,7 +99,7 @@ for(Products p : list){
 	<button class="btn btn-default" type="button" id="increment<%=index %>>" value="increment" onclick="updateAdd('number<%=index %>','store<%=index %>','pid<%=index%>');">Add</button>
 	</td>
 	<td>
-	<button class="btn btn-default" type="button" id="decrement<%=index %>" value="decrement" onclick="updateDecrement('number<%=index %>', 'store<%=index %>')">Reduce</button>
+	<button class="btn btn-default" type="button" id="decrement<%=index %>" value="decrement" onclick="updateDecrement('number<%=index %>', 'store<%=index %>', 'pid<%=index%>')">Reduce</button>
 	</td>
 </tr>
 <%index++;

@@ -4,7 +4,6 @@ import hibernate.ProductManager;
 import hibernate.Products;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
@@ -25,11 +24,11 @@ public class GetProductsByCategoryServlet extends HttpServlet {
 		String category = request.getParameter("categoryname");
 		System.out.println(category);
 		
-		List<Object[]> products = ProductManager.getProductsListByCategory(category);
+		List<Object[]> output = ProductManager.getProductsListByCategory(category);
 		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 		
-		JsonElement element = gson.toJsonTree(products, new TypeToken<List<Object>>(){}.getType());
-		
+		JsonElement element = gson.toJsonTree(output, new TypeToken<List<Object[]>>(){}.getType());
+				
 		JsonArray jsonArray = element.getAsJsonArray();
 		System.out.println(jsonArray);
 		response.setContentType("application/json");
