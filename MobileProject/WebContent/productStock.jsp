@@ -48,10 +48,9 @@ function updateAdd(number, store, pid){
 		var intId = document.getElementById(pid).innerHTML;
 		alert(intId);
 		alert(sum);
+		$('#' + number).val("");
 		//ProductManager.updateProductById(parseInt(intId), parseInt(sum));
 		
-		ajaxRequest.open("POST", "updateProductById" + indId + sum, true);
-		ajaxRequest.send(null);
 	}
 }
 
