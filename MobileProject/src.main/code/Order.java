@@ -1,7 +1,5 @@
 package code;
 
-import hibernate.Suppliers;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,10 +9,10 @@ public class Order {
 	String supplier;
 	String email;
 	
-	public Order(Suppliers supplier){
+	public Order(String supplier, String email){
 		myOrder = new ArrayList<BuyProduct>();
-		this.supplier = supplier.getCompany();
-		this.email = supplier.getEmail();
+		this.supplier = supplier;
+		this.email = email;
 	}
 	
 	public void add(BuyProduct product){

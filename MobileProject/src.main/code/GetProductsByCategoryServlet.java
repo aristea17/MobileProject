@@ -2,8 +2,10 @@ package code;
 
 import hibernate.ProductManager;
 import hibernate.Products;
+import hibernate.productTuple;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServlet;
@@ -24,13 +26,24 @@ public class GetProductsByCategoryServlet extends HttpServlet {
 		String category = request.getParameter("categoryname");
 		System.out.println(category);
 		
-		List<Object[]> output = ProductManager.getProductsListByCategory(category);
-		Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		ArrayList<productTuple> output = new ArrayList<productTuple>();
+		output = ProductManager.getProductsListByCategory(category);
 		
-		JsonElement element = gson.toJsonTree(output, new TypeToken<List<Object[]>>(){}.getType());
-				
+		//Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+		Gson gson = new Gson();
+		
+		/*System.out.println("Inside getProd... : "+((productTuple)output.get(0)).getP_name() + "\t" +
+				((productTuple)output.get(0)).getS_name() + "\t" +
+				((productTuple)output.get(0)).getPrice());
+				*/
+		
+		JsonElement element = gson.toJsonTree(output, new TypeToken<List<productTuple>>(){}.getType());
 		JsonArray jsonArray = element.getAsJsonArray();
+		
+		//String jsonArray = gson.toJson(output);
+		
 		System.out.println(jsonArray);
+		
 		response.setContentType("application/json");
 		response.getWriter().print(jsonArray);
 	}

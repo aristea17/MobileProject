@@ -57,7 +57,7 @@ public class ProductManager {
 	}
 	
 	//add the category in the method parameter, now it's done manually
-	public static List<Object[]> getProductsListByCategory(String category){
+	public static ArrayList<productTuple> getProductsListByCategory(String category){
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
 		Session session = sessFac.getCurrentSession();
 		
@@ -66,8 +66,39 @@ public class ProductManager {
 				session.getTransaction().begin();
 				List<Products> listOfProducts = (List<Products>) session.createQuery("SELECT distinct p FROM Products p JOIN p.department WHERE p.category='" + category +"'").list();
 				
+				ArrayList<productTuple> output = new ArrayList<productTuple>();
+				
+				for(Products pr : listOfProducts){
+					Set<Sells> sells = pr.getSells();
+					for(Sells ss : sells){
+						productTuple tuple = new productTuple(pr, ss.getSupplier(), ss.getPrice());
+						/*productTuple tuple = new productTuple(pr.getID(), pr.getName(),
+																pr.getBatchAmount(), pr.getMinimum(),
+																pr.getStored(), ss.getSupplier().getCompany(), ss.getPrice());
+						*/
+						
+						/*System.out.println(pr.getID() + "\t" +
+								pr.getName() + "\t" +
+								ss.getSupplier().getCompany() + "\t" +
+								ss.getPrice());
+								*/
+						
+						output.add(tuple);
+						
+						/*System.out.println(tuple.getP_name() + "\t" +
+											tuple.getC_name() + "\t" +
+											tuple.getPrice());
+											*/
+					}
+				}
+				/*System.out.println("Inside ProdManager... : "+((productTuple)output.get(0)).getP_name() + "\t" +
+								((productTuple)output.get(0)).getC_name() + "\t" +
+								((productTuple)output.get(0)).getPrice());
+								*/
+				
+				
 				/*List<BuyProduct> output = new ArrayList<BuyProduct>();
-				for(Products pr : listOfProducts)
+				for(Products pr : listOfProducts){
 					Set<Sells> sells = pr.getSells();
 					for(Sells ss : sells){
 						BuyProduct buyProduct = new BuyProduct(pr, ss.getSupplier(), ss.getPrice());
@@ -86,7 +117,8 @@ public class ProductManager {
 								output.get(2).getName());
 				*/
 				
-				List<Object[]> l = new ArrayList<Object[]>();
+				
+				/*List<Object[]> l = new ArrayList<Object[]>();
 				
 				for(Products pr : listOfProducts){
 					Object[] tuple = new Object[3];
@@ -105,9 +137,11 @@ public class ProductManager {
 											tuple[2]);
 					}
 				}
+				*/
 				
 				session.getTransaction().commit();
-				return l;
+				return output;
+				
 			}catch(Exception e){
 				session.getTransaction().rollback();
 				throw e;

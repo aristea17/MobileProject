@@ -31,12 +31,12 @@
 							$.each(responseJson, function(key, value){
 								var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
 								rowNew.children().eq(0).text(value['p_id']);
-								rowNew.children().eq(0).eq(0).text(value['p_name']);
-								rowNew.children().eq(0).eq(0).text(value['minimum']);
-								rowNew.children().eq(0).eq(0).text(value['stored']);
-								rowNew.children().eq(0).eq(1).text(value['']);//supplier
-								rowNew.children().eq(1).eq(2).text(value['']);//price
-								rowNew.children().eq(0).eq(0).text(value['batch_amount']);
+								rowNew.children().eq(1).text(value['p_name']);
+								rowNew.children().eq(2).text(value['p_minimum']);
+								rowNew.children().eq(3).text(value['p_stored']);
+								rowNew.children().eq(4).text(value['s_name']); //supplier
+								rowNew.children().eq(5).text(value['price']); //price
+								rowNew.children().eq(6).text(value['p_batch_amount']);
 								rowNew.appendTo(table1).append('<td><div class="col-xs-3"><input type="text" class="form-control input-sm" onkeypress="return event.charCode >=48 && event.charCode <=57"></div></td>').append('<td><input id="cb" type="checkbox" /></td>');
 						});
 					}

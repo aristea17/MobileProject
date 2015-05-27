@@ -16,7 +16,7 @@ public class ShoppingCart {
 			suppliers.get(product.getSupplierName()).add(product);
 		}
 		else{
-			newOrder = new Order(product.getSupplier());
+			newOrder = new Order(product.getSupplierName(), product.getSupplierEmail());
 			newOrder.add(product);
 			addOrder(newOrder);
 		}

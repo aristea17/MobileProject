@@ -8,14 +8,16 @@ public class BuyProduct {
 	private String pName;
 	private int quantity;
 	private double price;
-	private Suppliers supplier;
+	private String supplierName;
+	private String email;
 	
-	/*public BuyProduct(String pName, int quantity, double price, Suppliers supplier){
+	public BuyProduct(String pName, int quantity, double price, String supplierName, String email){
 		this.pName = pName;
 		this.quantity = quantity;
 		this.price = price;
-		this.supplier = supplier;
-	}*/
+		this.supplierName = supplierName;
+		this.email = email;
+	}
 	
 	/*public BuyProduct(Products product, Suppliers supplier, double price){
 		this.product = product;
@@ -44,17 +46,13 @@ public class BuyProduct {
 	public double getPrice() {
 		return price;
 	}
-
-	public Suppliers getSupplier() {
-		return supplier;
-	}
 	
 	public String getSupplierName(){
-		return supplier.getCompany();
+		return supplierName;
 	}
 	
 	public String getSupplierEmail(){
-		return supplier.getEmail();
+		return email;
 	}
 	
 	

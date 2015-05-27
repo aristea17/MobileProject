@@ -218,6 +218,8 @@ insert into needs (d_id, p_id) values(3, 20);
 -- DEPTSUP -- RELATION --
 insert into deptsup (d_id, s_id) values (1, 4);
 
+insert into deptsup (d_id, s_id) values (1, 2);
+
 insert into deptsup (d_id, s_id) values (2, 1);
 
 insert into deptsup (d_id, s_id) values (2, 2);
