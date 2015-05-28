@@ -54,7 +54,4 @@ public class BuyProduct {
 	public String getSupplierEmail(){
 		return email;
 	}
-	
-	
-
 }

@@ -28,8 +28,11 @@
 						if(responseJson!=null){
 							$("#table").find("tr:gt(0)").remove();
 							var table1= $("#table");
+							
 							$.each(responseJson, function(key, value){
-								var rowNew = $("<tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>");
+								<% int index=0; %>
+								<%index++;%>
+								var rowNew = $("<tr><td></td><td id=\"name<%=index%>\"></td><td></td><td></td><td id=\"supplier<%=index%>\"></td><td id=\"price<%=index%>\"></td><td></td></tr>");
 								rowNew.children().eq(0).text(value['p_id']);
 								rowNew.children().eq(1).text(value['p_name']);
 								rowNew.children().eq(2).text(value['p_minimum']);
@@ -37,18 +40,21 @@
 								rowNew.children().eq(4).text(value['s_name']); //supplier
 								rowNew.children().eq(5).text(value['price']); //price
 								rowNew.children().eq(6).text(value['p_batch_amount']);
-								rowNew.appendTo(table1).append('<td><div class="col-xs-3"><input type="text" class="form-control input-sm" onkeypress="return event.charCode >=48 && event.charCode <=57"></div></td>').append('<td><input id="cb" type="checkbox" /></td>');
-						});
+								rowNew.append('<td><div class="col-xs-3"><input id=\"quantity<%=index%>\" type="text" class="form-control input-sm" onkeypress="return event.charCode >=48 && event.charCode <=57"></div></td>').append('<td><input id=\"cb<%=index%>\" type="checkbox" /></td>').appendTo(table1);
+							});
 					}
 				});
 				$("#tablediv").show();
 			});		
-});
-			$('#cb').click(function(){
-				$('#table tr').filter(':has(:checkbox:checked)').find('<td>').each(function(){
-					alert("Product added! Prova");
-				});
-			});
+});	
+	function prova(quantity, cb, pid){
+		var quantityInput = document.getElementById(quantity).value;//here I get the quantity I insert in the input field
+		alert(quantityInput);
+		
+		var ii = document.getElementById(pid).innerHTML;
+		alert(ii);
+	}
+			
 </script>
 </head>
 <body>
@@ -82,6 +88,7 @@ Select category:
         <th scope="col">Add to basket</th> 
     </tr>
 </table>
+<input type="button" value="Add to cart" id="cart" onclick="prova('quantity<%=index%>', 'cb<%=index%> %>', 'pid<%=index%>')"/>
 </div>
 </body>
 </html>

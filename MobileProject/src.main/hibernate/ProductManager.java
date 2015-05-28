@@ -72,73 +72,10 @@ public class ProductManager {
 					Set<Sells> sells = pr.getSells();
 					for(Sells ss : sells){
 						productTuple tuple = new productTuple(pr, ss.getSupplier(), ss.getPrice());
-						/*productTuple tuple = new productTuple(pr.getID(), pr.getName(),
-																pr.getBatchAmount(), pr.getMinimum(),
-																pr.getStored(), ss.getSupplier().getCompany(), ss.getPrice());
-						*/
-						
-						/*System.out.println(pr.getID() + "\t" +
-								pr.getName() + "\t" +
-								ss.getSupplier().getCompany() + "\t" +
-								ss.getPrice());
-								*/
 						
 						output.add(tuple);
-						
-						/*System.out.println(tuple.getP_name() + "\t" +
-											tuple.getC_name() + "\t" +
-											tuple.getPrice());
-											*/
 					}
 				}
-				/*System.out.println("Inside ProdManager... : "+((productTuple)output.get(0)).getP_name() + "\t" +
-								((productTuple)output.get(0)).getC_name() + "\t" +
-								((productTuple)output.get(0)).getPrice());
-								*/
-				
-				
-				/*List<BuyProduct> output = new ArrayList<BuyProduct>();
-				for(Products pr : listOfProducts){
-					Set<Sells> sells = pr.getSells();
-					for(Sells ss : sells){
-						BuyProduct buyProduct = new BuyProduct(pr, ss.getSupplier(), ss.getPrice());
-						System.out.println(pr.getID() + "\t" +
-								pr.getName() + "\t" +
-								ss.getSupplier().getCompany() + "\t" +
-								ss.getPrice());
-						output.add(buyProduct);
-						System.out.println(buyProduct.getName() + "\t" +
-											buyProduct.getSupplierName() + "\t" +
-											buyProduct.getPrice());
-					}
-				}
-				System.out.println(output.get(0).getName() + "\t" +
-								output.get(1).getName() + "\t" +
-								output.get(2).getName());
-				*/
-				
-				
-				/*List<Object[]> l = new ArrayList<Object[]>();
-				
-				for(Products pr : listOfProducts){
-					Object[] tuple = new Object[3];
-					Set<Sells> sells = pr.getSells();
-					for(Sells ss : sells){
-						tuple[0] = pr;
-						tuple[1] = ss.getSupplier();
-						tuple[2] = ss.getPrice();
-						System.out.println(pr.getID() + "\t" +
-								pr.getName() + "\t" +
-								ss.getSupplier().getCompany() + "\t" +
-								ss.getPrice());
-						l.add(tuple);
-						System.out.println(((Products) tuple[0]).getName() + "\t" +
-											((Suppliers) tuple[1]).getCompany() + "\t" +
-											tuple[2]);
-					}
-				}
-				*/
-				
 				session.getTransaction().commit();
 				return output;
 				

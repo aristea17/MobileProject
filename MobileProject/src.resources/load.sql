@@ -57,7 +57,7 @@ insert into products(p_id, p_name, category, batch_amount, minimum, stored) valu
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(19, 'lavanderia_ammorbidente', 'lavanderia', '1 litro', 20, 28);
 --20
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(20, 'dentifricio', 'igiene', '100cl', 30, 40);
-
+--
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(21, 'carta_risma_100', 'cartoleria', '100 fogli', 30, 83);
 
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(22, 'toner_stampante_nero', 'stampante', '1 toner', 2, 4);
