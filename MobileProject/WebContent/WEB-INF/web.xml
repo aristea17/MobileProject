@@ -58,4 +58,12 @@
   	<servlet-name>ProductStockServlet</servlet-name>
   	<url-pattern>/ProductStockServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+  	<servlet-name>AddToCartServlet</servlet-name>
+  	<servlet-class>code.AddToCartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>AddToCartServlet</servlet-name>
+  	<url-pattern>/AddToCartServlet</url-pattern>
+  </servlet-mapping>  
 </web-app>

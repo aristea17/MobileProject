@@ -56,7 +56,7 @@ public class ProductManager {
 		return productList;
 	}
 	
-	//add the category in the method parameter, now it's done manually
+	
 	public static ArrayList<productTuple> getProductsListByCategory(String category){
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
 		Session session = sessFac.getCurrentSession();

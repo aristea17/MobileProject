@@ -9,6 +9,7 @@
 <title>Home</title>
 <%@include file="header.jsp" %>
 <script type="text/javascript">
+	var count;
 	$(document).ready(function(){
 		$('#department').change(function(event){//the select option is triggered
 			var $department = $("select#department").val();//save in department the selected value
@@ -28,9 +29,9 @@
 						if(responseJson!=null){
 							$("#table").find("tr:gt(0)").remove();
 							var table1= $("#table");
-							
+							//var count;
 							$.each(responseJson, function(key, value){
-								var rowNew = $("<tr><td></td><td id=\"name"+key+"\"></td><td></td><td></td><td id=\"supplier"+key+"\"></td><td id=\"price"+key+"\"></td><td></td></tr>");
+								var rowNew = $("<tr><td></td><td id=\"name"+key+"\"></td><td></td><td></td><td id=\"supplier"+key+"\"></td><td id=\"price"+key+"\"></td><td></td><td id=\"email"+key+"\"></td></tr>");
 								rowNew.children().eq(0).text(value['p_id']);
 								rowNew.children().eq(1).text(value['p_name']);
 								rowNew.children().eq(2).text(value['p_minimum']);
@@ -38,21 +39,54 @@
 								rowNew.children().eq(4).text(value['s_name']); //supplier
 								rowNew.children().eq(5).text(value['price']); //price
 								rowNew.children().eq(6).text(value['p_batch_amount']);
-								rowNew.append('<td><div class="col-xs-3"><input id="quantity'+key+'" type="text" class="form-control input-sm" onkeypress="return event.charCode >=48 && event.charCode <=57"></div></td>')
-								rowNew.append('<td><input id=\"cb'+key+'" type="checkbox" /></td>').appendTo(table1);
+								rowNew.children().eq(7).text(value['s_email']);
+								rowNew.append('<td><div class="col-xs-3"><input id="quantity'+key+'" type="text" class="form-control input-sm" onkeypress="return event.charCode >=48 && event.charCode <=57"></div></td>');
+								rowNew.appendTo(table1);
+								count = key;
 							});
-					}
+						}
 				});
 				$("#tablediv").show();
 			});		
 });	
-	function prova(quantity){
+	function prova(){
+		var p_name;
+		var s_name;
+		var s_email;
+		var p_price;
+		var quantityInput;
 		
-		var quantityInput = document.getElementById(quantity).value;//here I get the quantity I insert in the input field
-		alert(quantityInput);
+		for(var i=0; i<=count; i++){
+					
+			quantityInput = document.getElementById('quantity'+i).value;  // here I get the quantity I insert in the input field
+			
+			if(quantityInput!=""){
+				p_name = document.getElementById('name'+i).innerHTML;
+				s_name = document.getElementById('supplier'+i).innerHTML;
+				s_email = document.getElementById('email'+i).innerHTML;
+				p_price = document.getElementById('price'+i).innerHTML;
+				//alert('Name: ' + p_name + ' - Sup: ' + s_name + ' - email: ' + s_email + ' - price: ' + p_price + ' - quantity: ' + quantityInput);
+				
+				$.ajax({
+					url: 'AddToCartServlet',
+					data: {
+						pName : p_name,
+						sName : s_name,
+						sEmail : s_email,
+						pPrice : p_price,
+						quantity : quantityInput						
+					},
+					success: function(responseText){
+						alert(responseText);
+					}
+				})
+				
+				// delete value from box
+				$('#' + 'quantity'+i).val("");
+			}
 		
-		var ii = document.getElementById(pid).innerHTML;
-		alert(ii);
+		}
+		
 	}
 			
 </script>
@@ -84,8 +118,8 @@ Select category:
         <th scope="col">Supplier</th>
         <th scope="col">Price</th> 
         <th scope="col">Batch Amount</th> 
-        <th scope="col">Order Amount</th>    
-        <th scope="col">Add to basket</th> 
+        <th scope="col">Email</th>
+        <th scope="col">Order Amount</th>     
     </tr>
 </table>
 <input type="button" value="Add to cart" id="cart" onclick="prova()"/>

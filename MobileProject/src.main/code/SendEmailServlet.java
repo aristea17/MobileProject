@@ -48,7 +48,7 @@ public class SendEmailServlet extends HttpServlet{
 		PrintWriter out = response.getWriter();
 		
 		try{
-			// Create a default MimeMessage pject
+			// Create a default MimeMessage
 			MimeMessage message = new MimeMessage(session);
 			
 			// Set FROM and TO - Subject and actual message

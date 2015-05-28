@@ -30,7 +30,7 @@ function updateAdd(number, store, pid){
 			success: function(responseText){
 				alert(responseText);	
 			}
-			})
+		})
 		
 		// delete value from box
 		$('#' + number).val("");
