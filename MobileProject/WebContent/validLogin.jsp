@@ -49,7 +49,7 @@
 				$("#tablediv").show();
 			});		
 });	
-	function prova(){
+	function addToCart(){
 		var p_name;
 		var s_name;
 		var s_email;
@@ -88,6 +88,15 @@
 		}
 		
 	}
+	
+	function send(){
+		$.ajax({
+			url: 'SendEmailServlet',
+			success: function(responseText){
+				alert(responseText);
+			}
+		})
+	}
 			
 </script>
 </head>
@@ -122,7 +131,8 @@ Select category:
         <th scope="col">Order Amount</th>     
     </tr>
 </table>
-<input type="button" value="Add to cart" id="cart" onclick="prova()"/>
+<input type="button" value="Add to cart" id="cart" onclick="addToCart()"/>
+<input type="button" value="Send email order" id="send" onclick="send()">
 </div>
 </body>
 </html>

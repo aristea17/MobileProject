@@ -63,13 +63,32 @@ public class Order {
 		return email;
 	}
 	
-	// write to pdf
-	public void printMyOrder(){
-		/*
-		for(BuyProduct product : myOrder){
-			System.out.println("product: "+product.getName() + "\tPrice: " + product.getPrice() + "\tQuantity: " + product.getQuantity());
+	public double getTotal(){
+		double total = 0;
+		
+		if(!order.isEmpty()){
+			for(BuyProduct product : order.values()){
+				total += (product.getPrice()*product.getQuantity());
+			}
 		}
-		*/
+		
+		return total;		
+	}
+	
+	public String stringMyOrder(){
+		String stringOrder = "";
+		if(!order.isEmpty()){
+			for(BuyProduct product : order.values()){
+				stringOrder += "Product: "+product.getName() + "\t\tPrice: " + product.getPrice() + "\t\tQuantity: " + product.getQuantity()+"\n";
+			}
+			stringOrder += "\n\n";
+			stringOrder += "Total: " + getTotal() + "\n";
+		}
+		return stringOrder;
+	}
+	
+	// Debug
+	public void printMyOrder(){
 		if(!order.isEmpty()){
 			for(BuyProduct product : order.values()){
 				System.out.println("product: "+product.getName() + "\tPrice: " + product.getPrice() + "\tQuantity: " + product.getQuantity());

@@ -68,17 +68,17 @@ insert into products(p_id, p_name, category, batch_amount, minimum, stored) valu
 
 -- SUPPLIERS --
 --1
-insert into suppliers(s_id, address, company, email, representative, telephone) values(1, '', 'Despar', 'supplies@despar.com', 'Kurt', '');
+insert into suppliers(s_id, address, company, email, representative, telephone) values(1, '', 'Despar', 'casinilorenzo91@gmail.com', 'Kurt', '');
 
-insert into suppliers(s_id, address, company, email, representative, telephone) values(2, '', 'Poli', 'supplies@poli.com', 'Mr. Poli', '');
+insert into suppliers(s_id, address, company, email, representative, telephone) values(2, '', 'Poli', 'lorenzocasini@yahoo.it', 'Mr. Poli', '');
 
-insert into suppliers(s_id, address, company, email, representative, telephone) values(3, '', 'Carrefour', 'info@carrefour.com', 'Commander Shepard', '');
+insert into suppliers(s_id, address, company, email, representative, telephone) values(3, '', 'Carrefour', 'imsunibz@gmail.com', 'Commander Shepard', '');
 
-insert into suppliers(s_id, address, company, email, representative, telephone) values(4, '', 'Athesia', 'order@athesia.com', '', '');
+insert into suppliers(s_id, address, company, email, representative, telephone) values(4, '', 'Athesia', 'ibershimiaristea@yahoo.com', '', '');
 --5
-insert into suppliers(s_id, address, company, email, representative, telephone) values(5, 'Via Macello, 42, Bolzano', 'Macelleria/Metzgerei', 'macello@metzger.com', 'The Butcher', '0471.166.166');
+insert into suppliers(s_id, address, company, email, representative, telephone) values(5, 'Via Macello, 42, Bolzano', 'Macelleria/Metzgerei', 'ibershimiaristea17@gmail.com', 'The Butcher', '0471.166.166');
 
-insert into suppliers(s_id, address, company, email, representative, telephone) values(6, '', 'Acqua & Sapone', 'acqua@sapone.com', '', '');
+insert into suppliers(s_id, address, company, email, representative, telephone) values(6, '', 'Acqua e Sapone', 'Lorenzo.Casini@studinf.unibz.it', '', '');
 
 
 -- SELLS -- RELATION -- 

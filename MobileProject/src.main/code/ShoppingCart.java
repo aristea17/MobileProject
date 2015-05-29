@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class ShoppingCart {
 	
@@ -58,6 +59,10 @@ public class ShoppingCart {
 		return suppliers.get(product.getSupplierName());
 	}
 	
+	public static void clear(){
+		suppliers.clear();
+	}
+	
 	// for debug
 	public static void printShoppingCartContent(){
 		if(!suppliers.isEmpty()){
@@ -79,16 +84,6 @@ public class ShoppingCart {
 		System.out.println();
 		System.out.println("------------------------------------------");
 		System.out.println();
-	}
-	
-	// rename in "buy"
-	public static void sendEmails(){
-		
-		//clear();
-	}
-	
-	public static void clear(){
-		suppliers.clear();
 	}
 		
 }
