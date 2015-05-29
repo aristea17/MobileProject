@@ -18,51 +18,51 @@ insert into users (u_id, department_d_id, psw, username) values(3, 3, '123402c04
 
 -- PRODUCTS --
 --1
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(1, 'mila_latte_fresco', 'frigo', '1 litro', 30, 30);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(1, 'mila latte fresco', 'frigo', '1 litro', 30, 30);
 
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(2, 'mila_yogurt_vasetto_6_pack', 'frigo', '6', 20, 20);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(2, 'mila yogurt vasetto 6pack', 'frigo', '6', 20, 20);
 
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(3, 'mila_latte_parz_scremo', 'frigo', '0.5 litro', 20, 20);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(3, 'mila latte parz. scremo', 'frigo', '0.5 litro', 20, 20);
 
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(4, 'mele_golden_cassetta', 'frutta e verdura', 'cassetta', 5, 6);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(4, 'mele golden cassetta', 'frutta e verdura', 'cassetta', 5, 6);
 --5
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(5, 'saponetta_bagno', 'igiene', '1', 50, 60);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(5, 'saponetta bagno', 'igiene', '1', 50, 60);
 
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(6, 'detergente_pavimenti', 'pulizia', '500 ml', 5, 6);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(6, 'detergente pavimenti', 'pulizia', '500 ml', 5, 6);
 
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(7, 'penne_sfera', 'cartoleria', '50', 1, 3);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(7, 'penne sfera', 'cartoleria', '50', 1, 3);
 
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(8, 'sterzing_yogurt_vasetto_6_pack', 'frigo', '6', 20, 15);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(8, 'sterzing yogurt vasetto 6pack', 'frigo', '6', 20, 15);
 
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(9, 'heineken_birra_33cl_3_pack', 'bevande e alcolici', '3', 20, 50);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(9, 'heineken birra 33cl 3pack', 'bevande e alcolici', '3', 20, 50);
 --10
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(10, 'coca_cola_lattina_33cl_6_pack', 'bevande e alcolici', '6', 15, 20);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(10, 'coca-cola lattina 33cl 6pack', 'bevande e alcolici', '6', 15, 20);
 
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(11, 'manzo_tagliata', 'carne e pesce', '200g', 10, 5);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(11, 'manzo tagliata', 'carne e pesce', '200g', 10, 5);
 
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(12, 'pollo_petto', 'carne e pesce', '300g', 15, 10);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(12, 'pollo petto', 'carne e pesce', '300g', 15, 10);
 
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(13, 'insalata_cappuccio_cassetta', 'frutta e verdura', 'cassetta', 10, 25);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(13, 'insalata cappuccio cassetta', 'frutta e verdura', 'cassetta', 10, 25);
 
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(14, 'kit_igene_personale', 'igiene', '1', 60, 70);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(14, 'kit igene personale', 'igiene', '1', 60, 70);
 --15
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(15, 'kit_doccia_shampoo', 'igiene', '5cl', 50, 45);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(15, 'kit doccia shampoo', 'igiene', '5cl', 50, 45);
 
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(16, 'detergente_vetri', 'pulizia', '50cl', 30, 42);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(16, 'detergente vetri', 'pulizia', '50cl', 30, 42);
 
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(17, 'lavanderia_detersivo', 'lavanderia', '5 litri', 10, 11);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(17, 'lavanderia detersivo', 'lavanderia', '5 litri', 10, 11);
 
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(18, 'lavanderia_sapone_marsiglia', 'lavanderia', '1 litro', 6, 18);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(18, 'lavanderia sapone marsiglia', 'lavanderia', '1 litro', 6, 18);
 
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(19, 'lavanderia_ammorbidente', 'lavanderia', '1 litro', 20, 28);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(19, 'lavanderia ammorbidente', 'lavanderia', '1 litro', 20, 28);
 --20
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(20, 'dentifricio', 'igiene', '100cl', 30, 40);
 --
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(21, 'carta_risma_100', 'cartoleria', '100 fogli', 30, 83);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(21, 'carta risma 100', 'cartoleria', '100 fogli', 30, 83);
 
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(22, 'toner_stampante_nero', 'stampante', '1 toner', 2, 4);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(22, 'toner stampante nero', 'stampante', '1 toner', 2, 4);
 
-insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(23, 'toner_stampante_3color', 'stampante', '1 toner', 2, 4);
+insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(23, 'toner stampante 3color', 'stampante', '1 toner', 2, 4);
 
 
 

@@ -44,9 +44,3 @@ body > nav > div{
 #table > tbody > tr{
 	height: 51px;
 }
-#table > tbody > tr:nth-child(1) > th:nth-child(8){
-	display: none;
-}
-#email{
-	display: none;
-}

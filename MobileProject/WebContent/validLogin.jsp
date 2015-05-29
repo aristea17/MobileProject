@@ -31,7 +31,7 @@
 							var table1= $("#table");
 							//var count;
 							$.each(responseJson, function(key, value){
-								var rowNew = $("<tr><td></td><td id=\"name"+key+"\"></td><td></td><td></td><td id=\"supplier"+key+"\"></td><td id=\"price"+key+"\"></td><td></td><td style=\"display:none\" id=\"email"+key+"\"></td></tr>");
+								var rowNew = $("<tr><td></td><td id=\"name"+key+"\"></td><td></td><td></td><td id=\"supplier"+key+"\"></td><td id=\"price"+key+"\"></td><td></td><td id=\"email"+key+"\"></td></tr>");
 								rowNew.children().eq(0).text(value['p_id']);
 								rowNew.children().eq(1).text(value['p_name']);
 								rowNew.children().eq(2).text(value['p_minimum']);
