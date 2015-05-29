@@ -1,11 +1,4 @@
 @CHARSET "ISO-8859-1";
 body{
-	min-height: 2000px;
 	padding-top: 90px;
-}
-
-table.table.table-bordered{
-	
-	width: 1300px;
-	
 }

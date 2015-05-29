@@ -8,6 +8,7 @@
 <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script type="text/javascript" src="Bootstrap/js/bootstrap.min.js"></script>
+<link href="CSS/validLogin.css" rel="stylesheet" type="text/css">
 <title>Suppliers</title>
 </head>
 <body>
@@ -17,7 +18,7 @@ String user = (String)session.getAttribute("user");
 <nav class="navbar navbar-default navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
-					<a class="navbar-brand" href="validLogin.jsp?pagina=home">Project Name</a>
+					<a class="navbar-brand" href="information.jsp?pagina=info">IMS Project</a>
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">

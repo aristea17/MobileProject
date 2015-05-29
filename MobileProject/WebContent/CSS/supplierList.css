@@ -4,13 +4,9 @@ body{
 	min-height: 2000px;
 	padding-top: 90px;
 }
-
-table.table.table-hover{
-	
-	width: 1300px;
-	
+div.container2{
+	margin-top: 50px;
 }
-body > div > div > table > tbody > tr:nth-child(1) > td:nth-child(5){
-	width: 200px;
-	height: 34px;
+body > div > div > table > tbody > tr{
+	height: 51px;
 }
