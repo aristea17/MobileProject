@@ -31,12 +31,25 @@ public class Order {
 		}
 	}
 	
+	public void remove(BuyProduct product){
+		if(order.containsKey(product.getName())){
+			order.remove(product.getName());
+		}
+	}
+	
+	public boolean isEmpty(){
+		return order.isEmpty();
+	}
+	
 	// probably never used
 	public List<BuyProduct> getProductList(){
+		
 		List<BuyProduct> myOrder = new ArrayList<BuyProduct>();
 		
-		for(BuyProduct p : order.values()){
-			myOrder.add(p);
+		if(!order.isEmpty()){
+			for(BuyProduct p : order.values()){
+				myOrder.add(p);
+			}
 		}
 		
 		return myOrder; // still fine in old version with list!
@@ -57,9 +70,10 @@ public class Order {
 			System.out.println("product: "+product.getName() + "\tPrice: " + product.getPrice() + "\tQuantity: " + product.getQuantity());
 		}
 		*/
-		
-		for(BuyProduct product : order.values()){
-			System.out.println("product: "+product.getName() + "\tPrice: " + product.getPrice() + "\tQuantity: " + product.getQuantity());
+		if(!order.isEmpty()){
+			for(BuyProduct product : order.values()){
+				System.out.println("product: "+product.getName() + "\tPrice: " + product.getPrice() + "\tQuantity: " + product.getQuantity());
+			}
 		}
 		
 	}

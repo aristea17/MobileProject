@@ -30,23 +30,50 @@ public class ShoppingCart {
 		suppliers.remove(order.getSupplier());
 	}
 	
-	public static List<Order> getOrderList(){
-		List<Order> orders = new ArrayList<Order>();
-		for(Map.Entry<String,Order> entry : suppliers.entrySet()){
-			orders.add(entry.getValue());
+	public void remove(BuyProduct product){
+		if(suppliers.containsKey(product.getName())){
+			Order currentOrder = suppliers.get(product.getName());
+			currentOrder.remove(product);
+			if(currentOrder.isEmpty()){
+				suppliers.remove(currentOrder);
+			}
 		}
-		return orders;
+	}
+	
+	public static List<Order> getOrderList(){
+		List<Order> ordersList = new ArrayList<Order>();
+		if(!suppliers.isEmpty()){
+			for(Order order : suppliers.values()){
+				ordersList.add(order);
+			}
+		}
+		return ordersList;
 	}
 	
 	public static Order getOrderBySupplierName(String supplier){
 		return suppliers.get(supplier);
 	}
 	
+	public static Order getOrderBySupplierName(BuyProduct product){
+		return suppliers.get(product.getSupplierName());
+	}
+	
 	// for debug
 	public static void printShoppingCartContent(){
 		if(!suppliers.isEmpty()){
-			for(Map.Entry<String,Order> entry : suppliers.entrySet()){
-				System.out.println(entry.getKey());
+			for(String supplierName : suppliers.keySet()){
+				System.out.println(supplierName);
+			}
+		}
+		System.out.println();
+		System.out.println("------------------------------------------");
+		System.out.println();
+	}
+	
+	public static void printOrdersContent(){
+		if(!suppliers.isEmpty()){
+			for(Order order : suppliers.values()){
+				order.printMyOrder();
 			}
 		}
 		System.out.println();
