@@ -15,16 +15,26 @@ public class AddToCartServlet extends HttpServlet{
 		double price = Double.parseDouble(request.getParameter("pPrice"));
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		
-		// To do - create BuyProduct and add to cart
+		System.out.println("Received: " + p_name + " " + s_name + " " + s_email + " "+ price +" " + quantity); //
+		
 		BuyProduct p = new BuyProduct(p_name, quantity, price, s_name, s_email);
+		
+		System.out.println(p.getName()+"\t created"); //
+		System.out.println("a1");  //
+		
 		ShoppingCart.addToCart(p);
 		
+		System.out.println(p.getName()+"\t added"); //
 		// Debug!
+		System.out.println("a2");//
 		ShoppingCart.printShoppingCartContent();
+		String b = "b";
 		for(Order order : ShoppingCart.getOrderList()){
 			System.out.println();
 			System.out.println("SupName: " + order.getSupplier());
 			order.printMyOrder();
+			System.out.println(b);
+			b = b+"b";
 		}
 		
 		response.setContentType("text/plain");
