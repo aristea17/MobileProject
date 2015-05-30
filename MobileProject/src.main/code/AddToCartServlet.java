@@ -14,6 +14,7 @@ public class AddToCartServlet extends HttpServlet{
 		String s_email = request.getParameter("sEmail");
 		double price = Double.parseDouble(request.getParameter("pPrice"));
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
+		int test = 0;
 		
 		System.out.println("Received: " + p_name + " " + s_name + " " + s_email + " "+ price +" " + quantity); //
 		
@@ -35,11 +36,12 @@ public class AddToCartServlet extends HttpServlet{
 			order.printMyOrder();
 			System.out.println(b);
 			b = b+"b";
+			test++;
 		}
 		
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write(p_name + " added to Shopping Cart!");
+		response.getWriter().write(p_name + " added to Shopping Cart! test: " + test);
 	}
 
 }
