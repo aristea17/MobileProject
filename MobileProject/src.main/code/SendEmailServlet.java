@@ -39,7 +39,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class SendEmailServlet extends HttpServlet{
 	
 	private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
-	private static Date date = new Date();
+	private static Date date;
 	private static String uniqueOrderDate;
 	private Path path = Paths.get(System.getProperty("user.home"));
 
@@ -74,6 +74,7 @@ public class SendEmailServlet extends HttpServlet{
 	}
 	
 	private static void generateOrderDate(){
+		date = new Date();
 		uniqueOrderDate = dateFormat.format(date);
 		System.out.println(uniqueOrderDate);
 	}
@@ -152,10 +153,10 @@ public class SendEmailServlet extends HttpServlet{
 			mp.addBodyPart(bp);
 			
 			bp = new MimeBodyPart();
-			String filename = path + "\\Documents\\GitHub\\MobileProject\\MobileProject\\Orders\\" + fileName;
-			DataSource source = new FileDataSource(filename);
+			String filePath = path + "\\Documents\\GitHub\\MobileProject\\MobileProject\\Orders\\" + fileName;
+			DataSource source = new FileDataSource(filePath);
 			bp.setDataHandler(new DataHandler(source));
-			bp.setFileName(filename);
+			bp.setFileName(fileName);
 			mp.addBodyPart(bp);
 			message.setContent(mp);
 			
