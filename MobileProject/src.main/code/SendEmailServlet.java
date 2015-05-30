@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -36,9 +38,10 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 public class SendEmailServlet extends HttpServlet{
 	
-	private static DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+	private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 	private static Date date = new Date();
 	private static String uniqueOrderDate;
+	private Path path = Paths.get(System.getProperty("user.home"));
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
@@ -50,7 +53,7 @@ public class SendEmailServlet extends HttpServlet{
 		
 		for(Order current : orderList){
 			generateOrderDate();
-			String file = "Order for " + current.getSupplier() /*+ " " + uniqueOrderDate */+ ".pdf";
+			String file = "Order for " + current.getSupplier() + " " + uniqueOrderDate + ".pdf";
 			generatePdf(current, file);
 			toResponse += "Order: " + current.getSupplier() +
 					"\n" + sendEmail(current.getEMail(), file);
@@ -76,8 +79,9 @@ public class SendEmailServlet extends HttpServlet{
 	}
 	
 	private void generatePdf(Order order, String fileName){
-		try {			
-			File file = new File("C:\\Users\\Tea\\Documents\\GitHub\\MobileProject\\MobileProject\\Orders\\"+fileName);
+		try {	
+			
+			File file = new File(path + "\\Documents\\GitHub\\MobileProject\\MobileProject\\Orders\\" + fileName);
 			FileOutputStream fileout = new FileOutputStream(file);
 			Document document = new Document();
 			PdfWriter.getInstance(document, fileout);
@@ -148,7 +152,7 @@ public class SendEmailServlet extends HttpServlet{
 			mp.addBodyPart(bp);
 			
 			bp = new MimeBodyPart();
-			String filename = "C:\\Users\\Tea\\Documents\\GitHub\\MobileProject\\MobileProject\\Orders\\" + fileName;
+			String filename = path + "\\Documents\\GitHub\\MobileProject\\MobileProject\\Orders\\" + fileName;
 			DataSource source = new FileDataSource(filename);
 			bp.setDataHandler(new DataHandler(source));
 			bp.setFileName(filename);
@@ -165,65 +169,4 @@ public class SendEmailServlet extends HttpServlet{
 	      }
 		return toReturn;
 	}
-	
-	/* Old doGet for Backup
-	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
-		String to = "ibershimiaristea@yahoo.com";
-		String from = "imsunibz@gmail.com";
-		//String host = "localhost";
-		final String password = "ims15unibz";
-		
-		// Get System properties
-		Properties props = new Properties();
-		
-		// Setup mail server
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.port", "587");
-		
-	
-		// Get default Session object;
-		Session session = Session.getInstance(props,
-				  new javax.mail.Authenticator() {
-					protected PasswordAuthentication getPasswordAuthentication() {
-						return new PasswordAuthentication(from, password);
-					}
-				  });
-		
-		// Set response content type
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		
-		try{
-			// Create a default MimeMessage
-			MimeMessage message = new MimeMessage(session);
-			
-			// Set FROM and TO - Subject and actual message
-			message.setFrom(new InternetAddress(from));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-			message.setSubject("Subj line");
-			message.setText("The most awsome test message ever");
-			
-			// Send Message
-			Transport.send(message);
-			String title = "Send Email";
-	         String res = "Sent message successfully....";
-	         String docType =
-	         "<!doctype html public \"-//w3c//dtd html 4.0 " +
-	         "transitional//en\">\n";
-	         out.println(docType +
-	         "<html>\n" +
-	         "<head><title>" + title + "</title></head>\n" +
-	         "<body bgcolor=\"#f0f0f0\">\n" +
-	         "<h1 align=\"center\">" + title + "</h1>\n" +
-	         "<p align=\"center\">" + res + "</p>\n" +
-	         "</body></html>");
-		}catch (MessagingException mex) {
-	         mex.printStackTrace();
-	      }
-	
-	}
-	*/
 }
