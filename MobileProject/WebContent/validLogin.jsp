@@ -76,6 +76,7 @@
 						pPrice : p_price,
 						quantity : quantityInput						
 					},
+					async: false,
 					success: function(responseText){
 						alert(responseText);
 					}
