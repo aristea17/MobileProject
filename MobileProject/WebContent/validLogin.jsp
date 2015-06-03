@@ -61,43 +61,37 @@
 			quantityInput = document.getElementById('quantity'+i).value;  // here I get the quantity I insert in the input field
 			
 			if(quantityInput!=""){
+				var ADD_ID = 1;
 				p_name = document.getElementById('name'+i).innerHTML;
 				s_name = document.getElementById('supplier'+i).innerHTML;
 				s_email = document.getElementById('email'+i).innerHTML;
 				p_price = document.getElementById('price'+i).innerHTML;
-				//alert('Name: ' + p_name + ' - Sup: ' + s_name + ' - email: ' + s_email + ' - price: ' + p_price + ' - quantity: ' + quantityInput);
-				
+
 				$.ajax({
-					url: 'AddToCartServlet',
+					url: 'ShoppingCartServlet',
 					data: {
 						pName : p_name,
 						sName : s_name,
 						sEmail : s_email,
 						pPrice : p_price,
-						quantity : quantityInput						
+						quantity : quantityInput,
+						ID : ADD_ID
 					},
 					async: false,
-					success: function(responseText){
+					// Debugging alert
+					/*success: function(responseText){
 						alert(responseText);
-					}
+					}*/
 				})
 				
 				// delete value from box
 				$('#' + 'quantity'+i).val("");
-			}
-		
+			}		
 		}
-		
+		alert('Products added to cart!');
 	}
 	
-	function send(){
-		$.ajax({
-			url: 'SendEmailServlet',
-			success: function(responseText){
-				alert(responseText);
-			}
-		})
-	}
+	
 			
 </script>
 </head>
@@ -135,7 +129,6 @@ Select category:
     </tr>
 </table>
 <input class="btn btn-md btn-default" type="button" value="Add to cart" id="cart" onclick="addToCart()"/>
-<input class="btn btn-md btn-default" type="button" value="Send email order" id="send" onclick="send()">
 </div>
 </body>
 </html>

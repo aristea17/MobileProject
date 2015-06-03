@@ -6,29 +6,66 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="CSS/reset.css" rel="stylesheet" type="text/css">
+<link href="CSS/shoppingCart.css" rel="stylesheet" type="text/css">
 <title>Shopping Cart</title>
 </head>
 <body>
 	<script type="text/javascript">
 	
 	function remove(supplier, product){
+		var REMOVE_ID = 3;
 		var p = document.getElementById(product).innerHTML;
 		$.ajax({
 			url: 'ShoppingCartServlet',
 			data: {
 				sName : supplier,
-				pName : p
+				pName : p,
+				ID : REMOVE_ID
 			},
 			// Debugging alert
 			/*success: function(responseText){
 				alert(p);	
-			} */
+			}*/
 		})
 		location.reload();
 	}
 	
-	function reduce(){
-		
+	function reduce(supplier, product, quantity){
+		var q = document.getElementById(quantity).value;
+		// Check empty box - else do nothing
+		if(q!=""){
+			q = parseInt(q);
+			var UPDATE_ID = 4;
+			var p = document.getElementById(product).innerHTML;
+			$.ajax({
+				url: 'ShoppingCartServlet',
+				data: {
+					sName : supplier,
+					pName : p,
+					iQuantity : q,
+					ID : UPDATE_ID
+				},
+				// Debugging alert
+				// success: alert(p)
+			})
+			location.reload();
+		}
+	}
+	
+	function send(){
+		var SEND_ID = 2;
+		$.ajax({
+			url: 'ShoppingCartServlet',
+			data : {
+				ID : SEND_ID
+			},
+			//async: false,
+			// Debugging alert
+			/*success: function(responseText){
+				alert(responseText);
+			}*/
+		})
+		//location.reload();
 	}
 	
 	</script>
@@ -37,6 +74,7 @@
 		<%
 			List<Order> listOfOrders = ShoppingCart.getOrderList();
 			int iOrder = 0;
+			int iBP=0;
 			for(Order order : listOfOrders){
 			String supplier = order.getSupplier();
 			double total = order.getTotal();
@@ -58,7 +96,6 @@
 				// For each product received from DB query we create a table row
 				List<BuyProduct> listOfProducts = order.getProductList();
 				// Index is used to create and use ids on needed cells
-				int iBP=0;
 				for(BuyProduct product : listOfProducts){
 			%>
 			<tr>
@@ -67,12 +104,12 @@
 				</td>
 				<td id="name<%=iBP%>"><%=product.getName() %></td>
 				<td><%=product.getPrice() %></td>
-				<td id="quantity<%=iBP%>"><%=product.getQuantity() %></td>
+				<td><%=product.getQuantity() %></td>
 				<td>
-				<input type="text"  id="field<%=iBP%>" class="form-control" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
+				<input type="text" id="field<%=iBP%>" class="form-control" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
 				</td>
 				<td>
-				<button class="btn btn-default" type="button" id="reduce<%=iBP %>>" value="reduce" onclick="reduce();">Reduce</button>
+				<button class="btn btn-default" type="button" id="reduce<%=iBP %>>" value="reduce" onclick="reduce('<%=supplier %>','name<%=iBP %>','field<%=iBP%>');">Reduce</button>
 				</td>
 			</tr>
 			<%
@@ -85,6 +122,7 @@
 		iOrder++;
 		}
 		%>
+		<input class="btn btn-md btn-default" type="button" value="Send email order" id="send" onclick="send()">
 	</div>
 </body>
 </html>

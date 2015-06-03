@@ -33,9 +33,19 @@ public class Order {
 		}
 	}
 	
-	public void remove(String product){
-		if(order.containsKey(product)){
-			order.remove(product);
+	public void remove(String productName){
+		if(order.containsKey(productName)){
+			order.remove(productName);
+		}
+	}
+	
+	public void update(String productName, int quantity){
+		if(order.containsKey(productName)){
+			BuyProduct p = order.get(productName);
+			int update = p.getQuantity() - quantity;
+			
+			if(update <= 0) remove(productName);
+			else p.setQuantity(update);
 		}
 	}
 	

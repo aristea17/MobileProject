@@ -37,19 +37,23 @@ public class ShoppingCart {
 		}
 	}
 	
-	public static void remove(String supplier, String product){
-		if(suppliers.containsKey(supplier)){
-			Order currentOrder = suppliers.get(supplier);
-			currentOrder.remove(product);
+	public static void remove(String supplierName, String productName){
+		if(suppliers.containsKey(supplierName)){
+			Order currentOrder = suppliers.get(supplierName);
+			currentOrder.remove(productName);
 			if(currentOrder.isEmpty()){
-				suppliers.remove(currentOrder.getSupplier());
+				suppliers.remove(supplierName);
 			}
 		}
 	}
 	
-	public static void update(String supplier, String product){
-		if(suppliers.containsKey(supplier)){
-			Order currentOrder = suppliers.get(supplier);
+	public static void update(String supplierName, String productName, int quantity){
+		if(suppliers.containsKey(supplierName)){
+			Order currentOrder = suppliers.get(supplierName);
+			currentOrder.update(productName, quantity);
+			if(currentOrder.isEmpty()){
+				suppliers.remove(supplierName);
+			}
 		}
 	}
 	
