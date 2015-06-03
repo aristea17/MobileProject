@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<!--  <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> -->
+<link href="CSS/reset.css" rel="stylesheet" type="text/css">
 <link href="CSS/supplierList.css" rel="stylesheet" type="text/css">
 <title>Suppliers</title>
 </head>
@@ -84,13 +84,13 @@ function checkStored(store, min){
 </script>
 
 	<div class="container2">
-		<table class="table table-striped">
+		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
 					<th>ID</th>
 					<th>Name</th>
-					<th>Minimum</th>
-					<th>Stored</th>
+					<th align="center">Minimum</th>
+					<th align="center">Stored</th>
 					<th>Add/reduce</th>
 					<th></th>
 					<th></th>
@@ -107,12 +107,12 @@ for(Products p : list){
 <tr>
 	<td id="pid<%=index%>"><%=p.getID() %></td>
 	<td><%=p.getName()%></td>
-	<td id="min<%=index %>"><%=p.getMinimum() %></td>
-	<td id="store<%=index %>"><%=p.getStored() %></td>
+	<td align="center" "min<%=index %>"><%=p.getMinimum() %></td>
+	<td align="center" id="store<%=index %>"><%=p.getStored() %></td>
 	<script>checkStored('store<%=index %>', 'min<%=index %>')</script>
 	<td>
-	<div class="col-xs-6">
-	<input type="text" id="number<%=index %>" class="form-control" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
+	<div class="col-xs-3">
+	<input type="text" id="number<%=index %>" class="form-control input-sm" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
 	</div>
 	</td>
 	<td>

@@ -1,46 +1,12 @@
 @CHARSET "ISO-8859-1";
 body{
-	
-	width: 1800px;
-	margin-left: 100px;
 	padding-top: 150px;
-}
-body > nav > div > div.navbar-header > a{
-	margin-top: 20px;
-	font-size: medium;
-}
-#navbar > ul:nth-child(1){
-	margin-top: 20px;
-	font-size: medium;
-}
-#navbar > ul.nav.navbar-nav.navbar-right{
-	margin-top: 20px;
-	font-size: medium;
-}
-div.container{
-	height: 80px;
-	margin-left: 100px;
-	padding-left: 0px;
-	padding-right: 0px;
-}
---maybe not necessary
-div.container2{
-	margin-left: 100px;
-}
-#navbar{
-	width: 1600px;
+	padding-right: 90px;
+	padding-left: 90px;
 }
 #tablediv{
 	margin-top: 30px;
-	margin-right: 150px;
 }
 #table{
 	margin-bottom: 50px;
-}
-body > nav > div{
-	width: 1700px;
-	padding-left: 200px;
-}
-#table > tbody > tr{
-	height: 51px;
 }

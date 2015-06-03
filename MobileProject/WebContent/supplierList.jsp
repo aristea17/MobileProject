@@ -5,24 +5,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<!-- <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> -->
+<link href="CSS/reset.css" rel="stylesheet" type="text/css">
 <link href="CSS/supplierList.css" rel="stylesheet" type="text/css">
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
-<!-- <script type="text/javascript" src="Bootstrap/js/bootstrap.min.js"></script> -->
 <title>Suppliers</title>
 </head>
 <body>
 	<div class="container2">
 		<div class="prova">
-		<table class="table table-striped">
+		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th>ID</th>
-					<th>Company</th>
-					<th>E-mail</th>
-					<th>Representative name</th>
-					<th>Address</th>
-					<th>Telephone</th>
+					<th class="col-md-1">ID</th>
+					<th class="col-md-2">Company</th>
+					<th class="col-md-2">E-mail</th>
+					<th class="col-md-2">Representative name</th>
+					<th class="col-md-2">Address</th>
+					<th class="col-md-2">Telephone</th>
 				</tr>
 			</thead>
 		<tbody>

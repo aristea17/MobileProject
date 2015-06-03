@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<!-- <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/> -->
+<link href="CSS/reset.css" rel="stylesheet" type="text/css">
 <link href="CSS/validLogin.css" rel="stylesheet" type="text/css"/>
 <title>Home</title>
 <%@include file="header.jsp" %>
@@ -31,7 +31,7 @@
 							var table1= $("#table");
 							//var count;
 							$.each(responseJson, function(key, value){
-								var rowNew = $("<tr><td></td><td id=\"name"+key+"\"></td><td></td><td></td><td id=\"supplier"+key+"\"></td><td id=\"price"+key+"\"></td><td></td><td id=\"email"+key+"\"></td></tr>");
+								var rowNew = $("<tr><td></td><td id=\"name"+key+"\"></td><td ></td><td></td><td id=\"supplier"+key+"\"></td><td id=\"price"+key+"\"></td><td></td><td id=\"email"+key+"\"></td></tr>");
 								rowNew.children().eq(0).text(value['p_id']);
 								rowNew.children().eq(1).text(value['p_name']);
 								rowNew.children().eq(2).text(value['p_minimum']);
@@ -109,17 +109,19 @@ Select department:
 </select>
 <br/>
 <br/>
+<br/>
 Select category:
 <select id="category">
 <option>Select category</option>
 </select>
 <br/>
 <br/>
-<input type="button" value="Show Products" id="showTable"/>
+<br/>
+<input class="btn btn-md btn-default" type="button" value="Show Products" id="showTable"/>
 <br/>
 <br/>
 <div id="tablediv">
-<table class="table table-striped" cellspacing="0" id="table">
+<table class="table table-bordered table-striped" cellspacing="0" id="table">
     <tr>
         <th scope="col">ID</th>
         <th scope="col">Name</th>
@@ -132,8 +134,8 @@ Select category:
         <th scope="col">Order Amount</th>     
     </tr>
 </table>
-<input type="button" value="Add to cart" id="cart" onclick="addToCart()"/>
-<input type="button" value="Send email order" id="send" onclick="send()">
+<input class="btn btn-md btn-default" type="button" value="Add to cart" id="cart" onclick="addToCart()"/>
+<input class="btn btn-md btn-default" type="button" value="Send email order" id="send" onclick="send()">
 </div>
 </body>
 </html>

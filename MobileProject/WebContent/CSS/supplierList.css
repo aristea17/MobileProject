@@ -1,12 +1,9 @@
 @CHARSET "ISO-8859-1";
 body{
-	max-width: 1500px;
-	min-height: 2000px;
 	padding-top: 90px;
+	padding-right: 90px;
+	padding-left: 90px;
 }
 div.container2{
 	margin-top: 50px;
-}
-body > div > div > table > tbody > tr{
-	height: 51px;
 }
