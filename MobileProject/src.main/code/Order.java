@@ -1,5 +1,6 @@
 package code;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
@@ -7,21 +8,16 @@ import java.util.List;
 public class Order {
 	
 	private Hashtable<String, BuyProduct> order;
-	//private List<BuyProduct> myOrder;
 	private String supplier;
 	private String email;
 	
 	public Order(String supplier, String email){
 		order = new Hashtable<String, BuyProduct>();
-		//myOrder = new ArrayList<BuyProduct>();
 		this.supplier = supplier;
 		this.email = email;
 	}
 	
 	public void add(BuyProduct product){
-
-		//myOrder.add(product);
-
 		if(order.containsKey(product.getName())){
 			int oldQuantity = order.get(product.getName()).getQuantity();
 			order.get(product.getName()).setQuantity(product.getQuantity()+oldQuantity);
@@ -34,6 +30,12 @@ public class Order {
 	public void remove(BuyProduct product){
 		if(order.containsKey(product.getName())){
 			order.remove(product.getName());
+		}
+	}
+	
+	public void remove(String product){
+		if(order.containsKey(product)){
+			order.remove(product);
 		}
 	}
 	
@@ -52,7 +54,7 @@ public class Order {
 			}
 		}
 		
-		return myOrder; // still fine in old version with list!
+		return myOrder;
 	}
 	
 	public String getSupplier(){
@@ -65,12 +67,15 @@ public class Order {
 	
 	public double getTotal(){
 		double total = 0;
+		//DecimalFormat df = new DecimalFormat("#.##"); 
 		
 		if(!order.isEmpty()){
 			for(BuyProduct product : order.values()){
 				total += (product.getPrice()*product.getQuantity());
 			}
 		}
+	     
+		//total = Double.valueOf(df.format(total));
 		
 		return total;		
 	}

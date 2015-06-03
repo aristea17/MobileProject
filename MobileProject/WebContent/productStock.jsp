@@ -11,14 +11,18 @@
 </head>
 <body>
 <script type="text/javascript">
+
+// Function to to update an "add" productStock in the DB
 function updateAdd(number, store, pid){	
 	var productCount = document.getElementById(number).value;
-	// check empty box
+	// Check empty box - else do nothing
 	if(productCount!=""){
+		// Compute sum and update in html table
 		var stored = document.getElementById(store).innerHTML;
 		var sum = parseInt(productCount) + parseInt(stored);
 		document.getElementById(store).innerHTML=sum;
-		// id of the element
+		
+		// We get Id of the element to access element in the DB
 		var intId = document.getElementById(pid).innerHTML;
 		
 		$.ajax({
@@ -27,24 +31,29 @@ function updateAdd(number, store, pid){
 				id : intId,
 				update : sum
 			},
-			success: function(responseText){
+			// Debugging alert
+			/* success: function(responseText){
 				alert(responseText);	
-			}
+			} */
 		})
 		
-		// delete value from box
+		// Delete value from input-box
 		$('#' + number).val("");
 	}
 }
 
+//Function to to update an "reduce" productStock in the DB
 function updateDecrement(number, store, pid){
 	var productCount = document.getElementById(number).value;
-	// check empty box
+	// Check empty box - else do nothing
 	if(productCount!=""){
+		// Compute sum and update in html table (if less than 0 stock is set to 0 by default)
 		var stored = document.getElementById(store).innerHTML;
 		var sum = parseInt(stored) - parseInt(productCount);
 		if(sum<0){sum = 0}
 		document.getElementById(store).innerHTML=sum;
+		
+		// We get Id of the element to access element in the DB
 		var intId = document.getElementById(pid).innerHTML;
 		
 		$.ajax({
@@ -53,17 +62,28 @@ function updateDecrement(number, store, pid){
 				id : intId,
 				update : sum
 			},
-			success: function(responseText){
+			// Debugging alert
+			/* success: function(responseText){
 				alert(responseText);	
-			}
+			} */
 			})
-		// delete value from box
+			
+		// Delete value from input-box
 		$('#' + number).val("");
 	}
 }
+
+// Change color of stored-field in table if it is less than min-field
+function checkStored(store, min){
+	var s = parseInt(document.getElementById(store).innerHTML);
+	var m = parseInt(document.getElementById(min).innerHTML);
+	if(s<m){$('#' + store).css('color', 'red');}
+	// We update to black in anycase, because we don't know if it was set to "red" before
+	else{$('#' + store).css('color', 'black');}
+}
 </script>
+
 	<div class="container2">
-		<div class="prova">
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -78,32 +98,34 @@ function updateDecrement(number, store, pid){
 			</thead>
 		<tbody>
 <%
+// For each product received from DB query we create a table row
 List<Products> list = ProductManager.getProductsListByUser(user);
+// Index is used to create and use ids on needed cells
 int index=0;
 for(Products p : list){
 %>
 <tr>
 	<td id="pid<%=index%>"><%=p.getID() %></td>
 	<td><%=p.getName()%></td>
-	<td><%=p.getMinimum() %></td>
+	<td id="min<%=index %>"><%=p.getMinimum() %></td>
 	<td id="store<%=index %>"><%=p.getStored() %></td>
+	<script>checkStored('store<%=index %>', 'min<%=index %>')</script>
 	<td>
 	<div class="col-xs-6">
-	<input type="text" id="number<%=index %>" class="form-control" aria-describedby="sizing-addon3" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
+	<input type="text" id="number<%=index %>" class="form-control" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
 	</div>
 	</td>
 	<td>
-	<button class="btn btn-default" type="button" id="increment<%=index %>>" value="increment" onclick="updateAdd('number<%=index %>','store<%=index %>','pid<%=index%>');">Add</button>
+	<button class="btn btn-default" type="button" id="increment<%=index %>>" value="increment" onclick="updateAdd('number<%=index %>','store<%=index %>','pid<%=index%>'); checkStored('store<%=index %>', 'min<%=index %>');">Add</button>
 	</td>
 	<td>
-	<button class="btn btn-default" type="button" id="decrement<%=index %>" value="decrement" onclick="updateDecrement('number<%=index %>', 'store<%=index %>', 'pid<%=index%>')">Reduce</button>
+	<button class="btn btn-default" type="button" id="decrement<%=index %>" value="decrement" onclick="updateDecrement('number<%=index %>', 'store<%=index %>', 'pid<%=index%>'); checkStored('store<%=index %>', 'min<%=index %>');">Reduce</button>
 	</td>
 </tr>
 <%index++;
 } %>
 </tbody>
 </table>
-</div>
 </div>
 </body>	
 </html>

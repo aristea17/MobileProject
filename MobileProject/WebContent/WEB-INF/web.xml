@@ -65,5 +65,13 @@
   <servlet-mapping>
   	<servlet-name>AddToCartServlet</servlet-name>
   	<url-pattern>/AddToCartServlet</url-pattern>
-  </servlet-mapping>  
+  </servlet-mapping>
+    <servlet>
+  	<servlet-name>ShoppingCartServlet</servlet-name>
+  	<servlet-class>code.ShoppingCartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ShoppingCartServlet</servlet-name>
+  	<url-pattern>/ShoppingCartServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

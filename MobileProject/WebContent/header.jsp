@@ -23,7 +23,7 @@ String user = (String)session.getAttribute("user");
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
 				<li><a href="validLogin.jsp?pagina=home">Make an order</a></li>
-				<li><a href="#about">Bills</a></li>
+				<li><a href="shoppingCart.jsp?pagina=shoppingCart">Shopping Cart</a></li>
 				<li><a href="productStock.jsp?pagina=products">Product Stock</a></li>
 				<li><a href="supplierList.jsp?pagina=suppliers">Suppliers</a></li>
 				</ul>
