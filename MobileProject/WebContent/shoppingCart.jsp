@@ -81,16 +81,20 @@
 		%>
 		<br/>
 		<br/>
-		<p>Supplier: <%=supplier + " - Total: " + total %></p>
-		<table id="table<%=iOrder%>" class="table table-striped">
+		<p><b>Supplier: </b><%=supplier%></p>
+		<br/>
+		<p><b>Total: </b><%=total %></p>
+		<br/>
+		<br/>
+		<table id="table<%=iOrder%>" class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th>Remove</th>
+					<th></th>
 					<th>Name</th>
 					<th>Price</th>
 					<th>Quantity</th>
-					<th>ReduceField</th>
-					<th>ReduceButton</th>
+					<th></th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -108,7 +112,9 @@
 				<td><%=product.getPrice() %></td>
 				<td><%=product.getQuantity() %></td>
 				<td>
-				<input type="text" id="field<%=iBP%>" class="form-control" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
+				<div class="col-xs-4">
+				<input type="text" id="field<%=iBP%>" class="form-control input-sm" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
+				</div>
 				</td>
 				<td>
 				<button class="btn btn-default" type="button" id="reduce<%=iBP %>>" value="reduce" onclick="reduce('<%=supplier %>','name<%=iBP %>','field<%=iBP%>');">Reduce</button>

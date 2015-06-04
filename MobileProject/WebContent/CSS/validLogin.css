@@ -1,6 +1,8 @@
 @CHARSET "ISO-8859-1";
 body{
 	padding-top: 150px;
+	padding-right: 90px;
+	padding-left: 90px;
 }
 #tablediv{
 	margin-top: 30px;
