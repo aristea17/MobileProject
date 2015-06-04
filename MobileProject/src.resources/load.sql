@@ -76,7 +76,7 @@ insert into suppliers(s_id, address, company, email, representative, telephone) 
 
 insert into suppliers(s_id, address, company, email, representative, telephone) values(4, '', 'Athesia', 'ibershimiaristea@yahoo.com', '', '');
 --5
-insert into suppliers(s_id, address, company, email, representative, telephone) values(5, 'Via Macello, 42, Bolzano', 'Macelleria/Metzgerei', 'ibershimiaristea17@gmail.com', 'The Butcher', '0471.166.166');
+insert into suppliers(s_id, address, company, email, representative, telephone) values(5, 'Via Macello, 42, Bolzano', 'Macelleria-Metzgerei', 'ibershimiaristea17@gmail.com', 'The Butcher', '0471.166.166');
 
 insert into suppliers(s_id, address, company, email, representative, telephone) values(6, '', 'Acqua e Sapone', 'Lorenzo.Casini@studinf.unibz.it', '', '');
 

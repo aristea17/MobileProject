@@ -40,12 +40,17 @@ public class ShoppingCartServlet extends HttpServlet{
 	private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 	private static Date date;
 	private static String uniqueOrderDate;
-	private Path path = Paths.get(System.getProperty("user.home"));
+	private final Path PATH_HOME = Paths.get(System.getProperty("user.home"));
+	private final String PATH_TO_FOLDER = "\\Documents\\GitHub\\MobileProject\\MobileProject\\Orders\\";
 
+	// Do get receives information from ajax
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		
+		// Depending on hard-coded ID in ajax function, we know the action we are performing on the Shopping Cart
 		int id = Integer.parseInt(request.getParameter("ID"));
 		
 		switch(id){
+		// Add BuyProduct to cart
 		case 1 : add(request);
 			/* // Set response content type
 			String toResponse =
@@ -54,6 +59,7 @@ public class ShoppingCartServlet extends HttpServlet{
 			response.getWriter().write(toResponse);
 			*/
 			break;
+		// Send email to suppliers based on ShoppingCart content
 		case 2 : send(request);
 			/* // Set response content type
 			String toResponse =
@@ -62,21 +68,26 @@ public class ShoppingCartServlet extends HttpServlet{
 			response.getWriter().write(toResponse);
 			*/
 			break;
+		// Removes a BuyProduct form cart
 		case 3 : remove(request);
 			break;
+		// Updates a BuyProduct quantity in the cart
 		case 4 : update(request);
 			break;
 		default : System.out.println("Wrong ID: Where do you come from, dude...?");
 		}
 	}
 	
-	private void add(HttpServletRequest request){		
+	// AddToCart
+	private void add(HttpServletRequest request){
+		// Gets parameters from ajax
 		String p_name = request.getParameter("pName");
 		String s_name = request.getParameter("sName");
 		String s_email = request.getParameter("sEmail");
 		double price = Double.parseDouble(request.getParameter("pPrice"));
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		
+		// Creates BuyProducts and adds it to Cart
 		BuyProduct p = new BuyProduct(p_name, quantity, price, s_name, s_email);
 		ShoppingCart.addToCart(p);
 		
@@ -84,61 +95,84 @@ public class ShoppingCartServlet extends HttpServlet{
 		//return toReturn;
 	}
 	
+	// Send Email
 	private void send(HttpServletRequest request){
-		String toResponse = "";
+		//String toResponse = "";
 		List<Order> orderList = ShoppingCart.getOrderList();
-		int count = 1; //
 		
-		System.out.println("START SENDING EMAIL - " + count);
+		int count = 1;		
+		System.out.println("START SENDING EMAILS");
 		
+		// For each order in ShoppingCart (already divided by supplier) we send an email
 		for(Order current : orderList){
+			
+			System.out.println("EMAIL " + count);
+			
+			// Generate unique time stamp for each mail
 			generateOrderDate();
+			
+			// We generate pdf-order to send
 			String file = "Order for " + current.getSupplier() + " " + uniqueOrderDate + ".pdf";
 			generatePdf(current, file);
-			toResponse += "Order: " + current.getSupplier() +
-					"\n" + sendEmail(current.getEMail(), file);
-			System.out.println("EMAIL SEND - " + count);
+			
+			// Send email
+			sendEmail(current.getEMail(), file);
+			/*String fromMail = */
+			//toResponse += "Order: " + current.getSupplier() + "\n" + fromMail;
+			
+			System.out.println("EMAIL " + count + " SENT");
 			count++;
 		}
 	
-		System.out.println("END SEND SESSION - " + count);
+		System.out.println("END SEND SESSION");
 		
 		ShoppingCart.clear();
 		
-		System.out.println("CART CLEARED - ");
+		System.out.println("CART CLEARED");
+		
+		//return toResponse;
 	}
 	
+	// Remove BuyProduct from cart
 	private void remove(HttpServletRequest request){
+		// Gets parameters from ajax
 		String p_name = request.getParameter("pName");
 		String s_name = request.getParameter("sName");
 
+		// Removes BuyProduct based on name and supplier
 		ShoppingCart.remove(s_name, p_name);
 		
 	}
 	
+	// Update BuyProduct's quantity
 	private void update(HttpServletRequest request){
+		// Gets parameters from ajax
 		String p_name = request.getParameter("pName");
 		String s_name = request.getParameter("sName");
 		int quantity = Integer.parseInt(request.getParameter("iQuantity"));
 		
+		// Update BuyProduct based on name and supplier
 		ShoppingCart.update(s_name, p_name, quantity);
 		
 	}
 	
+	// Generate unique time stamp
 	private static void generateOrderDate(){
 		date = new Date();
 		uniqueOrderDate = dateFormat.format(date);
-		System.out.println(uniqueOrderDate);
+		//System.out.println(uniqueOrderDate);
 	}
 	
 	private void generatePdf(Order order, String fileName){
-		try {	
-			
-			File file = new File(path + "\\Documents\\GitHub\\MobileProject\\MobileProject\\Orders\\" + fileName);
+		
+		try {
+			// Setup to create pdf
+			File file = new File(PATH_HOME + PATH_TO_FOLDER + fileName);
 			FileOutputStream fileout = new FileOutputStream(file);
 			Document document = new Document();
 			PdfWriter.getInstance(document, fileout);
 			
+			// Open document and start writing to it adding the structured order in form of paragraphs
 			document.open();
 			
 			Paragraph p1 = new Paragraph();
@@ -154,9 +188,10 @@ public class ShoppingCartServlet extends HttpServlet{
 			document.add(p2);
 			document.add(p3);
 			
-			document.close();
-			
+			// Close created document
+			document.close();			
 			fileout.close();
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (DocumentException e) {
@@ -166,10 +201,12 @@ public class ShoppingCartServlet extends HttpServlet{
 		}
 	}
 	
-	private String sendEmail(String to, String fileName){
-		String toReturn = "empty";
+	private void sendEmail(String to, String fileName){
+		//String toReturn = "";
+		
+		// Sender information
 		String from = "imsunibz@gmail.com";
-		final String password = "ims15unibz";
+		final String PSW = "ims15unibz";
 		
 		// Get System properties
 		Properties props = new Properties();
@@ -179,13 +216,12 @@ public class ShoppingCartServlet extends HttpServlet{
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
-		
-	
+			
 		// Get default Session object;
 		Session session = Session.getInstance(props,
 				  new javax.mail.Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
-						return new PasswordAuthentication(from, password);
+						return new PasswordAuthentication(from, PSW);
 					}
 				  });
 		
@@ -198,29 +234,33 @@ public class ShoppingCartServlet extends HttpServlet{
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
 			message.setSubject("Supply order for IMS-2k15 - " + uniqueOrderDate);
 			
+			// We create a Multipart object to structure our email
+			Multipart mp = new MimeMultipart();
 			BodyPart bp = new MimeBodyPart();
 			bp.setText("Order from IMS Hotel in attachment\n\n Thanks!");
-			
-			Multipart mp = new MimeMultipart();
+						
 			mp.addBodyPart(bp);
 			
+			// Add attachment
 			bp = new MimeBodyPart();
-			String filePath = path + "\\Documents\\GitHub\\MobileProject\\MobileProject\\Orders\\" + fileName;
+			String filePath = PATH_HOME + PATH_TO_FOLDER + fileName;
 			DataSource source = new FileDataSource(filePath);
 			bp.setDataHandler(new DataHandler(source));
 			bp.setFileName(fileName);
 			mp.addBodyPart(bp);
+			
+			// Set content of our email with the Multipart created
 			message.setContent(mp);
 			
 			// Send Message
 			Transport.send(message);
 			
-			toReturn = "Send Email: \nSent message successfully\n\n";
+			//toReturn = "Send Email: \nSent message successfully\n\n";
 		}catch (MessagingException mex) {
 	         mex.printStackTrace();
-	         toReturn = "Send Email: \nFAILED!\n\n";
+	         //toReturn = "Send Email: \nFAILED!\n\n";
 	      }
-		return toReturn;
+		//return toReturn;
 	}
 	
 }
