@@ -19,6 +19,8 @@ public class GetProductsByCategoryServlet extends HttpServlet {
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		
 		String category = request.getParameter("categoryname");
+		
+		// Debug!
 		System.out.println(category);
 		
 		ArrayList<productTuple> output = new ArrayList<productTuple>();
@@ -29,7 +31,8 @@ public class GetProductsByCategoryServlet extends HttpServlet {
 		JsonElement element = gson.toJsonTree(output, new TypeToken<List<productTuple>>(){}.getType());
 		JsonArray jsonArray = element.getAsJsonArray();
 		
-		System.out.println(jsonArray);
+		// Debug!
+		//System.out.println(jsonArray);
 		
 		response.setContentType("application/json");
 		response.getWriter().print(jsonArray);

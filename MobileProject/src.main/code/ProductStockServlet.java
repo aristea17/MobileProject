@@ -12,17 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 public class ProductStockServlet extends HttpServlet{
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
-		
-		int sum = Integer.parseInt(request.getParameter("update")); //get the input field value
-		System.out.println(sum);
-		
+		int sum = Integer.parseInt(request.getParameter("update")); //get the input field value		
 		int id = Integer.parseInt(request.getParameter("id"));
 		
 		ProductManager.updateProductById(id, sum);
 		
+		/*
 		response.setContentType("text/plain");
 		response.setCharacterEncoding("UTF-8");
 		response.getWriter().write("Added to the DB!");
+		*/
 	}
 
 }

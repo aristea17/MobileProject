@@ -24,7 +24,6 @@ public class LoginServlet extends HttpServlet {
 		if(valid){
 			session = request.getSession(true);
 			session.setAttribute("user", username);
-			ProductManager.updateProductById(5, 66);  /// !!!!!!!
 			response.sendRedirect("validLogin.jsp");
 		}else{
 			request.setAttribute("error", "Invalid user");

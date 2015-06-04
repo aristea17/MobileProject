@@ -27,14 +27,6 @@
   	<url-pattern>/LogoutServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-     <servlet-name>SendEmailServlet</servlet-name>
-     <servlet-class>code.SendEmailServlet</servlet-class>
-  </servlet> 
-  <servlet-mapping>
-     <servlet-name>SendEmailServlet</servlet-name>
-     <url-pattern>/SendEmailServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
   	<servlet-name>GetCategoryServlet</servlet-name>
   	<servlet-class>code.GetCategoryServlet</servlet-class>
   </servlet>
@@ -57,14 +49,6 @@
   <servlet-mapping>
   	<servlet-name>ProductStockServlet</servlet-name>
   	<url-pattern>/ProductStockServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-  	<servlet-name>AddToCartServlet</servlet-name>
-  	<servlet-class>code.AddToCartServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-  	<servlet-name>AddToCartServlet</servlet-name>
-  	<url-pattern>/AddToCartServlet</url-pattern>
   </servlet-mapping>
     <servlet>
   	<servlet-name>ShoppingCartServlet</servlet-name>

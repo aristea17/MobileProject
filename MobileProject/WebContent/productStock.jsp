@@ -12,11 +12,13 @@
 <body>
 <script type="text/javascript">
 
-// Function to to update an "add" productStock in the DB
+// Function to to increment productStock in the DB
 function updateAdd(number, store, pid){	
 	var productCount = document.getElementById(number).value;
+	
 	// Check empty box - else do nothing
 	if(productCount!=""){
+		
 		// Compute sum and update in html table
 		var stored = document.getElementById(store).innerHTML;
 		var sum = parseInt(productCount) + parseInt(stored);
@@ -42,11 +44,13 @@ function updateAdd(number, store, pid){
 	}
 }
 
-//Function to to update an "reduce" productStock in the DB
-function updateDecrement(number, store, pid){
+//Function to to update and reduce productStock in the DB
+function updateReduce(number, store, pid){
 	var productCount = document.getElementById(number).value;
+	
 	// Check empty box - else do nothing
 	if(productCount!=""){
+		
 		// Compute sum and update in html table (if less than 0 stock is set to 0 by default)
 		var stored = document.getElementById(store).innerHTML;
 		var sum = parseInt(stored) - parseInt(productCount);
@@ -97,33 +101,35 @@ function checkStored(store, min){
 				</tr>
 			</thead>
 		<tbody>
-<%
-// For each product received from DB query we create a table row
-List<Products> list = ProductManager.getProductsListByUser(user);
-// Index is used to create and use ids on needed cells
-int index=0;
-for(Products p : list){
-%>
-<tr>
-	<td id="pid<%=index%>"><%=p.getID() %></td>
-	<td><%=p.getName()%></td>
-	<td align="center" "min<%=index %>"><%=p.getMinimum() %></td>
-	<td align="center" id="store<%=index %>"><%=p.getStored() %></td>
-	<script>checkStored('store<%=index %>', 'min<%=index %>')</script>
-	<td>
-	<div class="col-xs-3">
-	<input type="text" id="number<%=index %>" class="form-control input-sm" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
-	</div>
-	</td>
-	<td>
-	<button class="btn btn-default" type="button" id="increment<%=index %>>" value="increment" onclick="updateAdd('number<%=index %>','store<%=index %>','pid<%=index%>'); checkStored('store<%=index %>', 'min<%=index %>');">Add</button>
-	</td>
-	<td>
-	<button class="btn btn-default" type="button" id="decrement<%=index %>" value="decrement" onclick="updateDecrement('number<%=index %>', 'store<%=index %>', 'pid<%=index%>'); checkStored('store<%=index %>', 'min<%=index %>');">Reduce</button>
-	</td>
-</tr>
-<%index++;
-} %>
+		<%
+		// For each product received from DB query we create a table row
+		List<Products> list = ProductManager.getProductsListByUser(user);
+		// Index is used to create and use ids on needed cells
+		int index=0;
+		for(Products p : list){
+		%>
+			<tr>
+				<td id="pid<%=index%>"><%=p.getID() %></td>
+				<td><%=p.getName()%></td>
+				<td align="center" "min<%=index %>"><%=p.getMinimum() %></td>
+				<td align="center" id="store<%=index %>"><%=p.getStored() %></td>
+				<script>checkStored('store<%=index %>', 'min<%=index %>')</script>
+				<td>
+				<div class="col-xs-3">
+				<input type="text" id="number<%=index %>" class="form-control input-sm" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
+				</div>
+				</td>
+				<td>
+				<button class="btn btn-default" type="button" id="increment<%=index %>>" value="increment" onclick="updateAdd('number<%=index %>','store<%=index %>','pid<%=index%>'); checkStored('store<%=index %>', 'min<%=index %>');">Add</button>
+				</td>
+				<td>
+				<button class="btn btn-default" type="button" id="decrement<%=index %>" value="decrement" onclick="updateReduce('number<%=index %>', 'store<%=index %>', 'pid<%=index%>'); checkStored('store<%=index %>', 'min<%=index %>');">Reduce</button>
+				</td>
+			</tr>
+		<%
+			index++;
+		}
+		%>
 </tbody>
 </table>
 </div>
