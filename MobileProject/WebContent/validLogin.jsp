@@ -117,15 +117,15 @@ Select category:
 <div id="tablediv">
 <table class="table table-bordered table-striped" cellspacing="0" id="table">
     <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Minimum</th>
-        <th scope="col">Stored</th>
-        <th scope="col">Supplier</th>
-        <th scope="col">Price</th> 
-        <th scope="col">Batch Amount</th> 
-        <th scope="col">Email</th>
-        <th scope="col">Order Amount</th>     
+        <th class="col-md-1" scope="col">ID</th>
+        <th class="col-md-2" scope="col">Name</th>
+        <th class="col-md-1" scope="col">Minimum</th>
+        <th class="col-md-1" scope="col">Stored</th>
+        <th class="col-md-2" scope="col">Supplier</th>
+        <th class="col-md-1" scope="col">Price</th> 
+        <th class="col-md-1" scope="col">Batch Amount</th> 
+        <th class="col-md-2" scope="col">Email</th>
+        <th class="col-md-2" scope="col">Order Amount</th>     
     </tr>
 </table>
 <input class="btn btn-md btn-default" type="button" value="Add to cart" id="cart" onclick="addToCart()"/>

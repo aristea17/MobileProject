@@ -89,12 +89,12 @@
 		<table id="table<%=iOrder%>" class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th></th>
-					<th>Name</th>
-					<th>Price</th>
-					<th>Quantity</th>
-					<th></th>
-					<th></th>
+					<th class="col-md-1"></th>
+					<th class="col-md-2">Name</th>
+					<th class="col-md-2">Price</th>
+					<th class="col-md-2">Quantity</th>
+					<th class="col-md-1"></th>
+					<th class="col-md-1"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -112,9 +112,7 @@
 				<td><%=product.getPrice() %></td>
 				<td><%=product.getQuantity() %></td>
 				<td>
-				<div class="col-xs-4">
-				<input type="text" id="field<%=iBP%>" class="form-control input-sm" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
-				</div>
+				<input type="text" id="field<%=iBP%>" class="form-control input-xs" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
 				</td>
 				<td>
 				<button class="btn btn-default" type="button" id="reduce<%=iBP %>>" value="reduce" onclick="reduce('<%=supplier %>','name<%=iBP %>','field<%=iBP%>');">Reduce</button>

@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link href="Bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="CSS/reset.css" rel="stylesheet" type="text/css">
 <link href="CSS/supplierList.css" rel="stylesheet" type="text/css">
 <title>Suppliers</title>
@@ -91,13 +92,13 @@ function checkStored(store, min){
 		<table class="table table-bordered table-striped">
 			<thead>
 				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th align="center">Minimum</th>
-					<th align="center">Stored</th>
-					<th>Add/reduce</th>
-					<th></th>
-					<th></th>
+					<th class="col-md-1">ID</th>
+					<th class="col-md-2">Name</th>
+					<th class="col-md-1">Minimum</th>
+					<th class="col-md-1">Stored</th>
+					<th class="col-md-2">Add/reduce</th>
+					<th class="col-md-1"></th>
+					<th class="col-md-1"></th>
 				</tr>
 			</thead>
 		<tbody>
@@ -111,8 +112,8 @@ function checkStored(store, min){
 			<tr>
 				<td id="pid<%=index%>"><%=p.getID() %></td>
 				<td><%=p.getName()%></td>
-				<td align="center" "min<%=index %>"><%=p.getMinimum() %></td>
-				<td align="center" id="store<%=index %>"><%=p.getStored() %></td>
+				<td "min<%=index %>"><%=p.getMinimum() %></td>
+				<td id="store<%=index %>"><%=p.getStored() %></td>
 				<script>checkStored('store<%=index %>', 'min<%=index %>')</script>
 				<td>
 				<div class="col-xs-3">
