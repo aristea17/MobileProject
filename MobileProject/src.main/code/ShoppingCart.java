@@ -8,14 +8,18 @@ import java.util.Map.Entry;
 
 public class ShoppingCart {
 	
-	private static Hashtable<String, Order> suppliers = new Hashtable<String, Order>();
+	private static Hashtable<String, Order> cart = new Hashtable<String, Order>();
 	private static Order newOrder = null;
-	//private static Order randomOrder = null;
 	
+	// Add product to cart
 	public static void addToCart(BuyProduct product){
-		if(suppliers.containsKey(product.getSupplierName())){
-			suppliers.get(product.getSupplierName()).add(product);
+		// If there is already an order for the supplier of the selected product
+		if(cart.containsKey(product.getSupplierName())){
+			// We get the Order for that supplier and we add the product
+			cart.get(product.getSupplierName()).add(product);
 		}
+		// Else we create a new Order for the "new" supplier in cart and we add the product,
+		// then we add the Order in the cart
 		else{
 			newOrder = new Order(product.getSupplierName(), product.getSupplierEmail());
 			newOrder.add(product);
@@ -23,44 +27,46 @@ public class ShoppingCart {
 		}
 	}
 	
+	// PRIVATE Add Order to the "cart" HastTable
 	private static void addOrder(Order order){
-		suppliers.put(order.getSupplier(), order);
+		cart.put(order.getSupplier(), order);
 	}
 	
+	// 
 	public static void remove(BuyProduct product){
-		if(suppliers.containsKey(product.getSupplierName())){
-			Order currentOrder = suppliers.get(product.getSupplierName());
+		if(cart.containsKey(product.getSupplierName())){
+			Order currentOrder = cart.get(product.getSupplierName());
 			currentOrder.remove(product);
 			if(currentOrder.isEmpty()){
-				suppliers.remove(currentOrder.getSupplier());
+				cart.remove(currentOrder.getSupplier());
 			}
 		}
 	}
 	
 	public static void remove(String supplierName, String productName){
-		if(suppliers.containsKey(supplierName)){
-			Order currentOrder = suppliers.get(supplierName);
+		if(cart.containsKey(supplierName)){
+			Order currentOrder = cart.get(supplierName);
 			currentOrder.remove(productName);
 			if(currentOrder.isEmpty()){
-				suppliers.remove(supplierName);
+				cart.remove(supplierName);
 			}
 		}
 	}
 	
 	public static void update(String supplierName, String productName, int quantity){
-		if(suppliers.containsKey(supplierName)){
-			Order currentOrder = suppliers.get(supplierName);
+		if(cart.containsKey(supplierName)){
+			Order currentOrder = cart.get(supplierName);
 			currentOrder.update(productName, quantity);
 			if(currentOrder.isEmpty()){
-				suppliers.remove(supplierName);
+				cart.remove(supplierName);
 			}
 		}
 	}
 	
 	public static List<Order> getOrderList(){
 		List<Order> ordersList = new ArrayList<Order>();
-		if(!suppliers.isEmpty()){
-			for(Order order : suppliers.values()){
+		if(!cart.isEmpty()){
+			for(Order order : cart.values()){
 				ordersList.add(order);
 			}
 		}
@@ -68,21 +74,21 @@ public class ShoppingCart {
 	}
 	
 	public static Order getOrderBySupplierName(String supplier){
-		return suppliers.get(supplier);
+		return cart.get(supplier);
 	}
 	
 	public static Order getOrderBySupplierName(BuyProduct product){
-		return suppliers.get(product.getSupplierName());
+		return cart.get(product.getSupplierName());
 	}
 	
 	public static void clear(){
-		suppliers.clear();
+		cart.clear();
 	}
 	
 	// for debug
 	public static void printShoppingCartContent(){
-		if(!suppliers.isEmpty()){
-			for(String supplierName : suppliers.keySet()){
+		if(!cart.isEmpty()){
+			for(String supplierName : cart.keySet()){
 				System.out.println(supplierName);
 			}
 		}
@@ -92,8 +98,8 @@ public class ShoppingCart {
 	}
 	
 	public static void printOrdersContent(){
-		if(!suppliers.isEmpty()){
-			for(Order order : suppliers.values()){
+		if(!cart.isEmpty()){
+			for(Order order : cart.values()){
 				order.printMyOrder();
 			}
 		}
