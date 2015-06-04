@@ -2,7 +2,7 @@ package hibernate;
 
 import com.google.gson.annotations.Expose;
 
-public class productTuple {
+public class ProductTuple {
 
 	private int p_id; // ? do we need this in the table ?
 	private String p_name;
@@ -13,7 +13,7 @@ public class productTuple {
 	private String s_email;
 	private double price;	
 	
-	productTuple(int p_id, String p_name, String p_batch_amount, int p_minimum, int p_stored,
+	ProductTuple(int p_id, String p_name, String p_batch_amount, int p_minimum, int p_stored,
 			String s_name, String s_email, double price){
 		this.p_id = p_id;
 		this.p_name = p_name;
@@ -25,7 +25,7 @@ public class productTuple {
 		this.price = price;
 	}
 	
-	productTuple(Products p, Suppliers s, double price){
+	ProductTuple(Products p, Suppliers s, double price){
 		this.p_id = p.getID();
 		this.p_name = p.getName();
 		this.p_batch_amount = p.getBatchAmount();

@@ -57,7 +57,7 @@ public class ProductManager {
 	}
 	
 	
-	public static ArrayList<productTuple> getProductsListByCategory(String category){
+	public static ArrayList<ProductTuple> getProductsListByCategory(String category){
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
 		Session session = sessFac.getCurrentSession();
 		
@@ -66,12 +66,12 @@ public class ProductManager {
 				session.getTransaction().begin();
 				List<Products> listOfProducts = (List<Products>) session.createQuery("SELECT distinct p FROM Products p JOIN p.department WHERE p.category='" + category +"'").list();
 				
-				ArrayList<productTuple> output = new ArrayList<productTuple>();
+				ArrayList<ProductTuple> output = new ArrayList<ProductTuple>();
 				
 				for(Products pr : listOfProducts){
 					Set<Sells> sells = pr.getSells();
 					for(Sells ss : sells){
-						productTuple tuple = new productTuple(pr, ss.getSupplier(), ss.getPrice());
+						ProductTuple tuple = new ProductTuple(pr, ss.getSupplier(), ss.getPrice());
 						
 						output.add(tuple);
 					}

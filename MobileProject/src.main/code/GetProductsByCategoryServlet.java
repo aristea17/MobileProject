@@ -1,7 +1,7 @@
 package code;
 
 import hibernate.ProductManager;
-import hibernate.productTuple;
+import hibernate.ProductTuple;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,17 +18,18 @@ public class GetProductsByCategoryServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		
+		// Get list of ProductTuple based on Category and return a jsonArray
 		String category = request.getParameter("categoryname");
 		
 		// Debug!
-		System.out.println(category);
+		//System.out.println(category);
 		
-		ArrayList<productTuple> output = new ArrayList<productTuple>();
+		ArrayList<ProductTuple> output = new ArrayList<ProductTuple>();
 		output = ProductManager.getProductsListByCategory(category);
 		
 		Gson gson = new Gson();
 		
-		JsonElement element = gson.toJsonTree(output, new TypeToken<List<productTuple>>(){}.getType());
+		JsonElement element = gson.toJsonTree(output, new TypeToken<List<ProductTuple>>(){}.getType());
 		JsonArray jsonArray = element.getAsJsonArray();
 		
 		// Debug!
