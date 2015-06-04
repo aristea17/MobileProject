@@ -77,8 +77,10 @@
 			int iBP=0;
 			for(Order order : listOfOrders){
 			String supplier = order.getSupplier();
-			double total = order.getTotal();
+			String total = order.getTotal();
 		%>
+		<br/>
+		<br/>
 		<p>Supplier: <%=supplier + " - Total: " + total %></p>
 		<table id="table<%=iOrder%>" class="table table-striped">
 			<thead>

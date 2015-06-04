@@ -2,3 +2,7 @@
 .icon-success{
 	color: red;
 }
+body{
+	padding-right: 90px;
+	padding-left: 90px;
+}

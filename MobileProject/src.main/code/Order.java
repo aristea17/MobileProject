@@ -27,6 +27,7 @@ public class Order {
 		}
 	}
 	
+	//not used
 	public void remove(BuyProduct product){
 		if(order.containsKey(product.getName())){
 			order.remove(product.getName());
@@ -75,29 +76,28 @@ public class Order {
 		return email;
 	}
 	
-	public double getTotal(){
+	public String getTotal(){
 		double total = 0;
-		//DecimalFormat df = new DecimalFormat("#.##"); 
+		//DecimalFormat df = new DecimalFormat("#.00"); 
 		
 		if(!order.isEmpty()){
 			for(BuyProduct product : order.values()){
 				total += (product.getPrice()*product.getQuantity());
 			}
 		}
-	     
-		//total = Double.valueOf(df.format(total));
-		
-		return total;		
+		//total = Double.parseDouble(df.format(total));
+		String result = String.format("%.2f", total);
+		return (result);
 	}
 	
 	public String stringMyOrder(){
 		String stringOrder = "";
 		if(!order.isEmpty()){
 			for(BuyProduct product : order.values()){
-				stringOrder += "Product: "+product.getName() + "\t\tPrice: " + product.getPrice() + "\t\tQuantity: " + product.getQuantity()+"\n";
+				stringOrder += "Product: " + product.getName() + "\t\tQuantity: " + product.getQuantity() + "\t\tPrice: " + product.getPrice() + "€"  +"\n";
 			}
 			stringOrder += "\n\n";
-			stringOrder += "Total: " + getTotal() + "\n";
+			stringOrder += "Total: " + getTotal() + "€\n";
 		}
 		return stringOrder;
 	}
