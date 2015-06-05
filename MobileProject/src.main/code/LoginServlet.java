@@ -1,9 +1,7 @@
 package code;
-import hibernate.ProductManager;
+
 import hibernate.UserManager;
-
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +13,7 @@ public class LoginServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		
+		/* get request parameters for username & password */
 		String username =  request.getParameter("txtUsername");
 		String password = request.getParameter("txtPassword");
 		
