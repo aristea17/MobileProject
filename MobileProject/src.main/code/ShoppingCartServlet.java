@@ -9,7 +9,9 @@ import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
@@ -72,7 +74,7 @@ public class ShoppingCartServlet extends HttpServlet{
 		case 3 : remove(request);
 			break;
 		// Updates a BuyProduct quantity in the cart
-		case 4 : update(request);
+		case 4 : reduce(request);
 			break;
 		default : System.out.println("Wrong ID: Where do you come from, dude...?");
 		}
@@ -99,14 +101,16 @@ public class ShoppingCartServlet extends HttpServlet{
 	private void send(HttpServletRequest request){
 		//String toResponse = "";
 		List<Order> orderList = ShoppingCart.getOrderList();
+		Hashtable<String, String[]> sendList = new Hashtable<String, String[]>();
 		
 		int count = 1;		
-		System.out.println("START SENDING EMAILS");
+		System.out.println("START GENERATING PDFs");
 		
-		// For each order in ShoppingCart (already divided by supplier) we send an email
+		// For each order in ShoppingCart (already divided by supplier) we generate an order-PDF
 		for(Order current : orderList){
+			String[] info = new String[2];
 			
-			System.out.println("EMAIL " + count);
+			System.out.println("PDF " + count);
 			
 			// Generate unique time stamp for each mail
 			generateOrderDate();
@@ -115,21 +119,35 @@ public class ShoppingCartServlet extends HttpServlet{
 			String file = "Order for " + current.getSupplier() + " " + uniqueOrderDate + ".pdf";
 			generatePdf(current, file);
 			
-			// Send email
-			sendEmail(current.getEMail(), file);
-			/*String fromMail = */
-			//toResponse += "Order: " + current.getSupplier() + "\n" + fromMail;
+			// Add to list to be sent with relative email
+			info[0] = uniqueOrderDate;
+			info[1] = file;
+			sendList.put(current.getEMail(), info);
 			
-			System.out.println("EMAIL " + count + " SENT");
 			count++;
 		}
 	
-		System.out.println("END SEND SESSION");
+		System.out.println("END PDF SESSION");
 		
 		ShoppingCart.clear();
 		
 		System.out.println("CART CLEARED");
 		
+		System.out.println("START SENDING EMAIL");
+		
+		int i = 0;
+		// Send email
+		for(Map.Entry<String, String[]> entry : sendList.entrySet()){
+			System.out.println("EMAIL " + (i+1));
+
+			sendEmail(entry.getKey(), entry.getValue());
+			/*String fromMail = */
+			//toResponse += "Order: " + current.getSupplier() + "\n" + fromMail;
+			
+			System.out.println("EMAIL " + (i+1) + " SENT");
+			i++;
+		}
+		System.out.println("END SEND SESSION");
 		//return toResponse;
 	}
 	
@@ -145,14 +163,14 @@ public class ShoppingCartServlet extends HttpServlet{
 	}
 	
 	// Update BuyProduct's quantity
-	private void update(HttpServletRequest request){
+	private void reduce(HttpServletRequest request){
 		// Gets parameters from ajax
 		String p_name = request.getParameter("pName");
 		String s_name = request.getParameter("sName");
 		int quantity = Integer.parseInt(request.getParameter("iQuantity"));
 		
 		// Update BuyProduct based on name and supplier
-		ShoppingCart.update(s_name, p_name, quantity);
+		ShoppingCart.reduce(s_name, p_name, quantity);
 		
 	}
 	
@@ -201,7 +219,7 @@ public class ShoppingCartServlet extends HttpServlet{
 		}
 	}
 	
-	private void sendEmail(String to, String fileName){
+	private void sendEmail(String to, String[] info){
 		//String toReturn = "";
 		
 		// Sender information
@@ -232,7 +250,7 @@ public class ShoppingCartServlet extends HttpServlet{
 			// Set FROM and TO - Subject and actual message
 			message.setFrom(new InternetAddress(from));
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-			message.setSubject("Supply order for IMS-2k15 - " + uniqueOrderDate);
+			message.setSubject("Supply order for IMS-2k15 - " + info[0]);
 			
 			// We create a Multipart object to structure our email
 			Multipart mp = new MimeMultipart();
@@ -243,10 +261,10 @@ public class ShoppingCartServlet extends HttpServlet{
 			
 			// Add attachment
 			bp = new MimeBodyPart();
-			String filePath = PATH_HOME + PATH_TO_FOLDER + fileName;
+			String filePath = PATH_HOME + PATH_TO_FOLDER + info[1];
 			DataSource source = new FileDataSource(filePath);
 			bp.setDataHandler(new DataHandler(source));
-			bp.setFileName(fileName);
+			bp.setFileName(info[1]);
 			mp.addBodyPart(bp);
 			
 			// Set content of our email with the Multipart created

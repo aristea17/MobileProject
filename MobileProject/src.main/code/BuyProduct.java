@@ -1,8 +1,5 @@
 package code;
 
-import hibernate.Products;
-import hibernate.Suppliers;
-
 // BuyProduct class is for ShoppingCart only
 public class BuyProduct {
 	private String pName;
@@ -11,6 +8,7 @@ public class BuyProduct {
 	private String supplierName;
 	private String email;
 	
+	/* Constructor */
 	public BuyProduct(String pName, int quantity, double price, String supplierName, String email){
 		this.pName = pName;
 		this.quantity = quantity;
@@ -19,18 +17,13 @@ public class BuyProduct {
 		this.email = email;
 	}
 	
-	// Getters
+	/* Getters */
 	public String getName() {
 		return pName;
 	}
 
 	public int getQuantity() {
 		return quantity;
-	}
-
-	// setQuantity is the only Setter, in order to update quantity to buy of specific obj
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
 	}
 
 	public double getPrice() {
@@ -43,5 +36,10 @@ public class BuyProduct {
 	
 	public String getSupplierEmail(){
 		return email;
+	}
+	
+	/* setQuantity is the only Setter, in order to update quantity to buy of specific obj */
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
 	}
 }

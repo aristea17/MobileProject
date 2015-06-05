@@ -13,17 +13,20 @@ public class LoginServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException{
 		
-		/* get request parameters for username & password */
+		/* Get request parameters for username & password */
 		String username =  request.getParameter("txtUsername");
 		String password = request.getParameter("txtPassword");
 		
+		// Authentication check
 		boolean valid = UserManager.authenticate(username, password);
 		
 		HttpSession session;
+		
+		// Authentication - if failed redirects to an error message, else access user main page
 		if(valid){
 			session = request.getSession(true);
 			session.setAttribute("user", username);
-			response.sendRedirect("validLogin.jsp");
+			response.sendRedirect("validLogin.jsp"); // <-- Rename in Homepage or similar
 		}else{
 			request.setAttribute("error", "Invalid user");
 			response.sendRedirect("invalidLogin.jsp");

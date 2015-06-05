@@ -1,22 +1,33 @@
 package code;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-public class Order {
-	
+public class Order {	
 	private Hashtable<String, BuyProduct> order;
 	private String supplier;
 	private String email;
 	
+	/* Constructor */
 	public Order(String supplier, String email){
 		order = new Hashtable<String, BuyProduct>();
 		this.supplier = supplier;
 		this.email = email;
 	}
 	
+	/* Getters */
+	public String getSupplier(){
+		return supplier;
+	}
+	
+	public String getEMail(){
+		return email;
+	}
+	
+	/* Add product to this order
+	 * IF product already exists we update quantity by summing them up
+	 * ELSE we simply add it to the order */
 	public void add(BuyProduct product){
 		if(order.containsKey(product.getName())){
 			int oldQuantity = order.get(product.getName()).getQuantity();
@@ -27,69 +38,58 @@ public class Order {
 		}
 	}
 	
-	//not used
-	public void remove(BuyProduct product){
-		if(order.containsKey(product.getName())){
-			order.remove(product.getName());
-		}
-	}
-	
+	/* Removes given product from this order */
 	public void remove(String productName){
 		if(order.containsKey(productName)){
 			order.remove(productName);
 		}
 	}
 	
-	public void update(String productName, int quantity){
+	/* Reduce given product's quantity by given value */
+	public void reduce(String productName, int quantity){
 		if(order.containsKey(productName)){
 			BuyProduct p = order.get(productName);
-			int update = p.getQuantity() - quantity;
+			int result = p.getQuantity() - quantity;
 			
-			if(update <= 0) remove(productName);
-			else p.setQuantity(update);
+			/* IF result is less or equal zero, we remove the given product from this order */
+			if(result <= 0) remove(productName);
+			else p.setQuantity(result);
 		}
 	}
 	
+	/* isEmpty method */
 	public boolean isEmpty(){
 		return order.isEmpty();
 	}
 	
-	// probably never used
-	public List<BuyProduct> getProductList(){
-		
-		List<BuyProduct> myOrder = new ArrayList<BuyProduct>();
+	/* Returns a list of all products present in this Order  */
+	public List<BuyProduct> getProductList(){	
+		List<BuyProduct> myProducts = new ArrayList<BuyProduct>();
 		
 		if(!order.isEmpty()){
 			for(BuyProduct p : order.values()){
-				myOrder.add(p);
+				myProducts.add(p);
 			}
 		}
 		
-		return myOrder;
+		return myProducts;
 	}
 	
-	public String getSupplier(){
-		return supplier;
-	}
-	
-	public String getEMail(){
-		return email;
-	}
-	
+	/* Gets all product in this order and calculate this order's total */
 	public String getTotal(){
 		double total = 0;
-		//DecimalFormat df = new DecimalFormat("#.00"); 
 		
 		if(!order.isEmpty()){
 			for(BuyProduct product : order.values()){
 				total += (product.getPrice()*product.getQuantity());
 			}
 		}
-		//total = Double.parseDouble(df.format(total));
-		String result = String.format("%.2f", total);
-		return (result);
+		
+		String stringTotal = String.format("%.2f", total);
+		return stringTotal;
 	}
 	
+	/* Generates String content of this order to be printed in PDF whn generated */
 	public String stringMyOrder(){
 		String stringOrder = "";
 		if(!order.isEmpty()){
@@ -102,14 +102,13 @@ public class Order {
 		return stringOrder;
 	}
 	
-	// Debug
+	// Debug method
 	public void printMyOrder(){
 		if(!order.isEmpty()){
 			for(BuyProduct product : order.values()){
 				System.out.println("product: "+product.getName() + "\tPrice: " + product.getPrice() + "\tQuantity: " + product.getQuantity());
 			}
-		}
-		
+		}		
 	}
-
+	
 }

@@ -15,7 +15,7 @@ public class ProductStockServlet extends HttpServlet{
 		int sum = Integer.parseInt(request.getParameter("update")); //get the input field value		
 		int id = Integer.parseInt(request.getParameter("id"));
 		
-		//Update product quantity in DB
+		/* Update product quantity in DB */
 		ProductManager.updateProductById(id, sum);
 		
 		/*

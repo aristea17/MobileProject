@@ -3,23 +3,22 @@ package code;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
 public class ShoppingCart {
 	
 	private static Hashtable<String, Order> cart = new Hashtable<String, Order>();
 	private static Order newOrder = null;
 	
-	// Add product to cart
+	/* Add product to cart
+	 * IF there is already an order for the supplier of the selected product
+	 * 	We get the Order for that supplier and we add the product
+	 * ELSE we create a new Order for the "new" supplier in cart and we add
+	 * 	the product, then we add the Order in the cart */
 	public static void addToCart(BuyProduct product){
-		// If there is already an order for the supplier of the selected product
+
 		if(cart.containsKey(product.getSupplierName())){
-			// We get the Order for that supplier and we add the product
 			cart.get(product.getSupplierName()).add(product);
 		}
-		// Else we create a new Order for the "new" supplier in cart and we add the product,
-		// then we add the Order in the cart
 		else{
 			newOrder = new Order(product.getSupplierName(), product.getSupplierEmail());
 			newOrder.add(product);
@@ -27,20 +26,9 @@ public class ShoppingCart {
 		}
 	}
 	
-	// PRIVATE Add Order to the "cart" HastTable
+	/* PRIVATE Add Order to the "cart" HastTable */
 	private static void addOrder(Order order){
 		cart.put(order.getSupplier(), order);
-	}
-	
-	// 
-	public static void remove(BuyProduct product){
-		if(cart.containsKey(product.getSupplierName())){
-			Order currentOrder = cart.get(product.getSupplierName());
-			currentOrder.remove(product);
-			if(currentOrder.isEmpty()){
-				cart.remove(currentOrder.getSupplier());
-			}
-		}
 	}
 	
 	public static void remove(String supplierName, String productName){
@@ -53,10 +41,10 @@ public class ShoppingCart {
 		}
 	}
 	
-	public static void update(String supplierName, String productName, int quantity){
+	public static void reduce(String supplierName, String productName, int quantity){
 		if(cart.containsKey(supplierName)){
 			Order currentOrder = cart.get(supplierName);
-			currentOrder.update(productName, quantity);
+			currentOrder.reduce(productName, quantity);
 			if(currentOrder.isEmpty()){
 				cart.remove(supplierName);
 			}

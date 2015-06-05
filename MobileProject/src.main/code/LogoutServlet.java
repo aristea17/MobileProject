@@ -11,12 +11,16 @@ import javax.servlet.http.HttpSession;
 public class LogoutServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
+		
+		/* Get session and invalidates it if it exixst */
 		HttpSession session = request.getSession(false);
 		if(session!=null){
 			ShoppingCart.clear(); //clears the shopping cart 
 			session.removeAttribute("user");
 			session.invalidate();
 		}
+		
+		/* Redirect to Login Page*/
 		response.sendRedirect("login.jsp");
 	}
 }

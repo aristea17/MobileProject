@@ -62,11 +62,9 @@
 			//async: false,		// <--- Uncomment this line in order to make sure no action can happen until email are sent
 								//		Cons: It seems the application is blocked because waiting for the "success" to return
 			// Debugging alert
-			/*success: function(responseText){
-				alert(responseText);
-			}*/
+			success: alert('Email are beeing sent...'),
 		})
-		//location.reload();
+		location.reload();
 	}
 	
 	</script>
