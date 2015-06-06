@@ -31,6 +31,8 @@ public class ShoppingCart {
 		cart.put(order.getSupplier(), order);
 	}
 	
+	/* Removes given product from a specific supplier
+	 * IF it happens that that specific order ends up empty, we remove its entry from the cart */
 	public static void remove(String supplierName, String productName){
 		if(cart.containsKey(supplierName)){
 			Order currentOrder = cart.get(supplierName);
@@ -41,6 +43,8 @@ public class ShoppingCart {
 		}
 	}
 	
+	/* Reduces given product's quantity in given supplier order by the quantity given
+	 * IF it happens that that specific order ends up empty, we remove its entry from the cart */
 	public static void reduce(String supplierName, String productName, int quantity){
 		if(cart.containsKey(supplierName)){
 			Order currentOrder = cart.get(supplierName);
@@ -51,6 +55,16 @@ public class ShoppingCart {
 		}
 	}
 	
+	/* Getters */
+	public static Order getOrderBySupplierName(String supplier){
+		return cart.get(supplier);
+	}
+	
+	public static Order getOrderBySupplierName(BuyProduct product){
+		return cart.get(product.getSupplierName());
+	}
+	
+	/* Returns a List of all Order (divided by supplier) inside the cart */
 	public static List<Order> getOrderList(){
 		List<Order> ordersList = new ArrayList<Order>();
 		if(!cart.isEmpty()){
@@ -61,19 +75,17 @@ public class ShoppingCart {
 		return ordersList;
 	}
 	
-	public static Order getOrderBySupplierName(String supplier){
-		return cart.get(supplier);
+	/* isEmpty method */
+	public static boolean isEmpty(){
+		return cart.isEmpty();
 	}
 	
-	public static Order getOrderBySupplierName(BuyProduct product){
-		return cart.get(product.getSupplierName());
-	}
-	
+	/* Clears cart - Clears HashTable*/
 	public static void clear(){
 		cart.clear();
 	}
 	
-	// for debug
+	/* For debugging purpose */
 	public static void printShoppingCartContent(){
 		if(!cart.isEmpty()){
 			for(String supplierName : cart.keySet()){
@@ -85,6 +97,7 @@ public class ShoppingCart {
 		System.out.println();
 	}
 	
+	/* For debugging purpose */
 	public static void printOrdersContent(){
 		if(!cart.isEmpty()){
 			for(Order order : cart.values()){

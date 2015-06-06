@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.List;
@@ -45,51 +46,52 @@ public class ShoppingCartServlet extends HttpServlet{
 	private final Path PATH_HOME = Paths.get(System.getProperty("user.home"));
 	private final String PATH_TO_FOLDER = "\\Documents\\GitHub\\MobileProject\\MobileProject\\Orders\\";
 
-	// Do get receives information from ajax
+	/* Do get receives information from ajax */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
-		// Depending on hard-coded ID in ajax function, we know the action we are performing on the Shopping Cart
+		/* Depending on hard-coded ID in ajax function, we know the action we are performing on the Shopping Cart */
 		int id = Integer.parseInt(request.getParameter("ID"));
 		
+		/* 1: Add BuyProduct to cart
+		 * 2: Send email to suppliers based on ShoppingCart content
+		 * 3: Removes a BuyProduct form cart
+		 * 4: Updates a BuyProduct quantity in the cart
+		 * default : Print to console a string - Should never appear because of ID hard-coded and not generated */
 		switch(id){
-		// Add BuyProduct to cart
 		case 1 : add(request);
-			/* // Set response content type
-			String toResponse =
-			response.setContentType("text/plain");
-			response.setCharacterEncoding("UTF-8");
-			response.getWriter().write(toResponse);
-			*/
+								/* // Set response content type
+								String toResponse =
+								response.setContentType("text/plain");
+								response.setCharacterEncoding("UTF-8");
+								response.getWriter().write(toResponse);
+								*/
 			break;
-		// Send email to suppliers based on ShoppingCart content
-		case 2 : send(request);
-			/* // Set response content type
-			String toResponse =
-			response.setContentType("text/plain");
-			response.setCharacterEncoding("UTF-8");
-			response.getWriter().write(toResponse);
-			*/
+		case 2 : if(!ShoppingCart.isEmpty()) send(request);
+								/* // Set response content type
+								String toResponse =
+								response.setContentType("text/plain");
+								response.setCharacterEncoding("UTF-8");
+								response.getWriter().write(toResponse);
+								*/
 			break;
-		// Removes a BuyProduct form cart
 		case 3 : remove(request);
 			break;
-		// Updates a BuyProduct quantity in the cart
 		case 4 : reduce(request);
 			break;
 		default : System.out.println("Wrong ID: Where do you come from, dude...?");
 		}
 	}
 	
-	// AddToCart
+	/* PRIVATE AddToCart */
 	private void add(HttpServletRequest request){
-		// Gets parameters from ajax
+		/* Gets parameters from ajax */
 		String p_name = request.getParameter("pName");
 		String s_name = request.getParameter("sName");
 		String s_email = request.getParameter("sEmail");
 		double price = Double.parseDouble(request.getParameter("pPrice"));
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		
-		// Creates BuyProducts and adds it to Cart
+		/* Creates BuyProducts and adds it to Cart */
 		BuyProduct p = new BuyProduct(p_name, quantity, price, s_name, s_email);
 		ShoppingCart.addToCart(p);
 		
@@ -97,100 +99,100 @@ public class ShoppingCartServlet extends HttpServlet{
 		//return toReturn;
 	}
 	
-	// Send Email
+	/* PRIVATE Send Email */
 	private void send(HttpServletRequest request){
 		//String toResponse = "";
 		List<Order> orderList = ShoppingCart.getOrderList();
-		Hashtable<String, String[]> sendList = new Hashtable<String, String[]>();
+		List<String[]> sendList = new ArrayList<String[]>();
 		
-		int count = 1;		
-		System.out.println("START GENERATING PDFs");
+								/* Print in console to know status of send procedure */
+								int count = 1;		
+								System.out.println("START GENERATING PDFs");
 		
-		// For each order in ShoppingCart (already divided by supplier) we generate an order-PDF
+		/* For each order in ShoppingCart (already divided by supplier) we generate an order-PDF */
 		for(Order current : orderList){
-			String[] info = new String[2];
+			String[] info = new String[3];
 			
-			System.out.println("PDF " + count);
+								System.out.println("PDF " + count);
 			
-			// Generate unique time stamp for each mail
+			/* Generate unique time stamp for each mail */
 			generateOrderDate();
 			
-			// We generate pdf-order to send
+			/* We generate order-PDF to send */
 			String file = "Order for " + current.getSupplier() + " " + uniqueOrderDate + ".pdf";
 			generatePdf(current, file);
 			
-			// Add to list to be sent with relative email
-			info[0] = uniqueOrderDate;
-			info[1] = file;
-			sendList.put(current.getEMail(), info);
+			/* Add to list info to send email in a second moment */
+			info[0] = current.getEMail();
+			info[1] = uniqueOrderDate;
+			info[2] = file;
+			sendList.add(info);
 			
-			count++;
+								count++;
 		}
 	
-		System.out.println("END PDF SESSION");
+								System.out.println("END PDF SESSION");
 		
+		/* Clears shopping cart */
 		ShoppingCart.clear();
 		
-		System.out.println("CART CLEARED");
+								System.out.println("CART CLEARED");								
+								System.out.println("START SENDING EMAIL");
 		
-		System.out.println("START SENDING EMAIL");
-		
-		int i = 0;
-		// Send email
-		for(Map.Entry<String, String[]> entry : sendList.entrySet()){
-			System.out.println("EMAIL " + (i+1));
+								int i = 0;
+		/* Send email */
+		for(String[] currentInfo : sendList){
+								System.out.println("EMAIL " + (i+1));
 
-			sendEmail(entry.getKey(), entry.getValue());
-			/*String fromMail = */
-			//toResponse += "Order: " + current.getSupplier() + "\n" + fromMail;
+			sendEmail(currentInfo);
+								/*String fromMail = */
+								//toResponse += "Order: " + current.getSupplier() + "\n" + fromMail;
 			
-			System.out.println("EMAIL " + (i+1) + " SENT");
-			i++;
+								System.out.println("EMAIL " + (i+1) + " SENT");
+								i++;
 		}
-		System.out.println("END SEND SESSION");
-		//return toResponse;
+								System.out.println("END SEND SESSION");
+								//return toResponse;
 	}
 	
-	// Remove BuyProduct from cart
+	/* PRIVATE Remove BuyProduct from cart */
 	private void remove(HttpServletRequest request){
-		// Gets parameters from ajax
+		/* Gets parameters from ajax */
 		String p_name = request.getParameter("pName");
 		String s_name = request.getParameter("sName");
 
-		// Removes BuyProduct based on name and supplier
-		ShoppingCart.remove(s_name, p_name);
-		
+		/* Removes BuyProduct based on name and supplier */
+		ShoppingCart.remove(s_name, p_name);		
 	}
 	
-	// Update BuyProduct's quantity
+	/* PRIVATE Update BuyProduct's quantity */
 	private void reduce(HttpServletRequest request){
-		// Gets parameters from ajax
+		/* Gets parameters from ajax */
 		String p_name = request.getParameter("pName");
 		String s_name = request.getParameter("sName");
 		int quantity = Integer.parseInt(request.getParameter("iQuantity"));
 		
-		// Update BuyProduct based on name and supplier
-		ShoppingCart.reduce(s_name, p_name, quantity);
-		
+		/* Reduces BuyProduct's quantity based on name and supplier */
+		ShoppingCart.reduce(s_name, p_name, quantity);		
 	}
 	
-	// Generate unique time stamp
+	/* PRIVATE Generate unique time stamp */
 	private static void generateOrderDate(){
 		date = new Date();
 		uniqueOrderDate = dateFormat.format(date);
-		//System.out.println(uniqueOrderDate);
 	}
 	
+	/* PRIVATE Generate PDF-file for an Order */
 	private void generatePdf(Order order, String fileName){
 		
 		try {
-			// Setup to create pdf
+			/* Setup to create pdf */
 			File file = new File(PATH_HOME + PATH_TO_FOLDER + fileName);
 			FileOutputStream fileout = new FileOutputStream(file);
 			Document document = new Document();
 			PdfWriter.getInstance(document, fileout);
 			
-			// Open document and start writing to it adding the structured order in form of paragraphs
+			/* Open document and start writing to it adding the structured order in form of paragraphs */
 			document.open();
 			
 			Paragraph p1 = new Paragraph();
@@ -206,7 +208,7 @@ public class ShoppingCartServlet extends HttpServlet{
 			document.add(p2);
 			document.add(p3);
 			
-			// Close created document
+			/* Close created document */
 			document.close();			
 			fileout.close();
 			
@@ -219,23 +221,24 @@ public class ShoppingCartServlet extends HttpServlet{
 		}
 	}
 	
-	private void sendEmail(String to, String[] info){
-		//String toReturn = "";
+	/* PRIVATE Send Email */
+	private void sendEmail(String[] info){
+								//String toReturn = "";
 		
-		// Sender information
+		/* Sender information */
 		String from = "imsunibz@gmail.com";
 		final String PSW = "ims15unibz";
 		
-		// Get System properties
+		/* Get System properties */
 		Properties props = new Properties();
 		
-		// Setup mail server
+		/* Setup mail server */
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
 			
-		// Get default Session object;
+		/* Get default Session object */
 		Session session = Session.getInstance(props,
 				  new javax.mail.Authenticator() {
 					protected PasswordAuthentication getPasswordAuthentication() {
@@ -244,41 +247,41 @@ public class ShoppingCartServlet extends HttpServlet{
 				  });
 		
 		try{
-			// Create a default MimeMessage
+			/* Create a default MimeMessage */
 			MimeMessage message = new MimeMessage(session);
 			
-			// Set FROM and TO - Subject and actual message
+			/* Set FROM and TO - Subject and actual message */
 			message.setFrom(new InternetAddress(from));
-			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-			message.setSubject("Supply order for IMS-2k15 - " + info[0]);
+			message.addRecipient(Message.RecipientType.TO, new InternetAddress(info[0]));
+			message.setSubject("Supply order for IMS-2k15 - " + info[1]);
 			
-			// We create a Multipart object to structure our email
-			Multipart mp = new MimeMultipart();
-			BodyPart bp = new MimeBodyPart();
-			bp.setText("Order from IMS Hotel in attachment\n\n Thanks!");
+			/* We create a Multipart object to structure our email */
+			Multipart multiP = new MimeMultipart();
+			BodyPart bodyP = new MimeBodyPart();
+			bodyP.setText("Order from IMS Hotel in attachment\n\n Thanks!");
 						
-			mp.addBodyPart(bp);
+			multiP.addBodyPart(bodyP);
 			
-			// Add attachment
-			bp = new MimeBodyPart();
-			String filePath = PATH_HOME + PATH_TO_FOLDER + info[1];
+			/* Add attachment */
+			bodyP = new MimeBodyPart();
+			String filePath = PATH_HOME + PATH_TO_FOLDER + info[2];
 			DataSource source = new FileDataSource(filePath);
-			bp.setDataHandler(new DataHandler(source));
-			bp.setFileName(info[1]);
-			mp.addBodyPart(bp);
+			bodyP.setDataHandler(new DataHandler(source));
+			bodyP.setFileName(info[2]);
+			multiP.addBodyPart(bodyP);
 			
-			// Set content of our email with the Multipart created
-			message.setContent(mp);
+			/* Set content of our email with the Multipart created */
+			message.setContent(multiP);
 			
-			// Send Message
+			/* Send Message */
 			Transport.send(message);
 			
-			//toReturn = "Send Email: \nSent message successfully\n\n";
+								//toReturn = "Send Email: \nSent message successfully\n\n";
 		}catch (MessagingException mex) {
 	         mex.printStackTrace();
-	         //toReturn = "Send Email: \nFAILED!\n\n";
+	         					//toReturn = "Send Email: \nFAILED!\n\n";
 	      }
-		//return toReturn;
+								//return toReturn;
 	}
 	
 }
