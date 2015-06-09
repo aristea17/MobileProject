@@ -10,9 +10,11 @@
 <%@include file="header.jsp" %>
 <script type="text/javascript">
 	var count;
+	
 	$(document).ready(function(){
+		var $department; // declared where can be accessed by later call function to merge department and category to get right products
 		$('#department').change(function(event){//the select option is triggered
-			var $department = $("select#department").val();//save in department the selected value
+			$department = $("select#department").val();//save in department the selected value
 			$.get('GetCategoryServlet', {departmentname:$department}, function(responseJson){//call the servlet passing as a parameter the selected department
 				var $select = $('#category');
 				$select.find('option').remove();
@@ -25,7 +27,7 @@
 			$("#showTable").click(function(event){//when the 'Show Table' is clicked...
 				var $category = $("select#category option:selected").text();//save the selected category value
 				//var $cat = $(category).find(":selected");
-				$.get('GetProductsByCategoryServlet', {categoryname:$category}, function(responseJson){
+				$.get('GetProductsByCategoryServlet', {categoryname:$category, departmentname:$department}, function(responseJson){
 						if(responseJson!=null){
 							$("#table").find("tr:gt(0)").remove();
 							var table1= $("#table");

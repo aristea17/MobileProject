@@ -20,12 +20,13 @@ public class GetProductsByCategoryServlet extends HttpServlet {
 		
 		/* Get list of ProductTuple based on Category and return a jsonArray */
 		String category = request.getParameter("categoryname");
+		String department = request.getParameter("departmentname");
 		
 		// Debug!
 		//System.out.println(category);
 		
 		ArrayList<ProductTuple> output = new ArrayList<ProductTuple>();
-		output = ProductManager.getProductsListByCategory(category);
+		output = ProductManager.getProductsListByCategory(department, category);
 		
 		Gson gson = new Gson();
 		

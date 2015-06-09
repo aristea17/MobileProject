@@ -10,9 +10,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Hashtable;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
@@ -40,6 +38,10 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class ShoppingCartServlet extends HttpServlet{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 	private static Date date;
 	private static String uniqueOrderDate;

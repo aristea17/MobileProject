@@ -9,10 +9,10 @@ import org.hibernate.service.ServiceRegistry;
 public class HibernateUtil {
 
 	private static SessionFactory sessionAnnotationFactory;
-	private static final ThreadLocal<Session> threadLocal = new ThreadLocal();
+	private static final ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
 	
-	private static SessionFactory buildSessionAnnotationFactory(){
-		
+	/* Singleton build of session factory, called only if it doesn't exist already */
+	private static SessionFactory buildSessionAnnotationFactory(){		
 		try{
 			Configuration configuration = new Configuration();
 			configuration.configure();
@@ -22,18 +22,20 @@ public class HibernateUtil {
 			return sessionFactory;
 		}
 		catch (Throwable ex){
-			System.err.println("Initial SessionFactory creation failed." + ex);
+			System.err.println("Initial SessionFactory creation failed...\n" + ex);
             throw new ExceptionInInitializerError(ex);
 		}		
 	}
 	
+	/* getSessionFactory */
 	public static SessionFactory getSessionFactory(){
-		Session session = threadLocal.get();
+		Session session = (Session) threadLocal.get();
 		if(sessionAnnotationFactory==null) sessionAnnotationFactory = buildSessionAnnotationFactory();
 		threadLocal.set(session);
 		return sessionAnnotationFactory;
 	}
 	
+	/* Close current session */
 	public static void closeConnection(){
 			Session session = (Session) threadLocal.get();
 			threadLocal.set(null);
