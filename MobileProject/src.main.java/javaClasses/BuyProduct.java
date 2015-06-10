@@ -2,7 +2,7 @@ package javaClasses;
  
 /* BuyProduct class is for ShoppingCart only */
 public class BuyProduct {
-	private String pName;
+	private String pName;//
 	private int quantity;
 	private double price;
 	private String supplierName;
