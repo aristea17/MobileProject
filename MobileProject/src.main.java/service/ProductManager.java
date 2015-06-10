@@ -4,14 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import javaClasses.ProductTuple;
-
 import model.Products;
 import model.Sells;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
 import utils.HibernateUtil;
 
 /* Handle access to DB when working with Products */
@@ -39,23 +36,15 @@ public class ProductManager {
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
 		Session session = sessFac.getCurrentSession();
 		/* Double try-catch to prevent nested transaction exeption */
-		try{
-			try{
+			
+				session.beginTransaction();
 				/* Query to DB */
-				session.getTransaction().begin();
 				String hql = "SELECT p FROM Products p JOIN p.department d WHERE d.d_name='" + user +"'";
 				Query query = session.createQuery(hql);
 				List<Products> productList = query.list();
 				
 				session.getTransaction().commit();
 				return productList;
-			}catch(Exception e){
-				session.getTransaction().rollback();
-				throw e;
-			}
-		}finally{
-			HibernateUtil.closeConnection();
-		}
 	}
 	
 	/* List of all products (in form of ProductTuple, obj to be displayed in a table) for a category */
@@ -96,7 +85,6 @@ public class ProductManager {
 	public static List<String> getCategories(String department){
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
 		Session session = sessFac.getCurrentSession();
-
 
 		/* Double try-catch to prevent nested transaction exeption */
 		try{

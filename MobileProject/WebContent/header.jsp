@@ -33,7 +33,7 @@ String user = (String)session.getAttribute("user");
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" area-expanded="false">Welcome <b><%=user%></b><span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="login.jsp">Log out</a></li>
+								<li><a href="JSP/login.jsp">Log out</a></li>
 							</ul>
 						</li>
 				</ul>

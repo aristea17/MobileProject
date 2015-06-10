@@ -2,14 +2,10 @@ package service;
  
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-
 import model.Department;
 import model.Users;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-
 import utils.HibernateUtil;
 
 public class UserManager {

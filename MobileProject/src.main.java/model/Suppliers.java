@@ -55,22 +55,22 @@ public class Suppliers {
 	
 	/* Getter & Setter for Company Name */
 	@Column(name="company", nullable=false)
-	public String getCompany(){
-		return company;
-	}
-	
 	public void setCompany(String company){
 		this.company = company;
 	}
 	
-	/* Getter & Setter for Email */
-	@Column(name="email", nullable=false)
-	public String getEmail(){
-		return email;
+	public String getCompany(){
+		return company;
 	}
 	
+	/* Getter & Setter for Email */
+	@Column(name="email", nullable=false)
 	public void setEmail(String email){
 		this.email = email;
+	}
+	
+	public String getEmail(){
+		return email;
 	}
 	
 	/* Getter & Setter for Representative Name */
@@ -85,22 +85,22 @@ public class Suppliers {
 	
 	/* Getter & Setter for Address */
 	@Column(name="address")
-	public String getAddress(){
-		return address;
-	}		
-	
 	public void setAddress(String address){
 		this.address = address;
 	}
 	
-	/* Getter & Setter for Telephone */
-	@Column(name="telephone")
-	public String getTelephone(){
-		return telephone;
+	public String getAddress(){
+		return address;
 	}		
 	
+	/* Getter & Setter for Telephone */
+	@Column(name="telephone")
 	public void setTelephone(String telephone){
 		this.telephone = telephone;
+	}
+	
+	public String getTelephone(){
+		return telephone;
 	}
 	
 	/* Getter & Setter for all Sells (Product sold by Supplier) */

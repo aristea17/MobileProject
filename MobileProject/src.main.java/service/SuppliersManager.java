@@ -24,6 +24,8 @@ public class SuppliersManager {
 		Query query = session.createQuery(hql);
 		List<Suppliers> supplierList = query.list();
 		
+		session.getTransaction().commit();
+		 
 		return supplierList;
 
 	}

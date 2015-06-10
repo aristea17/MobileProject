@@ -87,20 +87,20 @@ public class Department implements Serializable {
 	}
 	
 	/* Getter & Setter for all Products for a Department */
-	public Set<Products> getProducts(){
-		return products;
-	}
-	
 	public void setProducts(Set<Products> products){
 		 this.products = products;
 	}
 	
+	public Set<Products> getProducts(){
+		return products;
+	}
+
 	/* Getter & Setter for all Suppliers for a Department */
+	public void setSuppliers(Set<Suppliers> suppliers){
+		this.suppliers = suppliers;
+	}
+	
 	public Set<Suppliers> getSuppliers(){
 		return suppliers;
 	}
-	
-	public void setSuppliers(Set<Suppliers> suppliers){
-		this.suppliers = suppliers;
-	}	
 }
