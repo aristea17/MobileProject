@@ -1,10 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="hibernate.ProductManager" import="hibernate.Products" import="java.util.List"%> 
+<%@page import="service.ProductManager" import="model.Products" import="java.util.List"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<html> 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="CSS/reset.css" rel="stylesheet" type="text/css">
+<link href="CSS/reset.css" rel="stylesheet" type="text/css" media="screen and (device-height: 800px)"/>
 <link href="CSS/homePage.css" rel="stylesheet" type="text/css"/>
 <title>Home</title>
 <%@include file="header.jsp" %>

@@ -1,5 +1,5 @@
 var count;
-	
+
 $(document).ready(function(){
 	var $department = getDep();
 	$.get('GetCategoryServlet', {departmentname:$department}, function(responseJson){
@@ -26,7 +26,7 @@ $(document).ready(function(){
 					rowNew.children().eq(5).text(value['price']); 
 					rowNew.children().eq(6).text(value['p_batch_amount']);
 					rowNew.children().eq(7).text(value['s_email']);
-					rowNew.append('<td><div class="col-sm-10"><input id="quantity'+key+'" type="text" class="form-control input-sm" onkeypress="return event.charCode >=48 && event.charCode <=57"></div></td>');
+					rowNew.append('<td><div class="col-sm-12"><input id="quantity'+key+'" type="text" class="form-control input-sm" onkeypress="return event.charCode >=48 && event.charCode <=57"></div></td>');
 					rowNew.appendTo(table1);
 					count = key;
 				});

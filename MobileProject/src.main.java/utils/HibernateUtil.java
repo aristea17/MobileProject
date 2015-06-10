@@ -1,5 +1,5 @@
-package hibernate;
-
+package utils;
+ 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -9,7 +9,7 @@ import org.hibernate.service.ServiceRegistry;
 public class HibernateUtil {
 
 	private static SessionFactory sessionAnnotationFactory;
-	private static final ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
+	private static final ThreadLocal<Session> threadLocal = new ThreadLocal();
 	
 	/* Singleton build of session factory, called only if it doesn't exist already */
 	private static SessionFactory buildSessionAnnotationFactory(){		
@@ -29,7 +29,7 @@ public class HibernateUtil {
 	
 	/* getSessionFactory */
 	public static SessionFactory getSessionFactory(){
-		Session session = (Session) threadLocal.get();
+		Session session = threadLocal.get();
 		if(sessionAnnotationFactory==null) sessionAnnotationFactory = buildSessionAnnotationFactory();
 		threadLocal.set(session);
 		return sessionAnnotationFactory;

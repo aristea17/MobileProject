@@ -48,8 +48,6 @@ function send(){
 		data : {
 			ID : SEND_ID
 		},
-		//async: false,		// <--- Uncomment this line in order to make sure no action can happen until email are sent
-							//		Cons: It seems the application is blocked because waiting for the "success" to return
 		// Debugging alert
 		success: alert('Email are being sent...'),
 	})

@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="code.Order" import="code.ShoppingCart" import="code.BuyProduct" import="java.util.List"%>
+<%@page import="javaClasses.Order" import="javaClasses.ShoppingCart" import="javaClasses.BuyProduct" import="java.util.List" %>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" %>
 <%@include file="header.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -9,9 +10,9 @@
 <link href="CSS/shoppingCart.css" rel="stylesheet" type="text/css">
 <title>Shopping Cart</title>
 </head>
-<body>
+<body> 
 <script src="JS/shoppingCart.js" type="text/javascript"></script>
-	
+	<% if(!ShoppingCart.isEmpty()){%>
 	<div class="tableContainer">
 		<%
 			List<Order> listOfOrders = ShoppingCart.getOrderList();
@@ -74,5 +75,9 @@
 		%>
 		<input class="btn btn-md btn-default" type="button" value="Send email order" id="send" onclick="send()">
 	</div>
+	<% }
+		else{%>
+		<p><b>Shopping Cart is empty!</b></p>
+	<% } %>
 </body>
 </html>

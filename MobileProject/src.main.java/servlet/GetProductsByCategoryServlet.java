@@ -1,13 +1,16 @@
-package code;
+package servlet;
 
-import hibernate.ProductManager;
-import hibernate.ProductTuple;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javaClasses.ProductTuple;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import service.ProductManager;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;

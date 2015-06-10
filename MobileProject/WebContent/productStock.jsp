@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="hibernate.ProductManager" import="hibernate.Products" import="java.util.List" %>
+<%@page import="service.ProductManager" import="model.Products" import="java.util.List" %>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1" %>
 <%@include file="header.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -10,7 +11,7 @@
 <link href="CSS/homePage.css" rel="stylesheet" type="text/css">
 <link href="CSS/supplierList.css" rel="stylesheet" type="text/css">
 <title>Suppliers</title>
-</head>
+</head> 
 <body>
 <script src="JS/productStock.js" type="text/javascript"></script>
 

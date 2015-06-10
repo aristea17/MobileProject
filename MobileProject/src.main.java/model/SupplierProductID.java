@@ -1,6 +1,7 @@
-package hibernate;
-
+package model;
+ 
 import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 import javax.persistence.ManyToOne;
 
@@ -11,6 +12,7 @@ public class SupplierProductID implements Serializable{
 	private Products products;
 	private Suppliers suppliers;
 	
+	/* Getter & Setter for a Product */
 	@ManyToOne
 	public Products getProducts(){
 		return products;
@@ -20,6 +22,7 @@ public class SupplierProductID implements Serializable{
 		this.products = products;
 	}
 	
+	/* Getter & Setter for a Supplier */
 	@ManyToOne
 	public Suppliers getSuppliers(){
 		return suppliers;

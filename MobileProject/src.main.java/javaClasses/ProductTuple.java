@@ -1,4 +1,7 @@
-package hibernate;
+package javaClasses;
+ 
+import model.Products;
+import model.Suppliers;
 
 public class ProductTuple {
 

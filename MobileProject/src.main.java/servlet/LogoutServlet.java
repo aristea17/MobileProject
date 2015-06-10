@@ -1,6 +1,7 @@
-package code;
+package servlet;
 
 import java.io.IOException;
+import javaClasses.ShoppingCart;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

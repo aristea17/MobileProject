@@ -1,10 +1,16 @@
-package hibernate;
-
+package service;
+ 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import model.Department;
+import model.Users;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
+import utils.HibernateUtil;
 
 public class UserManager {
 
@@ -18,11 +24,12 @@ public class UserManager {
 		session.getTransaction().commit();
 	}
 	
-	/* Return all the users */
+	/* Return the searched users */
 	public static Users getUser(String username){
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
 		Session session = sessFac.getCurrentSession();
-		
+				
+		/* Query to DB */
 		session.beginTransaction();
 		Users user = (Users) session.get(Users.class, username);
 		session.getTransaction().commit();
@@ -38,7 +45,7 @@ public class UserManager {
 		
 		if(user != null){
 			if(user.getUsername().equals(username) &&
-					user.getPassword().equals(encrypPsw)) return true;
+				user.getPassword().equals(encrypPsw)) return true;
 		}
 		return false;
 	}
@@ -47,20 +54,14 @@ public class UserManager {
 	private static Users getUserByStringId(String username){
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
 		Session session = sessFac.getCurrentSession();
-		Transaction t = null;
+				
+		/* Query to DB */
+		session.beginTransaction();
 		String query = "from Users where username='" + username + "'";
-		Users user = null;
-		
-		try{
-			t = session.getTransaction();
-			t.begin();
-			user = (Users) session.createQuery(query).uniqueResult();
-			t.commit();
-		}catch(Exception e){
-			if(t!=null) t.rollback();
-			e.printStackTrace();
-		}
+		Users user = (Users) session.createQuery(query).uniqueResult();
+		session.getTransaction().commit();
 		return user;
+		
 	}
 	
 	/* Method to encrypt the inserted password from the user */
@@ -68,20 +69,24 @@ public class UserManager {
 		String encryptedPsw = null;
 		
 		try {
-            // Create MessageDigest instance for MD5
+            /* Create MessageDigest instance for MD5 */
             MessageDigest md = MessageDigest.getInstance("MD5");
-            //Add password bytes to digest
+            
+            /* Add password bytes to digest*/
             md.update(s.getBytes());
-            //Get the hash's bytes
+            
+            /* Get the hash's bytes */
             byte[] bytes = md.digest();
-            //This bytes[] has bytes in decimal format;
-            //Convert it to hexadecimal format
+            
+            /* This bytes[] has bytes in decimal format;
+               Convert it to hexadecimal format */
             StringBuilder sb = new StringBuilder();
             for(int i=0; i< bytes.length ;i++)
             {
                 sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
             }
-            //Get complete hashed password in hex format
+            
+            /* Get complete hashed password in hex format */
             encryptedPsw = sb.toString();
         }
         catch (NoSuchAlgorithmException e){
@@ -91,25 +96,16 @@ public class UserManager {
 		return encryptedPsw;
 	}
 	
-	/*public static void saveDepartment(Department dept){
-		SessionFactory sessFac = HibernateUtil.getSessionFactory();
-		Session session = sessFac.getCurrentSession();
-		
-		session.beginTransaction();
-		session.save(dept);
-		session.getTransaction().commit();
-	}*/
-	
 	/* Get the department by ID */
 	public static Department getDepartment(int id){
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
 		Session session = sessFac.getCurrentSession();
 		
+		/* Query to DB */
 		session.beginTransaction();
 		Department dept = (Department) session.get(Department.class, id);
 		session.getTransaction().commit();
 		
 		return dept;
-		
 	}
 } 

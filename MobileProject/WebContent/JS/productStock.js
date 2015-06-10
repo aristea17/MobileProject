@@ -1,7 +1,7 @@
 /* Function to increment productStock in the DB */
 function updateAdd(number, store, pid){	
 	var productCount = document.getElementById(number).value;
-	
+	 
 	/* Check empty box - else do nothing */
 	if(productCount!=""){
 		

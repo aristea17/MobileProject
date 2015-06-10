@@ -1,4 +1,4 @@
-package code;
+package servlet;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,6 +12,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import javaClasses.BuyProduct;
+import javaClasses.Order;
+import javaClasses.ShoppingCart;
+
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -30,6 +34,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;

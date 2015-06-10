@@ -1,8 +1,9 @@
-package hibernate;
-
+package model;
+ 
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.JoinColumn;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+
 import com.google.gson.annotations.Expose;
 
 /* Hibernate class defining Department table */
@@ -75,7 +77,7 @@ public class Department implements Serializable {
 		this.d_id = d_id;
 	}
 	
-	// Getter & Setter for Department Name */
+	/* Getter & Setter for Department Name */
 	public String getName(){
 		return d_name;
 	}
@@ -84,7 +86,7 @@ public class Department implements Serializable {
 		this.d_name = d_name;
 	}
 	
-	// Getter & Setter for all Products for a Department */
+	/* Getter & Setter for all Products for a Department */
 	public Set<Products> getProducts(){
 		return products;
 	}
@@ -93,7 +95,7 @@ public class Department implements Serializable {
 		 this.products = products;
 	}
 	
-	// Getter & Setter for all Suppliers for a Department */
+	/* Getter & Setter for all Suppliers for a Department */
 	public Set<Suppliers> getSuppliers(){
 		return suppliers;
 	}

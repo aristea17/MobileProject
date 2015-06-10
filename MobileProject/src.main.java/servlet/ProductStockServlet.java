@@ -1,10 +1,12 @@
-package code;
+package servlet;
 
-import hibernate.ProductManager;
 import java.io.IOException;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import service.ProductManager;
 
 @SuppressWarnings("serial")
 public class ProductStockServlet extends HttpServlet{

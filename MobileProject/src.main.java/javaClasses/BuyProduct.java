@@ -1,5 +1,5 @@
-package code;
-
+package javaClasses;
+ 
 /* BuyProduct class is for ShoppingCart only */
 public class BuyProduct {
 	private String pName;
