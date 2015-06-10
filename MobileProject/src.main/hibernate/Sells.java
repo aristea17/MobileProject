@@ -1,5 +1,7 @@
 package hibernate;
 
+/* Hibernate class defining Sells table */
+
 import javax.persistence.AssociationOverride;
 import javax.persistence.AssociationOverrides;
 import javax.persistence.Column;
@@ -8,7 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Transient;
-
 import com.google.gson.annotations.Expose;
 
 @Entity

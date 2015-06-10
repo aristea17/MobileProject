@@ -3,12 +3,11 @@ package hibernate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-/* Handles access to DB when working with Products */
+/* Handle access to DB when working with Products */
 public class ProductManager {
 	
 	/* List of ALL products in DB */
@@ -33,7 +32,8 @@ public class ProductManager {
 		}
 	}
 	
-	/* List of all products for a specific user/department */
+	/* List of all products for a specific user/department
+	 * N.B Departments names are the same as users' */
 	public static List<Products> getProductsListByUser(String user){
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
 		Session session = sessFac.getCurrentSession();
@@ -72,15 +72,12 @@ public class ProductManager {
 				Set<Sells> sells = pr.getSells();
 				for(Sells ss : sells){
 					ProductTuple tuple = new ProductTuple(pr, ss.getSupplier(), ss.getPrice());
-					
 					output.add(tuple);
 				}
 			}
-			
 			/* Close connection and return */
 			session.getTransaction().commit();
 			return output;
-
 		}catch(Exception e){
 			session.getTransaction().rollback();
 			throw e;
@@ -89,7 +86,7 @@ public class ProductManager {
 		}
 	}
 	
-	/* List of all product-categories based on department parameter */
+	/* List of all categories based on department name */
 	public static List<String> getCategories(String department){
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
 		Session session = sessFac.getCurrentSession();
@@ -110,13 +107,13 @@ public class ProductManager {
 		}
 	}
 		
-	/* Update in DB the stored-amount of a given product (based on id) */
+	/* Update in DB the stored-amount of a given product (based on its id) */
 	public static void updateProductById(int id, int value){
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
 		Session session = sessFac.getCurrentSession();
 		
 		try{
-			/* Query to DB to get product and update quantity. Then we save to DB the obj */
+			/* Query to DB to get product and update quantity. Then save to DB the obj */
 			session.getTransaction().begin();
 			Products prod = (Products) session.get(Products.class, id);
 			prod.setStored(value);
@@ -130,4 +127,3 @@ public class ProductManager {
 		}
 	}
 }
-	

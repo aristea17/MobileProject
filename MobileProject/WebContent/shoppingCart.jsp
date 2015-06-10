@@ -10,64 +10,7 @@
 <title>Shopping Cart</title>
 </head>
 <body>
-	<script type="text/javascript">
-	
-	function remove(supplier, product){
-		var REMOVE_ID = 3;
-		var p = document.getElementById(product).innerHTML;
-		$.ajax({
-			url: 'ShoppingCartServlet',
-			data: {
-				sName : supplier,
-				pName : p,
-				ID : REMOVE_ID
-			},
-			// Debugging alert
-			/*success: function(responseText){
-				alert(p);	
-			}*/
-		})
-		location.reload();
-	}
-	
-	function reduce(supplier, product, quantity){
-		var q = document.getElementById(quantity).value;
-		// Check empty box - else do nothing
-		if(q!=""){
-			q = parseInt(q);
-			var UPDATE_ID = 4;
-			var p = document.getElementById(product).innerHTML;
-			$.ajax({
-				url: 'ShoppingCartServlet',
-				data: {
-					sName : supplier,
-					pName : p,
-					iQuantity : q,
-					ID : UPDATE_ID
-				},
-				// Debugging alert
-				// success: alert(p)
-			})
-			location.reload();
-		}
-	}
-	
-	function send(){
-		var SEND_ID = 2;
-		$.ajax({
-			url: 'ShoppingCartServlet',
-			data : {
-				ID : SEND_ID
-			},
-			//async: false,		// <--- Uncomment this line in order to make sure no action can happen until email are sent
-								//		Cons: It seems the application is blocked because waiting for the "success" to return
-			// Debugging alert
-			success: alert('Email are beeing sent...'),
-		})
-		location.reload();
-	}
-	
-	</script>
+<script src="JS/shoppingCart.js" type="text/javascript"></script>
 	
 	<div class="tableContainer">
 		<%
@@ -91,16 +34,16 @@
 					<th class="col-md-1"></th>
 					<th class="col-md-2">Name</th>
 					<th class="col-md-2">Price</th>
-					<th class="col-md-2">Quantity</th>
+					<th class="col-md-1">Quantity</th>
 					<th class="col-md-1"></th>
 					<th class="col-md-1"></th>
 				</tr>
 			</thead>
 			<tbody>
 			<%
-				// For each product received from DB query we create a table row
+				/* For each product received from DB query we create a table row */
 				List<BuyProduct> listOfProducts = order.getProductList();
-				// Index is used to create and use ids on needed cells
+				/* Index is used to create and use ids on needed cells */
 				for(BuyProduct product : listOfProducts){
 			%>
 			<tr>
@@ -111,7 +54,9 @@
 				<td><%=product.getPrice() %></td>
 				<td><%=product.getQuantity() %></td>
 				<td>
-				<input type="text" id="field<%=iBP%>" class="form-control input-xs" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
+				<div class="col-sm-8">
+				<input type="text" id="field<%=iBP%>" class="form-control input-sm" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
+				</div>
 				</td>
 				<td>
 				<button class="btn btn-default" type="button" id="reduce<%=iBP %>>" value="reduce" onclick="reduce('<%=supplier %>','name<%=iBP %>','field<%=iBP%>');">Reduce</button>

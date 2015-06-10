@@ -18,7 +18,7 @@ public class GetProductsByCategoryServlet extends HttpServlet {
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		
-		/* Get list of ProductTuple based on Category and return a jsonArray */
+		/* Get list of ProductTuple object based on Category and return a jsonArray of ProductTuple objects */
 		String category = request.getParameter("categoryname");
 		String department = request.getParameter("departmentname");
 		

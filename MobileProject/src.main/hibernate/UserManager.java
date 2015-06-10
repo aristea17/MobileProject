@@ -8,9 +8,8 @@ import org.hibernate.Transaction;
 
 public class UserManager {
 
-	//will be needed in case we let the user to add another 'user'
+	/* Will be needed eventually in case we let the super user to add another 'user' */
 	public static void saveUsers(Users user){
-		
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
 		Session session = sessFac.getCurrentSession();
 		
@@ -19,8 +18,8 @@ public class UserManager {
 		session.getTransaction().commit();
 	}
 	
+	/* Return all the users */
 	public static Users getUser(String username){
-		
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
 		Session session = sessFac.getCurrentSession();
 		
@@ -31,6 +30,7 @@ public class UserManager {
 		return user;
 	}
 	
+	/* Authenticate the user by checking the inserted username & password */
 	public static boolean authenticate(String username, String password){
 		
 		String encrypPsw = simpleEncrypt(password);
@@ -43,6 +43,7 @@ public class UserManager {
 		return false;
 	}
 	
+	/* Get the users by their username */
 	private static Users getUserByStringId(String username){
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
 		Session session = sessFac.getCurrentSession();
@@ -62,6 +63,7 @@ public class UserManager {
 		return user;
 	}
 	
+	/* Method to encrypt the inserted password from the user */
 	private static String simpleEncrypt(String s){
 		String encryptedPsw = null;
 		
@@ -82,25 +84,24 @@ public class UserManager {
             //Get complete hashed password in hex format
             encryptedPsw = sb.toString();
         }
-        catch (NoSuchAlgorithmException e)
-        {
+        catch (NoSuchAlgorithmException e){
             e.printStackTrace();
         }
 		
 		return encryptedPsw;
 	}
 	
-	public static void saveDepartment(Department dept){
+	/*public static void saveDepartment(Department dept){
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
 		Session session = sessFac.getCurrentSession();
 		
 		session.beginTransaction();
 		session.save(dept);
 		session.getTransaction().commit();
-	}
+	}*/
 	
+	/* Get the department by ID */
 	public static Department getDepartment(int id){
-		
 		SessionFactory sessFac = HibernateUtil.getSessionFactory();
 		Session session = sessFac.getCurrentSession();
 		
@@ -111,4 +112,4 @@ public class UserManager {
 		return dept;
 		
 	}
-}
+} 

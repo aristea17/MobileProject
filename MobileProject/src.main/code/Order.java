@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
+/**/
 public class Order {	
 	private Hashtable<String, BuyProduct> order;
 	private String supplier;
@@ -25,9 +26,9 @@ public class Order {
 		return email;
 	}
 	
-	/* Add product to this order
-	 * IF product already exists we update quantity by summing them up
-	 * ELSE we simply add it to the order */
+	/* Add product to this order :
+	 * IF product already exists, update quantity by summing them up
+	 * ELSE, simply add it to the order */
 	public void add(BuyProduct product){
 		if(order.containsKey(product.getName())){
 			int oldQuantity = order.get(product.getName()).getQuantity();
@@ -45,19 +46,19 @@ public class Order {
 		}
 	}
 	
-	/* Reduce given product's quantity by given value */
+	/* Reduce given product's quantity by the given value */
 	public void reduce(String productName, int quantity){
 		if(order.containsKey(productName)){
 			BuyProduct p = order.get(productName);
 			int result = p.getQuantity() - quantity;
 			
-			/* IF result is less or equal zero, we remove the given product from this order */
+			/* IF result is less or equal zero, remove the given product from this order */
 			if(result <= 0) remove(productName);
 			else p.setQuantity(result);
 		}
 	}
 	
-	/* isEmpty method */
+	/* Check if empty */
 	public boolean isEmpty(){
 		return order.isEmpty();
 	}
@@ -75,7 +76,7 @@ public class Order {
 		return myProducts;
 	}
 	
-	/* Gets all product in this order and calculate this order's total */
+	/* Gets all products in this order and calculate this order's total */
 	public String getTotal(){
 		double total = 0;
 		
@@ -89,7 +90,7 @@ public class Order {
 		return stringTotal;
 	}
 	
-	/* Generates String content of this order to be printed in PDF whn generated */
+	/* Generates String content of this order to be printed in PDF when generated */
 	public String stringMyOrder(){
 		String stringOrder = "";
 		if(!order.isEmpty()){
@@ -102,7 +103,7 @@ public class Order {
 		return stringOrder;
 	}
 	
-	// Debug method
+	/* Debug method */
 	public void printMyOrder(){
 		if(!order.isEmpty()){
 			for(BuyProduct product : order.values()){

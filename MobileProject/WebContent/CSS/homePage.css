@@ -1,0 +1,25 @@
+@CHARSET "ISO-8859-1";
+body{
+	padding-top: 150px;
+	padding-right: 140px;
+	padding-left: 100px;
+	min-height: 1000px;
+}
+#tablediv{
+	margin-top: 30px;
+}
+#table{
+	margin-bottom: 50px;
+}
+body > nav > div{
+	margin-left: 100px;
+}
+
+.container{
+	margin-left: 100px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+p{
+	display: inline;
+}

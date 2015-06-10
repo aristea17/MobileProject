@@ -1,8 +1,9 @@
 package hibernate;
 
+/* Hibernate class defining Suppliers table */
+
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,10 +27,9 @@ public class Suppliers {
 	
 	private Set<Sells> sells = new HashSet<Sells>();
 	
-	//new
 	private Set<Department> department = new HashSet<Department>();
-	//finish new
 	
+	/* Constructors */
 	public Suppliers(){}
 	
 	public Suppliers(String company, String email, String rep_name, String address, String telephone){
@@ -105,7 +105,6 @@ public class Suppliers {
 		this.sells = sells;
 	}	
 	
-	//new
 	@ManyToMany(mappedBy="suppliers")
 	public Set<Department> getDepartment(){
 		return department;
@@ -114,5 +113,4 @@ public class Suppliers {
 	public void setDepartment(Set<Department> department){
 		this.department = department;
 	}
-	//new
 }

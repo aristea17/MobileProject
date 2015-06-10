@@ -2,7 +2,6 @@ package hibernate;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,9 +9,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
 import com.google.gson.annotations.Expose;
 
+/* Hibernate class defining Products table*/
 
 @Entity
 @Table(name="products")
@@ -29,6 +28,7 @@ public class Products {
 	
 	private Set<Department> department = new HashSet<Department>();
 	
+	/* Constructors */
 	public Products(){}
 	
 	public Products(String name, String batch, int min, int stored){

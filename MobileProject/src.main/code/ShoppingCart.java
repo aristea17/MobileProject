@@ -9,11 +9,11 @@ public class ShoppingCart {
 	private static Hashtable<String, Order> cart = new Hashtable<String, Order>();
 	private static Order newOrder = null;
 	
-	/* Add product to cart
+	/* Add product to cart :
 	 * IF there is already an order for the supplier of the selected product
 	 * 	We get the Order for that supplier and we add the product
-	 * ELSE we create a new Order for the "new" supplier in cart and we add
-	 * 	the product, then we add the Order in the cart */
+	 * ELSE we create a new Order for the "new" supplier in the cart and add
+	 * 	the product, then add the Order in the cart */
 	public static void addToCart(BuyProduct product){
 
 		if(cart.containsKey(product.getSupplierName())){
@@ -26,7 +26,7 @@ public class ShoppingCart {
 		}
 	}
 	
-	/* PRIVATE Add Order to the "cart" HastTable */
+	/* PRIVATE Add Order to the "cart" HashTable */
 	private static void addOrder(Order order){
 		cart.put(order.getSupplier(), order);
 	}
@@ -43,7 +43,7 @@ public class ShoppingCart {
 		}
 	}
 	
-	/* Reduces given product's quantity in given supplier order by the quantity given
+	/* Reduces given product's quantity given the supplier order by the specified quantity 
 	 * IF it happens that that specific order ends up empty, we remove its entry from the cart */
 	public static void reduce(String supplierName, String productName, int quantity){
 		if(cart.containsKey(supplierName)){
@@ -64,7 +64,7 @@ public class ShoppingCart {
 		return cart.get(product.getSupplierName());
 	}
 	
-	/* Returns a List of all Order (divided by supplier) inside the cart */
+	/* Return a List of all Order (divided by supplier) inside the cart */
 	public static List<Order> getOrderList(){
 		List<Order> ordersList = new ArrayList<Order>();
 		if(!cart.isEmpty()){
@@ -75,7 +75,7 @@ public class ShoppingCart {
 		return ordersList;
 	}
 	
-	/* isEmpty method */
+	/* Check emptiness */
 	public static boolean isEmpty(){
 		return cart.isEmpty();
 	}
@@ -107,6 +107,5 @@ public class ShoppingCart {
 		System.out.println();
 		System.out.println("------------------------------------------");
 		System.out.println();
-	}
-		
+	}		
 }

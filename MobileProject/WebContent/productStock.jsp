@@ -7,86 +7,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link href="Bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
 <link href="CSS/reset.css" rel="stylesheet" type="text/css">
+<link href="CSS/homePage.css" rel="stylesheet" type="text/css">
 <link href="CSS/supplierList.css" rel="stylesheet" type="text/css">
 <title>Suppliers</title>
 </head>
 <body>
-<script type="text/javascript">
-
-// Function to to increment productStock in the DB
-function updateAdd(number, store, pid){	
-	var productCount = document.getElementById(number).value;
-	
-	// Check empty box - else do nothing
-	if(productCount!=""){
-		
-		// Compute sum and update in html table
-		var stored = document.getElementById(store).innerHTML;
-		var sum = parseInt(productCount) + parseInt(stored);
-		document.getElementById(store).innerHTML=sum;
-		
-		// We get Id of the element to access element in the DB
-		var intId = document.getElementById(pid).innerHTML;
-		
-		$.ajax({
-			url: 'ProductStockServlet',
-			data: {
-				id : intId,
-				update : sum
-			},
-			// Debugging alert
-			/* success: function(responseText){
-				alert(responseText);	
-			} */
-		})
-		
-		// Delete value from input-box
-		$('#' + number).val("");
-	}
-}
-
-//Function to to update and reduce productStock in the DB
-function updateReduce(number, store, pid){
-	var productCount = document.getElementById(number).value;
-	
-	// Check empty box - else do nothing
-	if(productCount!=""){
-		
-		// Compute sum and update in html table (if less than 0 stock is set to 0 by default)
-		var stored = document.getElementById(store).innerHTML;
-		var sum = parseInt(stored) - parseInt(productCount);
-		if(sum<0){sum = 0}
-		document.getElementById(store).innerHTML=sum;
-		
-		// We get Id of the element to access element in the DB
-		var intId = document.getElementById(pid).innerHTML;
-		
-		$.ajax({
-			url: 'ProductStockServlet',
-			data: {
-				id : intId,
-				update : sum
-			},
-			// Debugging alert
-			/* success: function(responseText){
-				alert(responseText);	
-			} */
-			})
-			
-		// Delete value from input-box
-		$('#' + number).val("");
-	}
-}
-
-// Change color of stored-field in table if it is less than min-field
-function checkStored(store, min){
-	var s = parseInt(document.getElementById(store).innerHTML);
-	var m = parseInt(document.getElementById(min).innerHTML);
-	if(s<m){$('#' + store).css('color', 'red');}
-	// We update to black in anycase, because we don't know if it was set to "red" before
-	else{$('#' + store).css('color', 'black');}
-}
-</script>
+<script src="JS/productStock.js" type="text/javascript"></script>
 
 	<div class="container2">
 		<table class="table table-bordered table-striped">
@@ -96,27 +22,27 @@ function checkStored(store, min){
 					<th class="col-md-2">Name</th>
 					<th class="col-md-1">Minimum</th>
 					<th class="col-md-1">Stored</th>
-					<th class="col-md-2">Add/reduce</th>
+					<th class="col-md-1">Add/reduce</th>
 					<th class="col-md-1"></th>
 					<th class="col-md-1"></th>
 				</tr>
 			</thead>
 		<tbody>
 		<%
-		// For each product received from DB query we create a table row
+		/* For each product received from DB query we create a table row */
 		List<Products> list = ProductManager.getProductsListByUser(user);
-		// Index is used to create and use ids on needed cells
+		/* Index is used to create and use ids on needed cells */
 		int index=0;
 		for(Products p : list){
 		%>
 			<tr>
 				<td id="pid<%=index%>"><%=p.getID() %></td>
 				<td><%=p.getName()%></td>
-				<td "min<%=index %>"><%=p.getMinimum() %></td>
+				<td id="min<%=index %>"><%=p.getMinimum() %></td>
 				<td id="store<%=index %>"><%=p.getStored() %></td>
 				<script>checkStored('store<%=index %>', 'min<%=index %>')</script>
 				<td>
-				<div class="col-xs-3">
+				<div class="col-sm-8">
 				<input type="text" id="number<%=index %>" class="form-control input-sm" onkeypress='return event.charCode >=48 && event.charCode <=57'></input>
 				</div>
 				</td>

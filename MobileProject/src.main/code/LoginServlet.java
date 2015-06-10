@@ -22,11 +22,11 @@ public class LoginServlet extends HttpServlet {
 		
 		HttpSession session;
 		
-		// Authentication - if failed redirects to an error message, else access user main page
+		// Authentication - if failed redirects to an error page, else access the Home page
 		if(valid){
 			session = request.getSession(true);
 			session.setAttribute("user", username);
-			response.sendRedirect("validLogin.jsp"); // <-- Rename in Homepage or similar
+			response.sendRedirect("homePage.jsp"); 
 		}else{
 			request.setAttribute("error", "Invalid user");
 			response.sendRedirect("invalidLogin.jsp");

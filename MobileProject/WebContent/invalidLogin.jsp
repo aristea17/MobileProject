@@ -8,7 +8,7 @@
 <link href="CSS/reset.css" rel="stylesheet" type="text/css">
 <link href="CSS/general.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
-<title>Login</title>
+<title>Invalid Login</title>
 </head>
 <body>
 <form action="LoginServlet">  

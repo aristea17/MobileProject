@@ -1,6 +1,6 @@
 package code;
 
-// BuyProduct class is for ShoppingCart only
+/* BuyProduct class is for ShoppingCart only */
 public class BuyProduct {
 	private String pName;
 	private int quantity;
@@ -38,7 +38,7 @@ public class BuyProduct {
 		return email;
 	}
 	
-	/* setQuantity is the only Setter, in order to update quantity to buy of specific obj */
+	/* setQuantity is the only Setter, in order to update quantity to buy of specific product */
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}

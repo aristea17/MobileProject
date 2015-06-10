@@ -35,6 +35,7 @@ public class Users implements Serializable {
 	@OneToOne(mappedBy="users", cascade=CascadeType.ALL)
 	private Department department;
 	
+	/* Constructors */
 	public Users(){
 		
 	}
@@ -52,6 +53,7 @@ public class Users implements Serializable {
 		this.department = dept;
 	}
 	
+	/* Getter & Setter for ID */
 	public int getID(){
 		return u_id;
 	}
@@ -60,6 +62,7 @@ public class Users implements Serializable {
 		this.u_id = id;
 	}
 	
+	/* Getter & Setter for Username*/
 	public String getUsername(){
 		return username;
 	}
@@ -68,6 +71,7 @@ public class Users implements Serializable {
 		this.username = username;
 	}
 	
+	/* Getter & Setter for Password*/
 	public String getPassword(){
 		return password;
 	}

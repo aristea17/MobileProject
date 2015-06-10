@@ -11,13 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @SuppressWarnings("serial")
 public class GetCategoryServlet extends HttpServlet{
 	
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		
-		/* Get list of Categories based on Department and return a jsonArray */
+		/* Get list of Categories based on Department and return a jsonArray of Strings */
 		String department = request.getParameter("departmentname");
 		List<String> category = ProductManager.getCategories(department);
 		Gson gson = new Gson();

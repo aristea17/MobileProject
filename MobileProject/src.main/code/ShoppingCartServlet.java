@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
-
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
 import javax.activation.FileDataSource;
@@ -31,16 +30,12 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 public class ShoppingCartServlet extends HttpServlet{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss");
 	private static Date date;
@@ -48,10 +43,10 @@ public class ShoppingCartServlet extends HttpServlet{
 	private final Path PATH_HOME = Paths.get(System.getProperty("user.home"));
 	private final String PATH_TO_FOLDER = "\\Documents\\GitHub\\MobileProject\\MobileProject\\Orders\\";
 
-	/* Do get receives information from ajax */
+	/* Receives information from AJAX */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
-		/* Depending on hard-coded ID in ajax function, we know the action we are performing on the Shopping Cart */
+		/* Depending on hard-coded ID in AJAX function, we know the action we are performing on the Shopping Cart */
 		int id = Integer.parseInt(request.getParameter("ID"));
 		
 		/* 1: Add BuyProduct to cart
@@ -86,14 +81,14 @@ public class ShoppingCartServlet extends HttpServlet{
 	
 	/* PRIVATE AddToCart */
 	private void add(HttpServletRequest request){
-		/* Gets parameters from ajax */
+		/* Get parameters from AJAX */
 		String p_name = request.getParameter("pName");
 		String s_name = request.getParameter("sName");
 		String s_email = request.getParameter("sEmail");
 		double price = Double.parseDouble(request.getParameter("pPrice"));
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
 		
-		/* Creates BuyProducts and adds it to Cart */
+		/* Create BuyProducts object and add it to Cart */
 		BuyProduct p = new BuyProduct(p_name, quantity, price, s_name, s_email);
 		ShoppingCart.addToCart(p);
 		
@@ -101,7 +96,7 @@ public class ShoppingCartServlet extends HttpServlet{
 		//return toReturn;
 	}
 	
-	/* PRIVATE Send Email */
+	/* PRIVATE Send Email method */
 	private void send(HttpServletRequest request){
 		//String toResponse = "";
 		List<Order> orderList = ShoppingCart.getOrderList();
@@ -157,28 +152,28 @@ public class ShoppingCartServlet extends HttpServlet{
 								//return toResponse;
 	}
 	
-	/* PRIVATE Remove BuyProduct from cart */
+	/* PRIVATE Remove BuyProduct object from cart */
 	private void remove(HttpServletRequest request){
-		/* Gets parameters from ajax */
+		/* Get parameters from AJAX */
 		String p_name = request.getParameter("pName");
 		String s_name = request.getParameter("sName");
 
-		/* Removes BuyProduct based on name and supplier */
+		/* Removes BuyProduct based on its name and supplier */
 		ShoppingCart.remove(s_name, p_name);		
 	}
 	
 	/* PRIVATE Update BuyProduct's quantity */
 	private void reduce(HttpServletRequest request){
-		/* Gets parameters from ajax */
+		/* Gets parameters from AJAX */
 		String p_name = request.getParameter("pName");
 		String s_name = request.getParameter("sName");
 		int quantity = Integer.parseInt(request.getParameter("iQuantity"));
 		
-		/* Reduces BuyProduct's quantity based on name and supplier */
+		/* Reduces BuyProduct's quantity based on its name and supplier */
 		ShoppingCart.reduce(s_name, p_name, quantity);		
 	}
 	
-	/* PRIVATE Generate unique time stamp */
+	/* PRIVATE Generate unique time stamp, useful in the PDF generation */
 	private static void generateOrderDate(){
 		date = new Date();
 		uniqueOrderDate = dateFormat.format(date);
@@ -188,7 +183,7 @@ public class ShoppingCartServlet extends HttpServlet{
 	private void generatePdf(Order order, String fileName){
 		
 		try {
-			/* Setup to create pdf */
+			/* Setup to create PDF */
 			File file = new File(PATH_HOME + PATH_TO_FOLDER + fileName);
 			FileOutputStream fileout = new FileOutputStream(file);
 			Document document = new Document();
@@ -223,7 +218,7 @@ public class ShoppingCartServlet extends HttpServlet{
 		}
 	}
 	
-	/* PRIVATE Send Email */
+	/* PRIVATE Send Email Method */
 	private void sendEmail(String[] info){
 								//String toReturn = "";
 		
@@ -285,5 +280,4 @@ public class ShoppingCartServlet extends HttpServlet{
 	      }
 								//return toReturn;
 	}
-	
 }

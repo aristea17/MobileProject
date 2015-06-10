@@ -1,10 +1,8 @@
 package hibernate;
 
-import com.google.gson.annotations.Expose;
-
 public class ProductTuple {
 
-	private int p_id; // ? do we need this in the table ?
+	private int p_id;
 	private String p_name;
 	private String p_batch_amount;
 	private int p_minimum;
@@ -13,7 +11,8 @@ public class ProductTuple {
 	private String s_email;
 	private double price;	
 	
-	ProductTuple(int p_id, String p_name, String p_batch_amount, int p_minimum, int p_stored,
+	/* Constructors */
+	public ProductTuple(int p_id, String p_name, String p_batch_amount, int p_minimum, int p_stored,
 			String s_name, String s_email, double price){
 		this.p_id = p_id;
 		this.p_name = p_name;
@@ -25,7 +24,7 @@ public class ProductTuple {
 		this.price = price;
 	}
 	
-	ProductTuple(Products p, Suppliers s, double price){
+	public ProductTuple(Products p, Suppliers s, double price){
 		this.p_id = p.getID();
 		this.p_name = p.getName();
 		this.p_batch_amount = p.getBatchAmount();
@@ -36,6 +35,7 @@ public class ProductTuple {
 		this.price = price;
 	}
 
+	/* Getters */
 	public int getP_id() {
 		return p_id;
 	}
@@ -67,7 +67,4 @@ public class ProductTuple {
 	public double getPrice() {
 		return price;
 	}
-	
-	
-	
 }

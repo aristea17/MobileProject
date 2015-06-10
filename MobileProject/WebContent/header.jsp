@@ -8,8 +8,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="Bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
 <link href="CSS/reset.css" rel="stylesheet" type="text/css">
-<link href="CSS/validLogin.css" rel="stylesheet" type="text/css">
-<title>Suppliers</title>
+<link href="CSS/homePage.css" rel="stylesheet" type="text/css">
+<title>Home Page</title>
 </head>
 <body>
 <%
@@ -22,7 +22,7 @@ String user = (String)session.getAttribute("user");
 			</div>
 			<div id="navbar" class="navbar-collapse collapse">
 				<ul class="nav navbar-nav">
-				<li><a href="validLogin.jsp?pagina=home">Make an order</a></li>
+				<li><a href="homePage.jsp?pagina=home">Make an order</a></li>
 				<li><a href="shoppingCart.jsp?pagina=shoppingCart">Shopping Cart</a></li>
 				<li><a href="productStock.jsp?pagina=products">Product Stock</a></li>
 				<li><a href="supplierList.jsp?pagina=suppliers">Suppliers</a></li>

@@ -6,7 +6,7 @@
 <head>
 <link href="CSS/reset.css" rel="stylesheet" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>IMS Project Info</title>
 </head>
 <body>
 
