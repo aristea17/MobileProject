@@ -6,15 +6,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="Bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
-<link href="CSS/reset.css" rel="stylesheet" type="text/css">
-<link href="CSS/homePage.css" rel="stylesheet" type="text/css">
-<link href="CSS/supplierList.css" rel="stylesheet" type="text/css">
+<!-- BOOTSTRAP CSS -->
+<link href="${pageContext.request.contextPath}/Bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+<!-- CUSTOM CSS -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/reset.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/homePage.css">
+<link href="${pageContext.request.contextPath}/CSS/supplierList.css" rel="stylesheet">
+<!-- CUSTOM JAVASCRIPT -->
+<script src="${pageContext.request.contextPath}/JS/productStock.js" type="text/javascript"></script>
 <title>Suppliers</title>
 </head> 
 <body>
-<script src="JS/productStock.js" type="text/javascript"></script>
-
 	<div class="container2">
 		<table class="table table-bordered table-striped">
 			<thead>

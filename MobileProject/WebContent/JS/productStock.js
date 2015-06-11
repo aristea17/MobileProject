@@ -14,7 +14,7 @@ function updateAdd(number, store, pid){
 		var intId = document.getElementById(pid).innerHTML;
 		
 		$.ajax({
-			url: 'ProductStockServlet',
+			url: '/MobileProject/ProductStockServlet',
 			data: {
 				id : intId,
 				update : sum
@@ -47,7 +47,7 @@ function updateReduce(number, store, pid){
 		var intId = document.getElementById(pid).innerHTML;
 		
 		$.ajax({
-			url: 'ProductStockServlet',
+			url: '/MobileProject/ProductStockServlet',
 			data: {
 				id : intId,
 				update : sum

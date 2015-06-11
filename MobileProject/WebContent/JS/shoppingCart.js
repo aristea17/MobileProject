@@ -3,7 +3,7 @@ function removeProduct(supplier, product){
 		var REMOVE_ID = 3;
 		var p = document.getElementById(product).innerHTML;
 		$.ajax({
-			url: 'ShoppingCartServlet',
+			url: '/MobileProject/ShoppingCartServlet',
 			data: {
 				sName : supplier,
 				pName : p,
@@ -26,7 +26,7 @@ function reduce(supplier, product, quantity){
 		var UPDATE_ID = 4;
 		var p = document.getElementById(product).innerHTML;
 		$.ajax({
-			url: 'ShoppingCartServlet',
+			url: '/MobileProject/ShoppingCartServlet',
 			data: {
 				sName : supplier,
 				pName : p,
@@ -44,7 +44,7 @@ function reduce(supplier, product, quantity){
 function send(){
 	var SEND_ID = 2;
 	$.ajax({
-		url: 'ShoppingCartServlet',
+		url: '/MobileProject/ShoppingCartServlet',
 		data : {
 			ID : SEND_ID
 		},

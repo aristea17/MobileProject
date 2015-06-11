@@ -4,7 +4,7 @@ var count;
 /* On load we populate drop-down with categories based on user/department */
 $(document).ready(function(){
 	var $department = getDep();
-	$.get('GetCategoryServlet', {departmentname:$department}, function(responseJson){
+	$.get('/MobileProject/GetCategoryServlet', {departmentname:$department}, function(responseJson){
 		var $select = $('#category');
 		$select.find('option').remove();
 		$.each(responseJson, function(key, value){
@@ -14,7 +14,7 @@ $(document).ready(function(){
 	$("#tablediv").hide();
 	$("#showTable").click(function(event){
 		var $category = $("select#category option:selected").text();
-		$.get('GetProductsByCategoryServlet', {categoryname:$category, departmentname:$department}, function(responseJson){
+		$.get('/MobileProject/GetProductsByCategoryServlet', {categoryname:$category, departmentname:$department}, function(responseJson){
 			if(responseJson!=null){
 				$("#table").find("tr:gt(0)").remove();
 				var table1= $("#table");
@@ -60,7 +60,7 @@ function addToCart(){
 			p_price = document.getElementById('price'+i).innerHTML;
 
 			$.ajax({
-				url: 'ShoppingCartServlet',
+				url: '/MobileProject/ShoppingCartServlet',
 				data: {
 					pName : p_name,
 					sName : s_name,

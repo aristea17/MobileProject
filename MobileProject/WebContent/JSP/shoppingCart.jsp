@@ -6,12 +6,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="CSS/reset.css" rel="stylesheet" type="text/css">
-<link href="CSS/shoppingCart.css" rel="stylesheet" type="text/css">
+<!-- CUSTOM CSS -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/reset.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/shoppingCart.css">
+<!-- CUSTOM JAVASCRIPT -->
+<script src="${pageContext.request.contextPath}/JS/shoppingCart.js" type="text/javascript"></script>
 <title>Shopping Cart</title>
 </head>
 <body> 
-<script src="JS/shoppingCart.js" type="text/javascript"></script>
 	<% 
 	/* If ShoppingCart is empty nothing is displayed, else we get a visualization of what is inside the cart */
 	if(!ShoppingCart.isEmpty()){%>

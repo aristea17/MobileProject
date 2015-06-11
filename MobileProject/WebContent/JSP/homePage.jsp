@@ -5,8 +5,9 @@
 <html> 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="CSS/reset.css" rel="stylesheet" type="text/css" media="screen and (device-height: 800px)"/>
-<link href="CSS/homePage.css" rel="stylesheet" type="text/css"/>
+<!-- CUSTOM CSS -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/reset.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/homePage.css">
 <title>Home</title>
 <%@include file="header.jsp" %>
 </head>
@@ -22,7 +23,8 @@
 <br/>
 <br/>
 <br/>
-<script src="JS/homePage.js" type="text/javascript"></script>
+<!-- CUSTOM JAVASCRIPT -->
+<script src="${pageContext.request.contextPath}/JS/homePage.js" type="text/javascript"></script>
 <input class="btn btn-md btn-default" type="button" value="Show Products" id="showTable"/>
 <br/>
 <br/>

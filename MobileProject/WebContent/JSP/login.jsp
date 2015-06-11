@@ -5,13 +5,18 @@
 <html> 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="CSS/reset.css" rel="stylesheet" type="text/css">
-<link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<!-- CUSTOM CSS -->
+<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/reset.css">
+<!-- BOOTSTRAP CSS -->
+<link href="${pageContext.request.contextPath}/Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<!-- BOOTSTRAP JAVASCRIPT -->
+<script type="text/javascript" src="${pageContext.request.contextPath}/Bootstrap/js/bootstrap.min.js"></script>
+<!-- jQuery -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js" type="text/javascript"></script>
 <title>Login</title>
 </head>
 <body>
-<form action="LoginServlet">
+<form action="/MobileProject/LoginServlet">
  <div class="container">
  <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
      <div class="panel panel-info" >

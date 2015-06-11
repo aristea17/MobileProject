@@ -28,10 +28,10 @@ public class LoginServlet extends HttpServlet {
 		if(valid){
 			session = request.getSession(true);
 			session.setAttribute("user", username);
-			response.sendRedirect("homePage.jsp"); 
+			response.sendRedirect("JSP/homePage.jsp"); 
 		}else{
 			request.setAttribute("error", "Invalid user");
-			response.sendRedirect("invalidLogin.jsp");
+			response.sendRedirect("JSP/invalidLogin.jsp");
 		}
 	}
 }

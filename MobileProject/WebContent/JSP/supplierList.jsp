@@ -6,8 +6,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="CSS/reset.css" rel="stylesheet" type="text/css">
-<link href="CSS/supplierList.css" rel="stylesheet" type="text/css">
+<!-- CUSTOM CSS -->
+<link  rel="stylesheet" href="${pageContext.request.contextPath}/CSS/reset.css">
+<link  rel="stylesheet" href="${pageContext.request.contextPath}/CSS/supplierList.css">
 <title>Suppliers</title>
 </head> 
 <body>
