@@ -52,7 +52,7 @@
 			%>
 			<tr>
 				<td>
-				<button class="btn btn-default" type="button" id="remove<%=iBP %>>" value="remove" onclick="remove('<%=supplier %>','name<%=iBP %>');">Remove</button>
+				<button class="btn btn-default" type="button" id="remove<%=iBP %>>" value="remove" onclick="removeProduct('<%=supplier %>','name<%=iBP %>');">Remove</button>
 				</td>
 				<td id="name<%=iBP%>"><%=product.getName() %></td>
 				<td><%=product.getPrice() %></td>

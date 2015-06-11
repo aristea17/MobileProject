@@ -1,5 +1,5 @@
 /* Remove the BuyProduct from the shopping Cart when remove button is clicked */
-function remove(supplier, product){
+function removeProduct(supplier, product){
 		var REMOVE_ID = 3;
 		var p = document.getElementById(product).innerHTML;
 		$.ajax({
