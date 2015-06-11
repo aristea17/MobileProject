@@ -43,62 +43,62 @@ insert into products(p_id, p_name, category, batch_amount, minimum, stored) valu
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(21, 'carta risma 100', 'stampante', '100 fogli', 30, 83);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(22, 'toner stampante nero', 'stampante', '1 toner', 2, 4);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(23, 'toner stampante 3color', 'stampante', '1 toner', 2, 4);
------------------------------------------------------------------------------------------------------------------------------------------------s
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(24, 'penne sfera rosso', 'cancelleria', '50', 1, 2);
+--25
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(25, 'evidenziatori 5pack', 'cancelleria', '5', 10, 13);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(26, 'block quadretti 10pack', 'cancelleria', '10', 10, 11);
-
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(27, 'carta intestata fatture 1k', 'tipografia', '1k fogli', 5, 5);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(28, 'blocco note intestato 20', 'tipografia', '20 blocchi', 20, 24);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(29, 'biglietti da visita 1k', 'tipografia', '1k', 2, 4);
+--30
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(30, 'opuscolo info 500', 'tipografia', '500 depliant', 3, 4);
-
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(31, 'mandarini cestino', 'frutta e verdura', '1 cestino 2Kg', 10, 12);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(32, 'arance cassetta', 'frutta e verdura', '1 cassetta', 15, 12);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(33, 'frutta mista stagione cassetta', 'frutta e verdura', '1 cassetta', 20, 30);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(34, 'verdura mista stagione cassetta', 'frutta e verdura', '1 cassetta', 20, 30);
+--35
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(35, 'pomodori cassetta', 'frutta e verdura', '1 cassetta', 12, 12);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(36, 'cipolle cassetta', 'frutta e verdura', '1 cassetta', 8, 6);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(37, 'patate sacco', 'frutta e verdura', '1 sacco 5Kg', 10, 15);
-
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(38, 'fanta lattina 33cl 6pack', 'bevande e alcolici', '6', 15, 20);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(39, 'lemon soda lattina 33cl 6pack', 'bevande e alcolici', '6', 15, 20);
+--40
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(40, 'acqua naturale 500cl 12cassetta', 'bevande e alcolici', '12 bottiglie cassetta', 50, 60);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(41, 'acqua frizzante 500cl 12cassetta', 'bevande e alcolici', '12 bottiglie cassetta', 40, 45);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(42, 'forst birra 33cl 3pack', 'bevande e alcolici', '3', 20, 50);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(43, 'radler 500cl 6pack', 'bevande e alcolici', '6', 20, 30);
-
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(44, 'sgombro', 'carne e pesce', '300g', 10, 12);
+--45
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(45, 'polpo', 'carne e pesce', '1', 10, 15);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(46, 'gamberi 1Kg', 'carne e pesce', '1 Kg', 5, 2);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(47, 'salsicce 6', 'carne e pesce', '6', 10, 14);
-
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(48, 'piselli busta 500', 'freezer', '500', 20, 30);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(49, 'spinaci busta 500', 'freezer', '500', 20, 30);
+--50
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(50, 'fritto misto mare busta 500', 'freezer', '500', 20, 30);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(51, 'gelato algida cornetto scatola', 'freezer', '10', 20, 30);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(52, 'gelato algida magnum scatola', 'freezer', '10', 20, 30);
-
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(53, 'prosciutto 5Kg', 'frigo', '5 Kg', 2, 2);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(54, 'mila burro 500g', 'frigo', '500g', 20, 30);
+--55
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(55, 'mortadella 5Kg', 'frigo', '5 Kg', 2, 1);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(56, 'formaggio grana 10 Kg', 'frigo', '10 Kg', 2, 2);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(57, 'mozzarella 500g', 'frigo', '500g', 15, 20);
-
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(58, 'pane toast 500g', 'pane e pasta', '500g', 10, 20);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(59, 'barilla spaghetti n5', 'pane e pasta', '500g', 15, 15);
+--60
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(60, 'barilla penne 500g', 'pane e pasta', '500g', 15, 12);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(61, 'scotti riso', 'pane e pasta', '500', 10, 15);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(62, 'pane integrale 1Kg', 'pane e pasta', '1Kg', 10, 20);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(63, 'pane rosette 1Kg', 'pane e pasta', '1Kg', 10, 20);
-
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(64, 'detergente spary acciaio', 'pulizia', '500cl', 5, 6);
+--65
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(65, 'detergente spary anticalcare', 'pulizia', '500cl', 5, 7);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(66, 'detergente legno', 'pulizia', '500cl', 5, 4);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(67, 'cera d_api', 'pulizia', '500cl', 4, 5);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(68, 'spugna', 'pulizia', '10', 5, 10);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(69, 'guanti lattice', 'pulizia', '50', 10, 15);
-
+--70
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(70, 'cotton fiock 100', 'igiene', '100', 20, 30);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(71, 'pettine usa_e_getta', 'igiene', '50', 2, 3);
 insert into products(p_id, p_name, category, batch_amount, minimum, stored) values(72, 'carta igenica 10rotoli', 'igiene', '10', 50, 50);
@@ -132,7 +132,6 @@ insert into sells (price, p_id, s_id) values(3.81, 10, 1);
 insert into sells (price, p_id, s_id) values(1.96, 12, 1);
 insert into sells (price, p_id, s_id) values(6.00, 13, 1);
 insert into sells (price, p_id, s_id) values(12.36, 19, 1);
----------------------------------------------------------
 insert into sells (price, p_id, s_id) values(4.67, 31, 1);
 insert into sells (price, p_id, s_id) values(12.34, 32, 1);
 insert into sells (price, p_id, s_id) values(10.12, 34, 1);
@@ -162,7 +161,6 @@ insert into sells (price, p_id, s_id) values(0.61, 3, 2);
 insert into sells (price, p_id, s_id) values(0.49, 7, 2);
 insert into sells (price, p_id, s_id) values(2.45, 9, 2);
 insert into sells (price, p_id, s_id) values(0.99, 12, 2);
-----------------------------------------------------------
 insert into sells (price, p_id, s_id) values(0.89, 24, 2);
 insert into sells (price, p_id, s_id) values(3.87, 31, 2);
 insert into sells (price, p_id, s_id) values(10.94, 32, 2);
@@ -187,7 +185,6 @@ insert into sells (price, p_id, s_id) values(6.89, 17, 3);
 insert into sells (price, p_id, s_id) values(4.32, 18, 3);
 insert into sells (price, p_id, s_id) values(5.23, 19, 3);
 insert into sells (price, p_id, s_id) values(0.85, 20, 3);
----------------------------------------------------------
 insert into sells (price, p_id, s_id) values(2.89, 64, 3);
 insert into sells (price, p_id, s_id) values(1.56, 65, 3);
 insert into sells (price, p_id, s_id) values(4.00, 66, 3);
@@ -198,27 +195,22 @@ insert into sells (price, p_id, s_id) values(2.50, 7, 4);
 insert into sells (price, p_id, s_id) values(4.00, 21, 4);
 insert into sells (price, p_id, s_id) values(15.00, 22, 4);
 insert into sells (price, p_id, s_id) values(20.00, 23, 4);
-----------------------------------------------------------
 insert into sells (price, p_id, s_id) values(2.50, 24, 4);
 insert into sells (price, p_id, s_id) values(5.00, 25, 4);
 insert into sells (price, p_id, s_id) values(4.00, 26, 4);
 
-
 -- 5 - Macelleria/Metzgerei
 insert into sells (price, p_id, s_id) values(3.65, 11, 5);
 insert into sells (price, p_id, s_id) values(1.86, 12, 5);
-----------------------------------------------------------
 insert into sells (price, p_id, s_id) values(3.89, 47, 5);
 insert into sells (price, p_id, s_id) values(30.00, 53, 5);
 insert into sells (price, p_id, s_id) values(24.06, 55, 5);
-
 
 -- 6 - Acqua e Sapone
 insert into sells (price, p_id, s_id) values(0.98, 5, 6);
 insert into sells (price, p_id, s_id) values(2.88, 14, 6);
 insert into sells (price, p_id, s_id) values(2.56, 15, 6);
 insert into sells (price, p_id, s_id) values(1.15, 20, 6);
-----------------------------------------------------------
 insert into sells (price, p_id, s_id) values(1.10, 70, 6);
 insert into sells (price, p_id, s_id) values(2.54, 71, 6);
 insert into sells (price, p_id, s_id) values(3.99, 72, 6);
@@ -318,7 +310,6 @@ insert into needs (d_id, p_id) values(1, 21);
 insert into needs (d_id, p_id) values(1, 22);
 insert into needs (d_id, p_id) values(1, 23);
 insert into needs (d_id, p_id) values(1, 23);
----------------------------------------------
 insert into needs (d_id, p_id) values(1, 24);
 insert into needs (d_id, p_id) values(1, 25);
 insert into needs (d_id, p_id) values(1, 26);
@@ -326,6 +317,7 @@ insert into needs (d_id, p_id) values(1, 27);
 insert into needs (d_id, p_id) values(1, 28);
 insert into needs (d_id, p_id) values(1, 29);
 insert into needs (d_id, p_id) values(1, 30);
+
 -- 2 - -Kitchen
 insert into needs (d_id, p_id) values(2, 1);
 insert into needs (d_id, p_id) values(2, 2);
@@ -338,7 +330,6 @@ insert into needs (d_id, p_id) values(2, 10);
 insert into needs (d_id, p_id) values(2, 11);
 insert into needs (d_id, p_id) values(2, 12);
 insert into needs (d_id, p_id) values(2, 13);
---------------------------------------------
 insert into needs (d_id, p_id) values(2, 24);
 insert into needs (d_id, p_id) values(2, 26);
 insert into needs (d_id, p_id) values(2, 31);
@@ -386,7 +377,6 @@ insert into needs (d_id, p_id) values(3, 17);
 insert into needs (d_id, p_id) values(3, 18);
 insert into needs (d_id, p_id) values(3, 19);
 insert into needs (d_id, p_id) values(3, 20);
---------------------------------------------
 insert into needs (d_id, p_id) values(3, 24);
 insert into needs (d_id, p_id) values(3, 26);
 insert into needs (d_id, p_id) values(3, 64);
