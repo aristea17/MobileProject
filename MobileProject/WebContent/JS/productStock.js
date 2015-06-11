@@ -70,7 +70,7 @@ function checkStored(store, min){
 	if(s<m){
 		$('#' + store).css('color', 'red');
 	}
-	/* We update to black in any case, because we don't know if it was set to "red" before */
+	/* Else we update to black in any case, because we don't know if it was set to "red" before */
 	else{
 		$('#' + store).css('color', 'black');
 	}

@@ -1,5 +1,7 @@
+/* Used to get number of max element each time we update the shown table, in order to generate ids accordingly */
 var count;
 
+/* On load we populate drop-down with categories based on user/department */
 $(document).ready(function(){
 	var $department = getDep();
 	$.get('GetCategoryServlet', {departmentname:$department}, function(responseJson){
@@ -44,10 +46,12 @@ function addToCart(){
 	var p_price;
 	var quantityInput;
 	
+	/* Check all rows of the table */
 	for(var i=0; i<=count; i++){
 				
 		quantityInput = document.getElementById('quantity'+i).value;  /* here I get the quantity I insert in the input field */
 		
+		/* If an input was added, we add that product to shopping cart */
 		if(quantityInput!=""){
 			var ADD_ID = 1;
 			p_name = document.getElementById('name'+i).innerHTML;
@@ -76,10 +80,11 @@ function addToCart(){
 			$('#' + 'quantity'+i).val("");
 		}		
 	}
+	/* Alert user of successful add */
 	alert('Products added to cart!');
 }
 
-/* get the department name */
+/* Gets the department name */
 function getDep(){
 	var dp = document.getElementById('dep').innerHTML;
 	return dp;

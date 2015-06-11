@@ -12,9 +12,13 @@
 </head>
 <body> 
 <script src="JS/shoppingCart.js" type="text/javascript"></script>
-	<% if(!ShoppingCart.isEmpty()){%>
+	<% 
+	/* If ShoppingCart is empty nothing is displayed, else we get a visualization of what is inside the cart */
+	if(!ShoppingCart.isEmpty()){%>
 	<div class="tableContainer">
 		<%
+			/* Creates a different table for each suppliers and fills it with its products */
+			/* Index is used to create and use ids on needed cells */
 			List<Order> listOfOrders = ShoppingCart.getOrderList();
 			int iOrder = 0;
 			int iBP=0;
@@ -44,7 +48,6 @@
 			<%
 				/* For each product received from DB query we create a table row */
 				List<BuyProduct> listOfProducts = order.getProductList();
-				/* Index is used to create and use ids on needed cells */
 				for(BuyProduct product : listOfProducts){
 			%>
 			<tr>
