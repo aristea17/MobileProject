@@ -19,12 +19,12 @@ public class LoginServlet extends HttpServlet {
 		String username =  request.getParameter("txtUsername");
 		String password = request.getParameter("txtPassword");
 		
-		// Authentication check
+		/* Authentication check */
 		boolean valid = UserManager.authenticate(username, password);
 		
 		HttpSession session;
 		
-		// Authentication - if failed redirects to an error page, else access the Home page
+		/* Authentication - if failed redirects to an error page, else access the Home page */
 		if(valid){
 			session = request.getSession(true);
 			session.setAttribute("user", username);
