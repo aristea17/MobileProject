@@ -30,13 +30,6 @@
        		    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
      			<input type="password" class="form-control" name="txtPassword" placeholder="Password" required="" autofocus="" />  			
        		</div>
-       		<div class="input-group">
-       			<div class="checkbox">
-       				<label>
-       					<input type="checkbox" value="1" id="rememberMe" name="rememberMe">Remember me
-       				</label>
-       			</div>
-       		</div>
        		<div style="margin-top:10px" class="form-group">
        			<div class="col-sm-3 controls">
        				<button class="btn btn-md btn-primary btn-block" type="submit">Login</button>
