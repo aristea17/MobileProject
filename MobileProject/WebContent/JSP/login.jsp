@@ -9,10 +9,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS/reset.css">
 <!-- BOOTSTRAP CSS -->
 <link href="${pageContext.request.contextPath}/Bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <!-- BOOTSTRAP JAVASCRIPT -->
 <script type="text/javascript" src="${pageContext.request.contextPath}/Bootstrap/js/bootstrap.min.js"></script>
-<!-- jQuery -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js" type="text/javascript"></script>
 <title>Login</title>
 </head>
 <body>

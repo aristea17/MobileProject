@@ -18,12 +18,7 @@ public class ProductStockServlet extends HttpServlet{
 		
 		/* Update product quantity in DB */
 		ProductManager.updateProductById(id, sum);
-		
-		/*
-		response.setContentType("text/plain");
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write("Added to the DB!");
-		*/
+
 	}
 
 }

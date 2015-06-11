@@ -25,9 +25,6 @@ public class GetProductsByCategoryServlet extends HttpServlet {
 		String category = request.getParameter("categoryname");
 		String department = request.getParameter("departmentname");
 		
-		// Debug!
-		//System.out.println(category);
-		
 		ArrayList<ProductTuple> output = new ArrayList<ProductTuple>();
 		output = ProductManager.getProductsListByCategory(department, category);
 		
@@ -35,9 +32,6 @@ public class GetProductsByCategoryServlet extends HttpServlet {
 		
 		JsonElement element = gson.toJsonTree(output, new TypeToken<List<ProductTuple>>(){}.getType());
 		JsonArray jsonArray = element.getAsJsonArray();
-		
-		// Debug!
-		//System.out.println(jsonArray);
 		
 		response.setContentType("application/json");
 		response.getWriter().print(jsonArray);

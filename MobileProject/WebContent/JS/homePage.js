@@ -70,10 +70,6 @@ function addToCart(){
 					ID : ADD_ID
 				},
 				async: false,
-				// Debugging alert
-				/*success: function(responseText){
-					alert(responseText);
-				}*/
 			})
 			
 			/* delete value from box */

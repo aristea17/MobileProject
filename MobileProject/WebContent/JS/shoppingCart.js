@@ -9,10 +9,6 @@ function removeProduct(supplier, product){
 				pName : p,
 				ID : REMOVE_ID
 			},
-			// Debugging alert
-			/*success: function(responseText){
-				alert(p);	
-			}*/
 		})
 		location.reload();
 	}
@@ -33,8 +29,6 @@ function reduce(supplier, product, quantity){
 				iQuantity : q,
 				ID : UPDATE_ID
 			},
-			// Debugging alert
-			// success: alert(p)
 		})
 		location.reload();
 	}
@@ -48,7 +42,6 @@ function send(){
 		data : {
 			ID : SEND_ID
 		},
-		// Debugging alert
 		success: alert('Email are being sent...'),
 	})
 	window.setTimeout(function(){window.location.reload()}, 800);

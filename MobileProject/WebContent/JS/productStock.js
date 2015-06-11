@@ -19,10 +19,6 @@ function updateAdd(number, store, pid){
 				id : intId,
 				update : sum
 			},
-			// Debugging alert
-			/* success: function(responseText){
-				alert(responseText);	
-			} */
 		})
 		
 		/* Delete value from input-box */
@@ -52,11 +48,7 @@ function updateReduce(number, store, pid){
 				id : intId,
 				update : sum
 			},
-			// Debugging alert
-			/* success: function(responseText){
-				alert(responseText);	
-			} */
-			})
+		})
 			
 		/* Delete value from input-box */
 		$('#' + number).val("");
@@ -64,13 +56,13 @@ function updateReduce(number, store, pid){
 }
 
 /* Change color of stored-field in table if it is less than min-field */
+/* Else we update to black in any case, because we don't know if it was set to "red" before */
 function checkStored(store, min){
 	var s = parseInt(document.getElementById(store).innerHTML);
 	var m = parseInt(document.getElementById(min).innerHTML);
 	if(s<m){
 		$('#' + store).css('color', 'red');
 	}
-	/* Else we update to black in any case, because we don't know if it was set to "red" before */
 	else{
 		$('#' + store).css('color', 'black');
 	}

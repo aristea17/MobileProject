@@ -59,20 +59,8 @@ public class ShoppingCartServlet extends HttpServlet{
 		 * default : Print to console a string - Should never appear because of ID hard-coded and not generated */
 		switch(id){
 		case 1 : add(request);
-								/* // Set response content type
-								String toResponse =
-								response.setContentType("text/plain");
-								response.setCharacterEncoding("UTF-8");
-								response.getWriter().write(toResponse);
-								*/
 			break;
 		case 2 : if(!ShoppingCart.isEmpty()) send(request);
-								/* // Set response content type
-								String toResponse =
-								response.setContentType("text/plain");
-								response.setCharacterEncoding("UTF-8");
-								response.getWriter().write(toResponse);
-								*/
 			break;
 		case 3 : remove(request);
 			break;
@@ -94,14 +82,11 @@ public class ShoppingCartServlet extends HttpServlet{
 		/* Create BuyProducts object and add it to Cart */
 		BuyProduct p = new BuyProduct(p_name, quantity, price, s_name, s_email);
 		ShoppingCart.addToCart(p);
-		
-		//String toReturn = p_name + " added to Shopping Cart! test: " + test;
-		//return toReturn;
+
 	}
 	
 	/* PRIVATE Send Email method */
 	private void send(HttpServletRequest request){
-		//String toResponse = "";
 		List<Order> orderList = ShoppingCart.getOrderList();
 		List<String[]> sendList = new ArrayList<String[]>();
 		
@@ -145,14 +130,12 @@ public class ShoppingCartServlet extends HttpServlet{
 								System.out.println("EMAIL " + (i+1));
 
 			sendEmail(currentInfo);
-								/*String fromMail = */
-								//toResponse += "Order: " + current.getSupplier() + "\n" + fromMail;
 			
 								System.out.println("EMAIL " + (i+1) + " SENT");
 								i++;
 		}
 								System.out.println("END SEND SESSION");
-								//return toResponse;
+		
 	}
 	
 	/* PRIVATE Remove BuyProduct object from cart */
@@ -223,7 +206,6 @@ public class ShoppingCartServlet extends HttpServlet{
 	
 	/* PRIVATE Send Email Method */
 	private void sendEmail(String[] info){
-								//String toReturn = "";
 		
 		/* Sender information */
 		String from = "imsunibz@gmail.com";
@@ -275,12 +257,9 @@ public class ShoppingCartServlet extends HttpServlet{
 			
 			/* Send Message */
 			Transport.send(message);
-			
-								//toReturn = "Send Email: \nSent message successfully\n\n";
+
 		}catch (MessagingException mex) {
 	         mex.printStackTrace();
-	         					//toReturn = "Send Email: \nFAILED!\n\n";
 	      }
-								//return toReturn;
 	}
 }
